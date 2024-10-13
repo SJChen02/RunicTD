@@ -6,7 +6,6 @@ public class PathManager : MonoBehaviour
 {
     public static PathManager main;
 
-    public Transform start;
     public Transform[] path;
 
     private void Awake()
