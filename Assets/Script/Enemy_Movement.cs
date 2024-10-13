@@ -43,6 +43,9 @@ public class Enemy_Movement : MonoBehaviour
     {
         Vector3 direction = (target.position - transform.position);
 
-        rb.velocity = direction.normalized * moveSpeed;
+        
+
+        Vector3 movement = direction.normalized * moveSpeed;
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
     }
 }
