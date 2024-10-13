@@ -9,7 +9,7 @@ public class Enemy_Movement : MonoBehaviour
     [SerializeField] private Rigidbody rb; //a reference to RigidBody
 
     [Header("Attributes")]
-    [SerializeField] private float moveSpeed;  //read move speed of a object from unity (if we want standard move speed from another script then change this)
+    [SerializeField] private float moveSpeed;  //read move speed of a object from unity (if we want standard move speed from another script then change this).
 
 
     private Transform target;
@@ -17,7 +17,7 @@ public class Enemy_Movement : MonoBehaviour
 
     private void Start()
     {
-        target = LevelManager.main.path[pathIndex]; //this is for enemy object to read through the array of waypoint to move to
+        target = PathManager.main.path[pathIndex]; //this is for enemy object to read through the array of waypoint to move to
     }
 
     private void Update()
@@ -27,14 +27,14 @@ public class Enemy_Movement : MonoBehaviour
             pathIndex++;
            
 
-            if(pathIndex == LevelManager.main.path.Length)
+            if(pathIndex == PathManager.main.path.Length)
             {
                 Destroy(gameObject);
                 return;
             } 
             else
             {
-                target = LevelManager.main.path[pathIndex];
+                target = PathManager.main.path[pathIndex];
             }
         }
     }

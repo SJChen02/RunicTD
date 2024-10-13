@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 1685594150}
   - component: {fileID: 1685594149}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: PathManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,9 +734,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 280102687}
   path:
-  - {fileID: 1819203538}
-  - {fileID: 426076576}
+  - {fileID: 280102687}
   - {fileID: 468460098}
+  - {fileID: 426076576}
+  - {fileID: 1819203538}
   - {fileID: 280102687}
 --- !u!4 &1685594150
 Transform:
