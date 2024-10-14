@@ -8,10 +8,15 @@ public class Bullet : MonoBehaviour
 
     public float speed = 70f;
 
+    public float damage = 40;
+
     public void Seek(Transform _target)
     {
         target = _target;
     }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -36,6 +41,11 @@ public class Bullet : MonoBehaviour
 
     void HitTarget()
     {
+        Enemy enemy = target.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }
