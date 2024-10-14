@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private Enemy e1;
+    [SerializeField] private Enemy e2;
     [SerializeField] private float countdown;
     [SerializeField] private GameObject spawnPoint;
     public Wave[] waves;
@@ -13,6 +15,23 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         readyToCountdown = true;
+        waves = new Wave[]
+        {
+            new Wave
+            {
+            enemies = new Enemy[] { e1, e1 },
+            enemySpawnCooldown = 1.0f,
+            waveCooldown = 5.0f
+            },
+            new Wave
+            {
+            enemies = new Enemy[] { e1, e1, e1, e2, e2, e1, e1, e1, e1, e1 },
+            enemySpawnCooldown = 1.5f,
+            waveCooldown = 6.0f
+            },
+            // Add more waves as needed
+        };
+    
         // Set the enemiesLeft variable to the length of the enemies array
         foreach (Wave wave in waves)
         {
