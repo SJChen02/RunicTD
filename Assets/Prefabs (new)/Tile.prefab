@@ -12,11 +12,7 @@ GameObject:
   - component: {fileID: 494128914581279745}
   - component: {fileID: 3217059486859010649}
   - component: {fileID: 2518475907037583869}
-<<<<<<< HEAD
-  - component: {fileID: 5654771469027739680}
-=======
   - component: {fileID: 642585032682830224}
->>>>>>> dev
   m_Layer: 0
   m_Name: Tile
   m_TagString: Tile
@@ -111,11 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
---- !u!114 &5654771469027739680
-=======
 --- !u!114 &642585032682830224
->>>>>>> dev
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,22 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4520140996371017371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: f67a3a29a5f2221449e6964cd550e476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-  towerPrefab: {fileID: 89659288339257085, guid: 70676d236fb4d4e45bef8becd231de39, type: 3}
-=======
-  prefab: {fileID: 89659288339257085, guid: 70676d236fb4d4e45bef8becd231de39, type: 3}
->>>>>>> dev
-=======
-  towerPrefab: {fileID: 89659288339257085, guid: 70676d236fb4d4e45bef8becd231de39, type: 3}
->>>>>>> Stashed changes
-=======
   m_Script: {fileID: 11500000, guid: 25a3f65c0f823ba468372849cc86d133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 89659288339257085, guid: 70676d236fb4d4e45bef8becd231de39, type: 3}
->>>>>>> dev
+  towerPrefab: {fileID: 89659288339257085, guid: 70676d236fb4d4e45bef8becd231de39, type: 3}

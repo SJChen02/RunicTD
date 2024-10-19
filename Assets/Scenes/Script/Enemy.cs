@@ -32,10 +32,6 @@ public class Enemy : MonoBehaviour
         {
             waveManager.waves[waveManager.currentWave].enemiesLeft--;
             Destroy(gameObject);
-<<<<<<< HEAD
-            FortressGold.gold += 10;
-=======
->>>>>>> dev
         }
     }
 

@@ -5,15 +5,7 @@ using UnityEngine;
 public class MouseController : MonoBehaviour {
 
 <<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
     public GameObject towerPrefab;
-=======
-    public GameObject prefab;
->>>>>>> dev
-=======
-    public GameObject towerPrefab;
->>>>>>> Stashed changes
 =======
     public GameObject prefab;
 >>>>>>> dev
@@ -22,8 +14,6 @@ public class MouseController : MonoBehaviour {
     private void OnMouseDown() {
         if (CompareTag("Tile")) {
 <<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
             placeTower(towerPrefab);
         }
     }
@@ -41,8 +31,6 @@ public class MouseController : MonoBehaviour {
         }
 
 =======
-=======
->>>>>>> dev
             Destroy(gameObject);
             Instantiate(
                 prefab, 
@@ -50,27 +38,6 @@ public class MouseController : MonoBehaviour {
                 Quaternion.identity, 
                 GameObject.Find("Dummy Towers").transform
             );
-<<<<<<< HEAD
-=======
-            placeTower(towerPrefab);
->>>>>>> Stashed changes
-        }
->>>>>>> dev
-    }
-
-    private void placeTower(GameObject towerType) {
-        if (FortressGold.gold >= 10) {
-            Destroy(gameObject);
-            Instantiate(
-                towerPrefab,
-                gameObject.transform.position + offsetVector,
-                Quaternion.identity,
-                GameObject.Find("Towers").transform
-            );
-            FortressGold.gold -= 10;
-        }
-
-=======
         }
 >>>>>>> dev
     }
