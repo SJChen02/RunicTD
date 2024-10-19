@@ -6,15 +6,24 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Rigidbody rb; //a reference to RigidBody
+    [SerializeField] private Rigidbody rb; // Reference to RigidBody
 
     [Header("Attributes")]
-    [SerializeField] private float moveSpeed;  //read move speed of a object from unity (if we want standard move speed from another script then change this).
+    [SerializeField] private float moveSpeed; // Read move speed of an object from Unity
+    [SerializeField] private float FortressDamage;
 
     [Header("Health")]
     public float Hp;
 
     private WaveManager waveManager;
+    private Transform target;
+    private int pathIndex = 0;
+
+    private void Start()
+    {
+        waveManager = GetComponentInParent<WaveManager>();
+        target = PathManager.main.path[pathIndex]; // This is for the enemy to move through waypoints
+    }
 
     public void TakeDamage(float amount)
     {
@@ -25,29 +34,18 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-
-    private Transform target;
-    private int pathIndex =  0;
-
-    private void Start()
-    {
-        waveManager = GetComponentInParent<WaveManager>();
-        target = PathManager.main.path[pathIndex]; //this is for enemy object to read through the array of waypoint to move to
-    }
 
     private void Update()
     {
         if (Vector3.Distance(target.position, transform.position) <= 1f)
         {
             pathIndex++;
-           
 
-            if(pathIndex == PathManager.main.path.Length)
+            if (pathIndex == PathManager.main.path.Length)
             {
-                Destroy(gameObject);
+                Destroy(gameObject); // Enemy reached the end, destroy the object
                 return;
-            } 
+            }
             else
             {
                 target = PathManager.main.path[pathIndex];
@@ -58,11 +56,22 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 direction = (target.position - transform.position);
-
-        
-
         Vector3 movement = direction.normalized * moveSpeed;
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z); // Maintain y velocity for gravity
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fortress"))
+        {
+            // Apply damage to the fortress when enemy enters the trigger zone
+            Fortress fortress = other.GetComponent<Fortress>();
+            if (fortress != null)
+            {
+                fortress.TakeDamage(FortressDamage); 
+            }
+
+            Destroy(gameObject);
+        }
     }
 }
