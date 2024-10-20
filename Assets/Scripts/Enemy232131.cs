@@ -27,7 +27,7 @@ public class Enemy23321 : MonoBehaviour
             Destroy(gameObject);
 
             Debug.Log("Enemy destroyed");
-            waveManager.waves[waveManager.currentWave].enemiesLeft--;
+            //waveManager.waves[waveManager.currentWave].enemiesLeft--;
         }
     }
 }
