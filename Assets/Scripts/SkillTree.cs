@@ -10,6 +10,7 @@ public class SkillTree : MonoBehaviour
         None,
         AttackSpdUp,
         RangeUP,
+        UltimateMode,
     }
     public Buff Buffs;
 
@@ -21,8 +22,8 @@ public class SkillTree : MonoBehaviour
         foreach (GameObject tower in towers)
         {
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.range = 15f;
             towerScript.fireRate = 1f;
+            towerScript.range = 15f;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
         }
@@ -38,6 +39,7 @@ public class SkillTree : MonoBehaviour
         {
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
             towerScript.fireRate = 10f;
+            towerScript.range = 15f;
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
         }
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
@@ -51,6 +53,22 @@ public class SkillTree : MonoBehaviour
         foreach (GameObject tower in towers)
         {
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
+            towerScript.fireRate = 1f;
+            towerScript.range = 1000f;
+            //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
+        }
+        //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
+
+    }
+
+    private void UltimateMode()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+
+        foreach (GameObject tower in towers)
+        {
+            Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
+            towerScript.fireRate = 10f;
             towerScript.range = 1000f;
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
         }
@@ -80,6 +98,10 @@ public class SkillTree : MonoBehaviour
 
             case Buff.RangeUP:
                 RangeUP();
+                break;
+
+            case Buff.UltimateMode:
+                UltimateMode();
                 break;
         }
 

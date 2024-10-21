@@ -16,17 +16,13 @@ public class Enemy : MonoBehaviour
 
     private WaveManager waveManager;
 
-    private Transform target;
-    private int pathIndex = 0;
-
-
     public void TakeDamage(float amount)
     {
         Hp -= amount;
         if (Hp <= 0)
         {
-            waveManager.waves[waveManager.currentWave].enemiesLeft--;
-            //waveManager.waveTracker.EnemyKilled();
+            //waveManager.waves[waveManager.currentWave].enemiesLeft--;
+            waveManager.waveTracker.EnemyKilled();
             Destroy(gameObject);
             FortressGold.gold += 20;
         }
@@ -58,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     private Vector3 previousPosition;
     public float totalDistanceMoved;
+
     public void DistanceMoved() //counts how much the object moved
     {
         float distanceMoved = Vector3.Distance(previousPosition, transform.position);
@@ -71,7 +68,8 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Total distance moved: " + totalDistanceMoved);
     }
 
-
+    private Transform target;
+    private int pathIndex = 0;
 
     private void Start()
     {
