@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveTracker : MonoBehaviour
 {
-    private int totalEnemiesLeft;
+    [SerializeField] private int totalEnemiesLeft;
     private int waveManagersCount;
     [SerializeField] private float countdown = 1f;
     private bool readyToCountdown;
