@@ -1,0 +1,88 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+public class SkillTree : MonoBehaviour
+{
+    public enum Buff
+    {
+        None,
+        AttackSpdUp,
+        RangeUP,
+    }
+    public Buff Buffs;
+
+
+    private void None()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+
+        foreach (GameObject tower in towers)
+        {
+            Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
+            towerScript.range = 15f;
+            towerScript.fireRate = 1f;
+
+            //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
+        }
+        //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
+
+    }
+
+    private void AttackSpdUp()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+
+        foreach (GameObject tower in towers)
+        {
+            Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
+            towerScript.fireRate = 10f;
+            //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
+        }
+        //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
+
+    }
+
+    private void RangeUP()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+
+        foreach (GameObject tower in towers)
+        {
+            Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
+            towerScript.range = 1000f;
+            //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
+        }
+        //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        switch (Buffs)
+        {
+            case Buff.None:
+                None();
+                break;
+
+            case Buff.AttackSpdUp:
+                AttackSpdUp();
+                break;
+
+            case Buff.RangeUP:
+                RangeUP();
+                break;
+        }
+
+        //Debug.Log("CurrentBuffActivated: " + Buffs);
+    }
+}

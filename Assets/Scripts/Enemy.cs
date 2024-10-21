@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private int pathIndex = 0;
 
+
     public void TakeDamage(float amount)
     {
         Hp -= amount;
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    float totalDistance = 0;
+    public float totalDistance = 0;
     public void distanceCounter() //counts the total distance the object need to move
     {
         if (PathManager.main.path.Length > 1)
@@ -49,27 +50,25 @@ public class Enemy : MonoBehaviour
                 float xDistance = Mathf.Abs(Item1.position.x - NextItem.position.x);
                 float zDistance = Mathf.Abs(Item1.position.z - NextItem.position.z);
                 totalDistance = totalDistance + xDistance + zDistance;
-                Debug.Log("X distance: " + xDistance + " Z distance: " + zDistance + ", Item1: " + Item1 + ", NextItem: " + NextItem + ", Total distance: " + totalDistance);
+                //Debug.Log("X distance: " + xDistance + " Z distance: " + zDistance + ", Item1: " + Item1 + ", NextItem: " + NextItem + ", Total distance: " + totalDistance);
             }
         }
     }
 
 
     private Vector3 previousPosition;
-    private float totalDistanceMoved;
+    public float totalDistanceMoved;
     public void DistanceMoved() //counts how much the object moved
     {
         float distanceMoved = Vector3.Distance(previousPosition, transform.position);
+        
+        totalDistanceMoved += distanceMoved; // Update the total distance moved
+        
+        previousPosition = transform.position; // update previous position to the current position
 
-        // Update the total distance moved
-        totalDistanceMoved += distanceMoved;
-
-        // Update the previous position to the current position
-        previousPosition = transform.position;
-
-        // Optionally, log the distance moved
-        Debug.Log("Distance moved this frame: " + distanceMoved);
-        Debug.Log("Total distance moved: " + totalDistanceMoved);
+        // test how much the enemy moved
+        //Debug.Log("Distance moved this frame: " + distanceMoved);
+        //Debug.Log("Total distance moved: " + totalDistanceMoved);
     }
 
 
