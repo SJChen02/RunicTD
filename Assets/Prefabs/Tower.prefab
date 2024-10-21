@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd0dee9c03ae934fa38f7361b56f521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10000
+  range: 10
   fireRate: 1
   enemyTag: Enemy
   turnSpeed: 10

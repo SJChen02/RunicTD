@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4054256317150600304}
   - component: {fileID: 5228525356588953153}
   - component: {fileID: 439461835178709530}
-  - component: {fileID: 6550900224874518696}
+  - component: {fileID: 6657990869972258996}
   m_Layer: 0
   m_Name: Fortress
   m_TagString: Fortress
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6550900224874518696
+--- !u!114 &6657990869972258996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2678954061732836830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c2ab8040b849b409219c51787a1559, type: 3}
+  m_Script: {fileID: 11500000, guid: 8966e863e2a1493449667462a5f42cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 100

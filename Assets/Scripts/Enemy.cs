@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
             //waveManager.waves[waveManager.currentWave].enemiesLeft--;
             waveManager.waveTracker.EnemyKilled();
             Destroy(gameObject);
-            FortressGold.gold += 20;
+            Fortress.gold += 20;
         }
     }
 
