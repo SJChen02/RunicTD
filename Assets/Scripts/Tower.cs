@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
@@ -21,14 +22,18 @@ public class Tower : MonoBehaviour
     public Transform firePoint;
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    //------------------------------------------------------------------------------------------------------
+    //code for switching firing mode
+    public enum Mode
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        first,
+        close,
+        last
     }
+    public Mode Modes;
 
-    void UpdateTarget()
+    //targeting for close
+    private void close()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
@@ -43,7 +48,7 @@ public class Tower : MonoBehaviour
                 nearestEnemy = enemy;
             }
         }
-        
+
         if (nearestEnemy != null && shortestDistance <= range) //found an enemy within range
         {
             target = nearestEnemy.transform;
@@ -53,12 +58,116 @@ public class Tower : MonoBehaviour
             target = null;
         }
     }
+
+    //targeting for first
+    private void first()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float shortestDistance = Mathf.Infinity;
+        GameObject CloseToEndEnemy = null;
+        float ClosestToEnd = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                Enemy Enemy_script = enemy.GetComponent<Enemy>();
+                float distanceLeft = Enemy_script.totalDistance - Enemy_script.totalDistanceMoved;
+
+                if (distanceLeft < ClosestToEnd)
+                {
+                    ClosestToEnd = distanceLeft;
+                    CloseToEndEnemy = enemy;
+                }
+
+                shortestDistance = distanceToEnemy;
+            }
+        }
+
+        if (CloseToEndEnemy != null && shortestDistance <= range) // Finds enemy in range
+        {
+            target = CloseToEndEnemy.transform;
+        }
+        else
+        {
+            target = null;
+        }
+    }
+
+    private void last()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); //finds all object tags as enemy
+        float longestDistance = Mathf.NegativeInfinity; //initialise the distance as negative infinity so "enemy" distance will actually replace this
+        GameObject furthestEnemy = null; //enemy object thats furtherest from fortress
+
+        foreach (GameObject enemy in enemies) //loop through array of "enemy" in list "enemies"
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position); //calculate the distance from tower to enemy
+            Enemy Enemy_script = enemy.GetComponent<Enemy>(); //grabs enemy script
+            float distanceLeft = Enemy_script.totalDistance - Enemy_script.totalDistanceMoved; //calculate the distance left to fortress
+
+            if (distanceLeft > longestDistance) //checks if the current enemy object's distance left is greater than the stored distance
+            {                                   // if the current enemy object has a bigger distance than stored one... ->
+                longestDistance = distanceLeft; //replace the distance 
+                furthestEnemy = enemy;          //replace the enemy object with current enemy
+            }
+
+            //Debug.Log("Checking enemy, distanceLeft: " + distanceLeft + " , longestDistance: " + longestDistance); //for debugging
+        }
+
+        // Checks that there is a furthest enemy and within range
+        if (furthestEnemy != null && Vector3.Distance(transform.position, furthestEnemy.transform.position) <= range) 
+        {
+            target = furthestEnemy.transform; //variable for bullet to travel to "this" enemy
+        }
+        else
+        {
+            target = null;
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //temporary way to change firing mode
+        //----------------------------------------------------------------------------
+        Debug.Log("Selected Firing Mode: " + Modes);
+        //----------------------------------------------------------------------------
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+    }
+
+    void UpdateTarget()
+    {
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //switch case, switch the firing mode in real time
+        switch (Modes)
+        {
+            case Mode.close:
+                close();
+                break;
+
+            case Mode.first:
+                first();
+                break;
+
+            case Mode.last:
+                last();
+                break;
+        }
+
         if (target == null) {
             return;
         }
+        //---------------------------------------------------------------------
 
         // Lock on target
         // Quaternion is how unity represents rotation, eulerAngles is a Vector3 that represents the rotation in degrees
