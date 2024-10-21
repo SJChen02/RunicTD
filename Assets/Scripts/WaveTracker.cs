@@ -16,7 +16,7 @@ public class WaveTracker : MonoBehaviour
     {
         readyToCountdown = false;
         waveManagers = GameObject.FindGameObjectsWithTag("Spawner");
-        lastWave = waveManagers[0].GetComponent<WaveManager>().waves.Length;
+        lastWave = waveManagers[0].GetComponent<WaveManager>().waves.Length-1;
     }
 
     private void Update()
@@ -43,6 +43,7 @@ public class WaveTracker : MonoBehaviour
                 foreach (GameObject waveManagerObject in waveManagers)
                 {
                     WaveManager waveManager = waveManagerObject.GetComponent<WaveManager>();
+                    Debug.Log("Making report");
                     waveManager.makeReport();
                 }
             }
