@@ -14,7 +14,7 @@ public class MouseController : MonoBehaviour {
     }
 
     private void placeTower(GameObject towerType) {
-        if (FortressGold.gold >= 10) {
+        if (Fortress.gold >= 10) {
             Destroy(gameObject);
             Instantiate(
                 towerPrefab,
@@ -22,10 +22,8 @@ public class MouseController : MonoBehaviour {
                 Quaternion.identity,
                 GameObject.Find("Towers").transform
             );
-            FortressGold.gold -= 10;
+            Fortress.gold -= 10;
         }
-
-
-        }
-
     }
+
+}
