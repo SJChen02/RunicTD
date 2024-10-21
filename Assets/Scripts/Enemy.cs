@@ -21,7 +21,8 @@ public class Enemy : MonoBehaviour
         Hp -= amount;
         if (Hp <= 0)
         {
-            waveManager.waves[waveManager.currentWave].enemiesLeft--;
+            //waveManager.waves[waveManager.currentWave].enemiesLeft--;
+            waveManager.waveTracker.EnemyKilled();
             Destroy(gameObject);
             FortressGold.gold += 20;
         }
@@ -63,7 +64,7 @@ public class Enemy : MonoBehaviour
         
 
         Vector3 movement = direction.normalized * moveSpeed;
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        rb.velocity = new Vector3(movement.x, movement.y, movement.z);
 
     }
 }

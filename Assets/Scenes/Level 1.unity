@@ -226,6 +226,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 750283516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &27346233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27346235}
+  - component: {fileID: 27346234}
+  m_Layer: 0
+  m_Name: WaveTracker
+  m_TagString: Tracker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &27346234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27346233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2f7f0dc28a7b64baab3a20c716bda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdown: 1
+  currentWave: 0
+  waveManagers: []
+--- !u!4 &27346235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27346233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &34349473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,7 +485,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa77ddda0d2733c478ffdba71388644c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: []
+  path:
+  - {fileID: 393057374}
+  - {fileID: 1155649331}
+  - {fileID: 907052016}
+  - {fileID: 1069227076}
+  - {fileID: 349841144}
+  - {fileID: 1943448490}
+  - {fileID: 1086713444}
 --- !u!1001 &127751967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1225,7 +1279,7 @@ GameObject:
   - component: {fileID: 493147366}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1258,12 +1312,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c467d0dbcff544942f974f0b95da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: {fileID: 0}
-  e2: {fileID: 0}
-  countdown: 0
-  spawnPoint: {fileID: 0}
-  waves: []
-  currentWave: 0
+  spawnPoint: {fileID: 995045404}
+  waves:
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0100000001000000
+    enemySpawnCooldown: 1
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0100000001000000
+    enemySpawnCooldown: 1
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0100000001000000
+    enemySpawnCooldown: 1
+    enemiesLeft: 0
+  waveTracker: {fileID: 27346234}
 --- !u!1 &523348249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5749,8 +5818,9 @@ SceneRoots:
   - {fileID: 767287292}
   - {fileID: 750283516}
   - {fileID: 523348250}
-  - {fileID: 493147365}
+  - {fileID: 27346235}
   - {fileID: 1145449287}
   - {fileID: 92704458}
   - {fileID: 776059308}
   - {fileID: 391201732}
+  - {fileID: 493147365}

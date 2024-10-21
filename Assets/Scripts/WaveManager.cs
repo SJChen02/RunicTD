@@ -1,82 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] private Enemy e1;
-    [SerializeField] private Enemy e2;
-    [SerializeField] private float countdown;
     [SerializeField] private GameObject spawnPoint;
     public Wave[] waves;
-    public int currentWave = 0;
-    private bool readyToCountdown;
+    public WaveTracker waveTracker;
 
     private void Start()
     {
-        readyToCountdown = true;
-        waves = new Wave[]
-        {
-            new Wave
-            {
-            enemies = new Enemy[] { e1, e1 },
-            enemySpawnCooldown = 1.0f,
-            waveCooldown = 5.0f
-            },
-            new Wave
-            {
-            enemies = new Enemy[] { e1, e1, e1, e2, e2, e1, e1, e1, e1, e1 },
-            enemySpawnCooldown = 1.5f,
-            waveCooldown = 6.0f
-            },
-            // Add more waves as needed
-        };
-    
         // Set the enemiesLeft variable to the length of the enemies array
         foreach (Wave wave in waves)
         {
-            wave.enemiesLeft = wave.enemies.Length;
+            wave.enemiesLeft = wave.enemyGroupCounts.Sum();
         }
+        makeReport();
     }
 
     private void Update()
     {
-        if (currentWave >= waves.Length)
-        {
-            Debug.Log("All waves completed");
-            enabled = false; // Disables the script
-            return;
-        }
 
-        if (readyToCountdown == true)
-        {
-            countdown -= Time.deltaTime;
-        }
-
-        if (countdown <= 0)
-        {
-            readyToCountdown = false;
-            countdown = waves[currentWave].waveCooldown;
-            StartCoroutine(SpawnWave());
-        }
-
-        if (waves[currentWave].enemiesLeft == 0)
-        {
-            readyToCountdown = true;
-            currentWave++;
-        }
+    }
+    public void makeReport()
+    {
+        waveTracker.ReportEnemiesLeft(waves[waveTracker.currentWave].enemiesLeft);
     }
 
-    private IEnumerator SpawnWave() // IEnumerator is a type of function that can be paused and resumed
+    public IEnumerator SpawnWave() // IEnumerator is a type of function that can be paused and resumed
     {
-        if (currentWave < waves.Length)
+        if (waveTracker.currentWave < waves.Length)
         {
-            Debug.Log("Starting wave " + (currentWave + 1));
-            foreach (Enemy enemy in waves[currentWave].enemies)
+            for (int i = 0; i < waves[waveTracker.currentWave].enemyGroups.Length; i++)
             {
-                Enemy spawnedEnemy = Instantiate(enemy, spawnPoint.transform);
-                spawnedEnemy.transform.SetParent(spawnPoint.transform);
-                yield return new WaitForSeconds(waves[currentWave].enemySpawnCooldown); // Pauses until the time has passed
+                for (int j = 0; j < waves[waveTracker.currentWave].enemyGroupCounts[i]; j++)
+                {
+                    Enemy spawnedEnemy = Instantiate(waves[waveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
+                    spawnedEnemy.transform.SetParent(this.transform);
+                    yield return new WaitForSeconds(waves[waveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
+                }
             }
         }
 
@@ -86,9 +49,9 @@ public class WaveManager : MonoBehaviour
 [System.Serializable] // This attribute allows us to see the class in the inspector
 public class Wave
 {
-    public Enemy[] enemies;
+    public Enemy[] enemyGroups;
+    public int[] enemyGroupCounts;
     public float enemySpawnCooldown;
-    public float waveCooldown;
 
     [HideInInspector] public int enemiesLeft; // "HideInInspector" hides the variable in the inspector
 

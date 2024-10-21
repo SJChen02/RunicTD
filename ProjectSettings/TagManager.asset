@@ -7,6 +7,8 @@ TagManager:
   - Tile
   - Enemy
   - Fortress
+  - Spawner
+  - Tracker
   layers:
   - Default
   - TransparentFX
