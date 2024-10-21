@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
                 for (int j = 0; j < waves[waveTracker.currentWave].enemyGroupCounts[i]; j++)
                 {
                     Enemy spawnedEnemy = Instantiate(waves[waveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
-                    spawnedEnemy.transform.SetParent(spawnPoint.transform);
+                    spawnedEnemy.transform.SetParent(this.transform);
                     yield return new WaitForSeconds(waves[waveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
                 }
             }

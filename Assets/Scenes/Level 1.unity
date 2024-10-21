@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338729, g: 0.21673925, b: 0.2988084, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338742, g: 0.21673962, b: 0.29880893, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1317,7 +1317,19 @@ MonoBehaviour:
   - enemyGroups:
     - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-    enemyGroupCounts: 0200000003000000
+    enemyGroupCounts: 0100000001000000
+    enemySpawnCooldown: 1
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0100000001000000
+    enemySpawnCooldown: 1
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0100000001000000
     enemySpawnCooldown: 1
     enemiesLeft: 0
   waveTracker: {fileID: 27346234}
@@ -5807,8 +5819,8 @@ SceneRoots:
   - {fileID: 750283516}
   - {fileID: 523348250}
   - {fileID: 27346235}
-  - {fileID: 493147365}
   - {fileID: 1145449287}
   - {fileID: 92704458}
   - {fileID: 776059308}
   - {fileID: 391201732}
+  - {fileID: 493147365}

@@ -10,13 +10,19 @@ public class WaveTracker : MonoBehaviour
     private bool readyToCountdown;
     public int currentWave =0;
     public GameObject[] waveManagers;
+    private WaveManager[] wmScripts;
     private int lastWave;
 
     private void Start()
     {
         readyToCountdown = false;
         waveManagers = GameObject.FindGameObjectsWithTag("Spawner");
-        lastWave = waveManagers[0].GetComponent<WaveManager>().waves.Length-1;
+        wmScripts = new WaveManager[waveManagers.Length];
+        for (int i = 0; i < waveManagers.Length; i++)
+        {
+            wmScripts[i] = waveManagers[i].GetComponent<WaveManager>();
+        }
+        lastWave = wmScripts[0].waves.Length;
     }
 
     private void Update()
@@ -37,13 +43,11 @@ public class WaveTracker : MonoBehaviour
         if (totalEnemiesLeft == 0)
         {
             currentWave++;
-            
             if (currentWave < lastWave)
             {
-                foreach (GameObject waveManagerObject in waveManagers)
+                foreach (WaveManager waveManager in wmScripts)
                 {
-                    WaveManager waveManager = waveManagerObject.GetComponent<WaveManager>();
-                    Debug.Log("Making report");
+                    //Debug.Log("Making report");
                     waveManager.makeReport();
                 }
             }
@@ -55,10 +59,8 @@ public class WaveTracker : MonoBehaviour
             Debug.Log("Starting next wave");
             countdown = 2f;
             readyToCountdown = false;
-
-            foreach (GameObject waveManagerObject in waveManagers)
+            foreach (WaveManager waveManager in wmScripts)
             {
-                WaveManager waveManager = waveManagerObject.GetComponent<WaveManager>();
                 waveManager.StartCoroutine(waveManager.SpawnWave());
             }
             Debug.Log("All spawners have started their waves");
