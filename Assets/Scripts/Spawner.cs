@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class WaveManager : MonoBehaviour {
+public class Spawner : MonoBehaviour {
     [SerializeField] private GameObject spawnPoint;
     public Wave[] waves;
-    public WaveTracker waveTracker;
+    //public WaveTracker waveTracker;
 
     private void Start() {
         // Set the enemiesLeft variable to the length of the enemies array
@@ -18,16 +18,16 @@ public class WaveManager : MonoBehaviour {
     }
 
     public void makeReport() {
-        waveTracker.ReportEnemiesLeft(waves[waveTracker.currentWave].enemiesLeft);
+        WaveTracker.ReportEnemiesLeft(waves[WaveTracker.currentWave].enemiesLeft);
     }
 
     public IEnumerator SpawnWave() { // IEnumerator is a type of function that can be paused and resumed 
-        if (waveTracker.currentWave < waves.Length) {
-            for (int i = 0; i < waves[waveTracker.currentWave].enemyGroups.Length; i++) {
-                for (int j = 0; j < waves[waveTracker.currentWave].enemyGroupCounts[i]; j++) {
-                    Enemy spawnedEnemy = Instantiate(waves[waveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
+        if (WaveTracker.currentWave < waves.Length) {
+            for (int i = 0; i < waves[WaveTracker.currentWave].enemyGroups.Length; i++) {
+                for (int j = 0; j < waves[WaveTracker.currentWave].enemyGroupCounts[i]; j++) {
+                    Enemy spawnedEnemy = Instantiate(waves[WaveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
                     spawnedEnemy.transform.SetParent(this.transform);
-                    yield return new WaitForSeconds(waves[waveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
+                    yield return new WaitForSeconds(waves[WaveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
                 }
             }
         }
