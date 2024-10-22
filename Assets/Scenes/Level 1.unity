@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338742, g: 0.21673962, b: 0.29880893, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338729, g: 0.21673925, b: 0.2988084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1501,22 +1501,55 @@ MonoBehaviour:
   spawnPoint: {fileID: 995045404}
   waves:
   - enemyGroups:
-    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-    enemyGroupCounts: 0100000001000000
-    enemySpawnCooldown: 1
+    enemyGroupCounts: 03000000
+    enemySpawnCooldown: 0.5
     enemiesLeft: 0
   - enemyGroups:
     - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-    enemyGroupCounts: 0100000001000000
-    enemySpawnCooldown: 1
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 01000000020000000100000002000000
+    enemySpawnCooldown: 0.5
     enemiesLeft: 0
   - enemyGroups:
     - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-    enemyGroupCounts: 0100000001000000
-    enemySpawnCooldown: 1
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    enemyGroupCounts: 020000000300000001000000
+    enemySpawnCooldown: 0.5
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    enemyGroupCounts: 050000000500000002000000
+    enemySpawnCooldown: 0.5
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 03000000050000000500000008000000
+    enemySpawnCooldown: 0.5
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0300000005000000020000000800000005000000
+    enemySpawnCooldown: 0.5
+    enemiesLeft: 0
+  - enemyGroups:
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    enemyGroupCounts: 0400000005000000020000000a000000
+    enemySpawnCooldown: 0.5
     enemiesLeft: 0
   waveTracker: {fileID: 27346234}
 --- !u!1 &523348249
@@ -6457,7 +6490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7d3f6d39a4e1d4b8245df409499453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Buffs: 3
+  Buffs: 0
 --- !u!4 &1902358331
 Transform:
   m_ObjectHideFlags: 0

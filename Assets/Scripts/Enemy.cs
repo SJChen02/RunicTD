@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [Header("Attributes")]
     // read move speed of a object from unity (if we want standard move speed from another script then change this)
     [SerializeField] private float moveSpeed; 
-    public static int health;
+    public int health;
 
     private WaveManager waveManager;
     
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
             //waveManager.waves[waveManager.currentWave].enemiesLeft--;
             waveManager.waveTracker.EnemyKilled();
             Destroy(gameObject);
-            Fortress.gold += 20;
+            Fortress.gold += 10;
 
         }
 
