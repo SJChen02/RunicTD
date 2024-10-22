@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1924939848024064202}
-  moveSpeed: 50
-  Hp: 100
+  moveSpeed: 10
+  health: 13
   totalDistance: 0
   totalDistanceMoved: 0

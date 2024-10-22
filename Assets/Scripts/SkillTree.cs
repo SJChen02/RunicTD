@@ -23,7 +23,7 @@ public class SkillTree : MonoBehaviour
         {
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
             towerScript.fireRate = 1f;
-            towerScript.range = 15f;
+            towerScript.range = 20f;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
         }
