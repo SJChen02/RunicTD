@@ -5,6 +5,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SkillTree : MonoBehaviour {
 
+    private bool FireRateBuff = false;
+    private bool RangeUpBuff = false;
+
     public enum Buff {
 
         None,
@@ -23,8 +26,8 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = 1.25f;
-            towerScript.range = 20f;
+            towerScript.fireRate = towerScript.DefaultfireRate;
+            towerScript.range = towerScript.Defaultrange;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
@@ -47,7 +50,12 @@ public class SkillTree : MonoBehaviour {
 
         }
         
-        GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
+        if (FireRateBuff == false)
+        {
+            GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
+            FireRateBuff = true;
+        }
+        
         
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
@@ -66,7 +74,11 @@ public class SkillTree : MonoBehaviour {
 
         }
 
-        GameObject.Find("Range Button").SetActive(false); // deactivate button
+        if (RangeUpBuff == false)
+        {
+            GameObject.Find("Range Button").SetActive(false); // deactivate button
+            RangeUpBuff = true;
+        }
 
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 

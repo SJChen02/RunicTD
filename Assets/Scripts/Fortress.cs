@@ -8,7 +8,7 @@ public class Fortress : MonoBehaviour {
     [Header("Health")]
 
     public static int health = 100;
-    public static int gold = 100;
+    public static int gold = 10000;
     public TextMeshProUGUI goldAmount;
     public TextMeshProUGUI healthAmount;
 
