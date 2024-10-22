@@ -11,6 +11,7 @@ TagManager:
   - Tracker
   - Spawner
   - TowerUnit
+  - EntityBin
   layers:
   - Default
   - TransparentFX

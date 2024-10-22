@@ -6,31 +6,30 @@ public class WaveTracker : MonoBehaviour {
 
     [SerializeField] private float countdown = 1f;
     public static int totalEnemiesLeft;
-    public int currentWave =0;
-    public GameObject[] waveManagers;
-    private int waveManagersCount;
+    public static int currentWave =0;
+    public GameObject[] spawners;
+    private static int spawnersCount;
     private int lastWave;
-    private bool readyToCountdown;
-    private WaveManager[] wmScripts;
+    private static bool readyToCountdown;
+    private Spawner[] spScripts;
 
     private void Start() {
 
         readyToCountdown = false;
-        waveManagers = GameObject.FindGameObjectsWithTag("Spawner");
-        wmScripts = new WaveManager[waveManagers.Length];
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        spScripts = new Spawner[spawners.Length];
 
-        for (int i = 0; i < waveManagers.Length; i++) {
-            wmScripts[i] = waveManagers[i].GetComponent<WaveManager>();
+        for (int i = 0; i < spawners.Length; i++) {
+            spScripts[i] = spawners[i].GetComponent<Spawner>();
         }
         
-        lastWave = wmScripts[0].waves.Length;
+        lastWave = spScripts[0].waves.Length;
 
     }
 
     private void Update() {
         if (currentWave >= lastWave) {
             Debug.Log("All waves completed");
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             enabled = false; // Disables the script
             return;
         }
@@ -40,9 +39,9 @@ public class WaveTracker : MonoBehaviour {
         if (totalEnemiesLeft == 0) {
             currentWave++;
             if (currentWave < lastWave) {
-                foreach (WaveManager waveManager in wmScripts) {
+                foreach (Spawner spawner in spScripts) {
                     //Debug.Log("Making report");
-                    waveManager.makeReport();
+                    spawner.makeReport();
                 }
             }
                 
@@ -53,23 +52,23 @@ public class WaveTracker : MonoBehaviour {
             countdown = 2f;
             readyToCountdown = false;
 
-            foreach (WaveManager waveManager in wmScripts) {
-                waveManager.StartCoroutine(waveManager.SpawnWave());
+            foreach (Spawner spawner in spScripts) {
+                spawner.StartCoroutine(spawner.SpawnWave());
             }
 
             Debug.Log("All spawners have started their waves");
         }
     }
 
-    public void EnemyKilled() {totalEnemiesLeft--;}
+    public static void EnemyKilled() {totalEnemiesLeft--;}
 
-    public void ReportEnemiesLeft(int amount) {
+    public static void ReportEnemiesLeft(int amount) {
 
         totalEnemiesLeft += amount;
-        waveManagersCount++;
+        spawnersCount++;
 
-        if (waveManagersCount == (GameObject.FindGameObjectsWithTag("Spawner")).Length) {
-            waveManagersCount = 0;
+        if (spawnersCount == (GameObject.FindGameObjectsWithTag("Spawner")).Length) {
+            spawnersCount = 0;
             readyToCountdown = true;
         }
 

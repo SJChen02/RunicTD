@@ -14,19 +14,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed; 
     public int health;
 
-    private WaveManager waveManager;
+    //private Spawner spawner;
     
     public void TakeDamage(int amount) {
 
         health -= amount;
 
         if (health <= 0) {
-
-            //waveManager.waves[waveManager.currentWave].enemiesLeft--;
-            waveManager.waveTracker.EnemyKilled();
+            WaveTracker.EnemyKilled();
             Destroy(gameObject);
             Fortress.gold += 10;
-
         }
 
     }
@@ -82,7 +79,7 @@ public class Enemy : MonoBehaviour
 
     private void Start() {
 
-        waveManager = GetComponentInParent<WaveManager>();
+        //spawner = GetComponentInParent<Spawner>();
 
         //this is for enemy object to read through the array of waypoint to move to
         target = PathManager.main.path[pathIndex]; 

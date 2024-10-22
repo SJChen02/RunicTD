@@ -20,8 +20,8 @@ public class Tower : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Transform firePoint;
-
-
+    private GameObject projectileBin;
+    
     //------------------------------------------------------------------------------------------------------
     //code for switching firing mode
     public enum Mode
@@ -132,6 +132,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        projectileBin = GameObject.FindWithTag("EntityBin");
         //temporary way to change firing mode
         //----------------------------------------------------------------------------
         Debug.Log("Selected Firing Mode: " + Modes);
@@ -188,7 +189,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);//(GameObject) needed when wanting to store the result of Instantiate in a GameObject variable
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, projectileBin.transform);//(GameObject) needed when wanting to store the result of Instantiate in a GameObject variable
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
