@@ -100,7 +100,7 @@ public class Fortress : MonoBehaviour {
     }
 
 
-    public void BuyAttackSpeedUpgrade()
+    public void BuyFireRateUpgrade()
     {
         int upgradeCost = 200;
 
@@ -112,7 +112,7 @@ public class Fortress : MonoBehaviour {
             // Apply the upgrade logic if skillTree exists
             if (skillTree != null)
             {
-                skillTree.Buffs = SkillTree.Buff.AttackSpdUp;
+                skillTree.Buffs = SkillTree.Buff.FireRateUp;
             }
         }
         else
@@ -133,7 +133,7 @@ public class Fortress : MonoBehaviour {
             // Apply the upgrade logic if skillTree exists
             if (skillTree != null)
             {
-                skillTree.Buffs = SkillTree.Buff.RangeUP;
+                skillTree.Buffs = SkillTree.Buff.RangeUp;
             }
         }
         else
