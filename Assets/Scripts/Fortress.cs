@@ -12,6 +12,23 @@ public class Fortress : MonoBehaviour {
     public TextMeshProUGUI goldAmount;
     public TextMeshProUGUI healthAmount;
 
+    [Header("Upgrade UI")]
+    public GameObject FortressSkillTree; // Reference to the upgrade UI panel
+
+    private SkillTree skillTree; // Reference to the SkillTree component
+
+    private void Start()
+    {
+        // Use the new method to find the SkillTree component in the scene
+        skillTree = Object.FindFirstObjectByType<SkillTree>(); // Updated from FindObjectOfType
+
+        if (skillTree == null)
+        {
+            Debug.LogError("SkillTree component not found in the scene!");
+        }
+    }
+
+
     void Update() {
 
         SetText();
@@ -62,5 +79,88 @@ public class Fortress : MonoBehaviour {
 
     }
 
+    private void OnMouseDown()
+    {
+        Debug.Log("Fortress clicked!"); // Check if the fortress is being clicked
+
+        if (FortressSkillTree != null)
+        {
+            FortressSkillTree.SetActive(true); // Enable the UI panel
+        }
+    }
+
+
+    public void CloseSkillTreePanel()
+    {
+        if (FortressSkillTree != null)
+        {
+            FortressSkillTree.SetActive(false); // This hides the panel
+            Debug.Log("Upgrade panel closed!"); // For debugging
+        }
+    }
+
+
+    public void BuyAttackSpeedUpgrade()
+    {
+        int upgradeCost = 200;
+
+        if (gold >= upgradeCost)
+        {
+            gold -= upgradeCost;
+            Debug.Log("Attack speed upgraded!");
+
+            // Apply the upgrade logic if skillTree exists
+            if (skillTree != null)
+            {
+                skillTree.Buffs = SkillTree.Buff.AttackSpdUp;
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough gold!");
+        }
+    }
+
+    public void BuyRangeUpgrade()
+    {
+        int upgradeCost = 100;
+
+        if (gold >= upgradeCost)
+        {
+            gold -= upgradeCost;
+            Debug.Log("Range upgraded!");
+
+            // Apply the upgrade logic if skillTree exists
+            if (skillTree != null)
+            {
+                skillTree.Buffs = SkillTree.Buff.RangeUP;
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough gold!");
+        }
+    }
+
+    public void BuyUltimateUpgrade()
+    {
+        int upgradeCost = 100;
+
+        if (gold >= upgradeCost)
+        {
+            gold -= upgradeCost;
+            Debug.Log("Ultimate upgrade activated!");
+
+            // Apply the upgrade logic if skillTree exists
+            if (skillTree != null)
+            {
+                skillTree.Buffs = SkillTree.Buff.UltimateMode;
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough gold!");
+        }
+    }
 }
 
