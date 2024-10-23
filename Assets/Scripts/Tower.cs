@@ -9,14 +9,14 @@ public class Tower : MonoBehaviour
     private Transform target;
 
     //default stat of the tower
-    public float Defaultrange = 20f;
-    public float DefaultfireRate = 1.25f;
-    private float DefaultfireCountdown = 0f;
+    public double Defaultrange = 20f;
+    public double DefaultfireRate = 1.25f;
+    private double DefaultfireCountdown = 0f;
 
     [Header("Attributes")]
-    public float range;
-    public float fireRate; //per second
-    private float fireCountdown; //time until next shot
+    public double range;
+    public double fireRate; //per second
+    private double fireCountdown; //time until next shot
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -214,6 +214,6 @@ public class Tower : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, (float)range);
     }
 }

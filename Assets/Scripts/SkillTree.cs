@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
 public class SkillTree : MonoBehaviour {
 
+    List<UnityAction> ListOfActivatedBuff = new List<UnityAction>();
     private bool FireRateBuff = false;
     private bool RangeUpBuff = false;
 
@@ -44,7 +46,7 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = (float)1.375; 
+            towerScript.fireRate = towerScript.DefaultfireRate*1.1; 
             
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
@@ -54,6 +56,7 @@ public class SkillTree : MonoBehaviour {
         {
             GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
             FireRateBuff = true;
+            ListOfActivatedBuff.Add(FireRateUp);
         }
         
         
@@ -68,7 +71,7 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.range = 25; 
+            towerScript.range = towerScript.Defaultrange*1.25; 
             
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
@@ -78,6 +81,7 @@ public class SkillTree : MonoBehaviour {
         {
             GameObject.Find("Range Button").SetActive(false); // deactivate button
             RangeUpBuff = true;
+            ListOfActivatedBuff.Add(RangeUp);
         }
 
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
@@ -121,6 +125,12 @@ public class SkillTree : MonoBehaviour {
             case Buff.UltimateMode:
                 UltimateMode();
                 break;
+        }
+
+        
+        foreach (UnityAction action in ListOfActivatedBuff)
+        {
+            action.Invoke();
         }
 
         //Debug.Log("CurrentBuffActivated: " + Buffs);
