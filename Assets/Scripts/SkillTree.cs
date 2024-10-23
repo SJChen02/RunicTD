@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
 public class SkillTree : MonoBehaviour {
 
+<<<<<<< Updated upstream
+=======
+
+    List<UnityAction> ListOfActivatedBuff = new List<UnityAction>();
+    private bool BroughtFireRateBuff = false;
+    private bool BroughtRangeUpBuff = false;
+
+>>>>>>> Stashed changes
     public enum Buff {
 
         None,
@@ -41,13 +50,22 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = (float)1.375; 
+            towerScript.fireRate = 1.375f; 
             
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
         }
         
+<<<<<<< Updated upstream
         GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
+=======
+        if (BroughtFireRateBuff == false)
+        {
+            GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
+            BroughtFireRateBuff = true;
+        }
+        
+>>>>>>> Stashed changes
         
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
@@ -66,7 +84,15 @@ public class SkillTree : MonoBehaviour {
 
         }
 
+<<<<<<< Updated upstream
         GameObject.Find("Range Button").SetActive(false); // deactivate button
+=======
+        if (BroughtRangeUpBuff == false)
+        {
+            GameObject.Find("Range Button").SetActive(false); // deactivate button
+            BroughtRangeUpBuff = true;
+        }
+>>>>>>> Stashed changes
 
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
@@ -100,15 +126,22 @@ public class SkillTree : MonoBehaviour {
 
             case Buff.FireRateUp:
                 FireRateUp();
+                ListOfActivatedBuff.Add(FireRateUp);
                 break;
 
             case Buff.RangeUp:
                 RangeUp();
+                ListOfActivatedBuff.Add(RangeUp);
                 break;
 
             case Buff.UltimateMode:
                 UltimateMode();
                 break;
+        }
+
+        foreach (UnityAction action in ListOfActivatedBuff)
+        {
+            action.Invoke();
         }
 
         //Debug.Log("CurrentBuffActivated: " + Buffs);
