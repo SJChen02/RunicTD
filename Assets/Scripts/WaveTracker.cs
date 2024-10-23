@@ -6,7 +6,7 @@ public class WaveTracker : MonoBehaviour {
 
     [SerializeField] private float countdown = 1f;
     public static int totalEnemiesLeft;
-    public static int currentWave =0;
+    public static int currentWave = 0;
     public GameObject[] spawners;
     private static int spawnersCount;
     private int lastWave;
