@@ -63,12 +63,12 @@ public class Fortress : MonoBehaviour {
         }
 
         if (health <= 0) {
-
+            
             // notify the GameManager that the game is over
             if (GameManager.instance != null) {
 
                 GameManager.instance.GameOver();
-
+                
             }
 
             // 'destroys' the fortress by making it invisible
