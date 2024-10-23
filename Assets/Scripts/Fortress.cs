@@ -11,6 +11,7 @@ public class Fortress : MonoBehaviour {
     public static int gold = 100;
     public TextMeshProUGUI goldAmount;
     public TextMeshProUGUI healthAmount;
+    public TextMeshProUGUI waveCount;
 
     [Header("Upgrade UI")]
     public GameObject FortressSkillTree; // Reference to the upgrade UI panel
@@ -39,6 +40,7 @@ public class Fortress : MonoBehaviour {
 
         goldAmount.text = "Gold: " + gold;
         healthAmount.text = "Health: " + health;
+        waveCount.text = "Wave: " + (WaveTracker.currentWave + 1);
 
     }
 
@@ -53,7 +55,7 @@ public class Fortress : MonoBehaviour {
         
         // considers the enemy gone, take away health from the fortress
         WaveTracker.totalEnemiesLeft -= 1;
-        health -= 60;
+        health -= 20;
 
         // ensures that health doesn't display as negative
         if (health < 0) {
