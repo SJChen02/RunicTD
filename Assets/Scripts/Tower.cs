@@ -8,10 +8,15 @@ public class Tower : MonoBehaviour
     // Basic tower defence tower unit which shoots at enemies targeting the enemy that is furthest down the path
     private Transform target;
 
+    //default stat of the tower
+    public double Defaultrange = 20f;
+    public double DefaultfireRate = 1.25f;
+    private double DefaultfireCountdown = 0f;
+
     [Header("Attributes")]
-    public float range = 15f;
-    public float fireRate = 1f; //per second
-    private float fireCountdown = 0f; //time until next shot
+    public double range;
+    public double fireRate; //per second
+    private double fireCountdown; //time until next shot
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -21,7 +26,15 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     private GameObject projectileBin;
-    
+
+    private void Awake()
+    {
+        // Initialize the attributes with default values
+        range = Defaultrange;
+        fireRate = DefaultfireRate;
+        fireCountdown = DefaultfireCountdown;
+    }
+
     //------------------------------------------------------------------------------------------------------
     //code for switching firing mode
     public enum Mode
@@ -201,6 +214,6 @@ public class Tower : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, (float)range);
     }
 }

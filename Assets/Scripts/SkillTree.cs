@@ -6,14 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SkillTree : MonoBehaviour {
 
-<<<<<<< Updated upstream
-=======
-
     List<UnityAction> ListOfActivatedBuff = new List<UnityAction>();
-    private bool BroughtFireRateBuff = false;
-    private bool BroughtRangeUpBuff = false;
+    private bool FireRateBuff = false;
+    private bool RangeUpBuff = false;
 
->>>>>>> Stashed changes
     public enum Buff {
 
         None,
@@ -32,8 +28,8 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = 1.25f;
-            towerScript.range = 20f;
+            towerScript.fireRate = towerScript.DefaultfireRate;
+            towerScript.range = towerScript.Defaultrange;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
@@ -50,22 +46,19 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = 1.375f; 
+            towerScript.fireRate = towerScript.DefaultfireRate*1.1; 
             
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
         }
         
-<<<<<<< Updated upstream
-        GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
-=======
-        if (BroughtFireRateBuff == false)
+        if (FireRateBuff == false)
         {
             GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
-            BroughtFireRateBuff = true;
+            FireRateBuff = true;
+            ListOfActivatedBuff.Add(FireRateUp);
         }
         
->>>>>>> Stashed changes
         
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
@@ -78,21 +71,18 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.range = 25; 
+            towerScript.range = towerScript.Defaultrange*1.25; 
             
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
         }
 
-<<<<<<< Updated upstream
-        GameObject.Find("Range Button").SetActive(false); // deactivate button
-=======
-        if (BroughtRangeUpBuff == false)
+        if (RangeUpBuff == false)
         {
             GameObject.Find("Range Button").SetActive(false); // deactivate button
-            BroughtRangeUpBuff = true;
+            RangeUpBuff = true;
+            ListOfActivatedBuff.Add(RangeUp);
         }
->>>>>>> Stashed changes
 
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
@@ -126,12 +116,10 @@ public class SkillTree : MonoBehaviour {
 
             case Buff.FireRateUp:
                 FireRateUp();
-                ListOfActivatedBuff.Add(FireRateUp);
                 break;
 
             case Buff.RangeUp:
                 RangeUp();
-                ListOfActivatedBuff.Add(RangeUp);
                 break;
 
             case Buff.UltimateMode:
@@ -139,6 +127,7 @@ public class SkillTree : MonoBehaviour {
                 break;
         }
 
+        
         foreach (UnityAction action in ListOfActivatedBuff)
         {
             action.Invoke();
