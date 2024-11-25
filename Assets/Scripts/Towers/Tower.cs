@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour
     [Header("Attributes")]
     public double range;
     public double fireRate; //per second
+    public int cost;
     private double fireCountdown; //time until next shot
 
     [Header("Unity Setup Fields")]
