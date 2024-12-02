@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fortress : MonoBehaviour {
 
@@ -164,5 +165,16 @@ public class Fortress : MonoBehaviour {
             Debug.Log("Not enough gold!");
         }
     }
+
+    //for level unlocks
+    //void UnlockNewLevel()
+    //{
+    //    if(SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+    //    {
+    //        PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+    //        PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
+    //        PlayerPrefs.Save();
+    //    }
+    //}
 }
 
