@@ -14,7 +14,64 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed; 
     public int health;
 
+    private bool isSlowed = false;
+    private bool isBurning = false;
+    private bool isStunned = false;
+
     //private Spawner spawner;
+
+    public void ApplySlowDebuff(float slowAmount, float duration) {
+        if (!isSlowed)
+        {
+            StartCoroutine(SlowDebuff(slowAmount, duration));
+        }
+    }
+
+    private IEnumerator SlowDebuff(float slowAmount, float duration) {
+        isSlowed = true;
+        float originalMoveSpeed = moveSpeed;
+        moveSpeed = moveSpeed * (1f - slowAmount);
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        isSlowed = false;
+    }
+
+    public void ApplyBurnDebuff(float burnDamage, float duration) {
+        if (!isBurning)
+        {
+            StartCoroutine(BurnDebuff(burnDamage, duration));
+        }
+    }
+
+    private IEnumerator BurnDebuff(float burnDamage, float duration) {
+        isBurning = true;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            TakeDamage((int)burnDamage);
+            elapsedTime += 1f; // Apply burn damage every second
+            yield return new WaitForSeconds(1f);
+        }
+
+        isBurning = false;
+    }
+
+    public void ApplyStunDebuff(float duration) {
+        if (!isStunned)
+        {
+            StartCoroutine(StunDebuff(duration));
+        }
+    }
+
+    private IEnumerator StunDebuff(float duration) {
+        isStunned = true;
+        float originalMoveSpeed = moveSpeed;
+        moveSpeed = 0f;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        isStunned = false;
+    }
     
     public void TakeDamage(int amount) {
 
