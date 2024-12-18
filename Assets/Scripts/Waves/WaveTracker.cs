@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveTracker : MonoBehaviour {
 
     [SerializeField] private float countdown = 1f;
+    public static List<Enemy> activeEnemies = new List<Enemy>();
     public static int totalEnemiesLeft;
     public static int currentWave = 0;
     public GameObject[] spawners;
@@ -59,6 +60,9 @@ public class WaveTracker : MonoBehaviour {
             Debug.Log("All spawners have started their waves");
         }
     }
+
+    public static void RegisterEnemy(Enemy enemy) {activeEnemies.Add(enemy);}
+    public static void UnregisterEnemy(Enemy enemy) {activeEnemies.Remove(enemy);}
 
     public static void EnemyKilled() {totalEnemiesLeft--;}
 
