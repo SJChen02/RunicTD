@@ -12,7 +12,7 @@ public class BulletFire : Bullet
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, "Fire");
             enemy.ApplyBurnDebuff(burnDamage, burnDuration);
         }
 
