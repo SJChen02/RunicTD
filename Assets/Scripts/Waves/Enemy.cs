@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0) {
             WaveTracker.EnemyKilled();
+            WaveTracker.UnregisterEnemy(this);
             Destroy(gameObject);
             Fortress.gold += 10;
         }
@@ -157,6 +158,7 @@ public class Enemy : MonoBehaviour
             if (pathIndex == PathManager.main.path.Length) {
 
                 Destroy(gameObject);
+                WaveTracker.UnregisterEnemy(this);
                 Fortress.TakeHit();
                 return;
 
