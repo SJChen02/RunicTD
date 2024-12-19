@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 995045404}
-  pathManager: {fileID: 0}
+  pathManager: {fileID: 493147367}
   waves:
   - enemyGroups:
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
