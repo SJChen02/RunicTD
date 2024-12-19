@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Spawner : MonoBehaviour {
     [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private PathManager pathManager;
     public Wave[] waves;
     //public WaveTracker waveTracker;
 
@@ -27,6 +28,7 @@ public class Spawner : MonoBehaviour {
                 for (int j = 0; j < waves[WaveTracker.currentWave].enemyGroupCounts[i]; j++) {
                     Enemy spawnedEnemy = Instantiate(waves[WaveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
                     spawnedEnemy.transform.SetParent(this.transform);
+                    spawnedEnemy.SetPathManager(pathManager);
                     WaveTracker.RegisterEnemy(spawnedEnemy);
                     yield return new WaitForSeconds(waves[WaveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
                 }

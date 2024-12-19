@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338742, g: 0.21673962, b: 0.29880893, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338729, g: 0.21673925, b: 0.2988084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -440,58 +440,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 414262214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &92704456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 92704458}
-  - component: {fileID: 92704459}
-  m_Layer: 0
-  m_Name: PathingManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &92704458
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92704456}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &92704459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92704456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa77ddda0d2733c478ffdba71388644c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path:
-  - {fileID: 393057374}
-  - {fileID: 1155649331}
-  - {fileID: 907052016}
-  - {fileID: 1069227076}
-  - {fileID: 349841144}
-  - {fileID: 1943448490}
-  - {fileID: 1086713444}
 --- !u!1 &127176080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 493147365}
   - component: {fileID: 493147366}
+  - component: {fileID: 493147367}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Spawner
@@ -1535,6 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 995045404}
+  pathManager: {fileID: 0}
   waves:
   - enemyGroups:
     - {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
@@ -1587,6 +1537,26 @@ MonoBehaviour:
     enemyGroupCounts: 0400000005000000020000000a000000
     enemySpawnCooldown: 0.5
     enemiesLeft: 0
+--- !u!114 &493147367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493147363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa77ddda0d2733c478ffdba71388644c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path:
+  - {fileID: 393057374}
+  - {fileID: 1155649331}
+  - {fileID: 907052016}
+  - {fileID: 1069227076}
+  - {fileID: 349841144}
+  - {fileID: 1943448490}
+  - {fileID: 1086713444}
 --- !u!1 &523348249
 GameObject:
   m_ObjectHideFlags: 0
@@ -7853,7 +7823,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 50569074296779946}
   - {fileID: 1930104007}
-  - {fileID: 92704458}
   - {fileID: 27346235}
   - {fileID: 1902358331}
   - {fileID: 1122554842}
