@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed; 
     public int health;
 
+    public enum EnemyType { Fire, Water, Earth, Ice, Neutral }
+    public EnemyType enemyType;
     private bool isSlowed = false;
     private bool isBurning = false;
     private bool isStunned = false;
@@ -73,9 +75,10 @@ public class Enemy : MonoBehaviour
         isStunned = false;
     }
     
-    public void TakeDamage(int amount) {
+    public void TakeDamage(int amount, string towerType = "Neutral") {
 
-        health -= amount;
+        int finalDamage = CalculateDamage(amount, towerType);
+        health -= finalDamage;
 
         if (health <= 0) {
             WaveTracker.EnemyKilled();
@@ -86,6 +89,35 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private int CalculateDamage(int baseDamage, string towerType)
+    {
+        float multiplier = 1f;
+        // EDIT THIS SWITCH STATEMENT TO ADD MORE ENEMY TYPES
+        switch (enemyType)
+        {
+            case EnemyType.Fire:
+                if (towerType == "Fire") multiplier = 0.9f; // same type is 10% weaker
+                if (towerType == "Water") multiplier = 1.2f; // advantage 20% stronger
+                if (towerType == "Ice") multiplier = 0.5f; // Rock is weak against Fire
+                break;
+
+            case EnemyType.Water:
+                break;
+
+            case EnemyType.Earth:
+                break;
+
+            case EnemyType.Ice:
+                break;
+
+            default: // Neutral type
+                multiplier = 1f;
+                break;
+        }
+
+        return Mathf.RoundToInt(baseDamage * multiplier);
+    }
+    
     public float totalDistance = 0;
 
     // counts the total distance the object need to move

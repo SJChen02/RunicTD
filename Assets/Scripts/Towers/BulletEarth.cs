@@ -11,7 +11,7 @@ public class BulletEarth : Bullet
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, "Earth");
             enemy.ApplyStunDebuff(stunDuration);
         }
 

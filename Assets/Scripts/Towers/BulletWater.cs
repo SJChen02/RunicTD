@@ -15,7 +15,7 @@ public class BulletWater : Bullet
             Enemy enemy = collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, "Water");
             }
         }
 

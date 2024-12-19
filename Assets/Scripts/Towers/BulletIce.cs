@@ -12,7 +12,7 @@ public class BulletIce : Bullet
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, "Ice");
             enemy.ApplySlowDebuff(slowAmount, slowDuration);
         }
 
