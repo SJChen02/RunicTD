@@ -20,7 +20,13 @@ public class Enemy : MonoBehaviour
     private bool isBurning = false;
     private bool isStunned = false;
 
+    [SerializeField] private PathManager PathManager;
+
     //private Spawner spawner;
+
+    public void SetPathManager(PathManager newPathManager) {
+        PathManager = newPathManager;
+    }
 
     public void ApplySlowDebuff(float slowAmount, float duration) {
         if (!isSlowed)
@@ -123,15 +129,15 @@ public class Enemy : MonoBehaviour
     // counts the total distance the object need to move
     public void distanceCounter() { 
     
-        if (PathManager.main.path.Length > 1) {
+        if (PathManager.path.Length > 1) {
         
-            for (int i = 0; i < PathManager.main.path.Length - 1; i++) {
+            for (int i = 0; i < PathManager.path.Length - 1; i++) {
                 
                 // stores the coordinate of item in order
-                Transform Item1 = PathManager.main.path[i];
+                Transform Item1 = PathManager.path[i];
 
                 // stores the coordinate of next item
-                Transform NextItem = PathManager.main.path[i + 1]; 
+                Transform NextItem = PathManager.path[i + 1]; 
 
                 float xDistance = Mathf.Abs(Item1.position.x - NextItem.position.x);
                 float zDistance = Mathf.Abs(Item1.position.z - NextItem.position.z);
@@ -172,7 +178,7 @@ public class Enemy : MonoBehaviour
         //spawner = GetComponentInParent<Spawner>();
 
         //this is for enemy object to read through the array of waypoint to move to
-        target = PathManager.main.path[pathIndex]; 
+        target = PathManager.path[pathIndex]; 
         distanceCounter();
 
         // initialise the enemies starting position
@@ -187,7 +193,7 @@ public class Enemy : MonoBehaviour
 
             pathIndex++;
            
-            if (pathIndex == PathManager.main.path.Length) {
+            if (pathIndex == PathManager.path.Length) {
 
                 Destroy(gameObject);
                 WaveTracker.UnregisterEnemy(this);
@@ -198,7 +204,7 @@ public class Enemy : MonoBehaviour
 
             else {
 
-                target = PathManager.main.path[pathIndex];
+                target = PathManager.path[pathIndex];
 
             }
 
