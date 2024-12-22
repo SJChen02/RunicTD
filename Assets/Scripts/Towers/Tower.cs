@@ -49,12 +49,13 @@ public class Tower : MonoBehaviour
     //targeting for close
     private void close()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        Enemy nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (Enemy enemy in WaveTracker.activeEnemies)
         {
+            if (enemy == null) continue;
+            
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)
             {
@@ -76,18 +77,18 @@ public class Tower : MonoBehaviour
     //targeting for first
     private void first()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
-        GameObject CloseToEndEnemy = null;
+        Enemy CloseToEndEnemy = null;
         float ClosestToEnd = Mathf.Infinity;
 
-        foreach (GameObject enemy in enemies)
+        foreach (Enemy enemy in WaveTracker.activeEnemies)
         {
+            if (enemy == null) continue;
+
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)
             {
-                Enemy Enemy_script = enemy.GetComponent<Enemy>();
-                float distanceLeft = Enemy_script.totalDistance - Enemy_script.totalDistanceMoved;
+                float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved;
 
                 if (distanceLeft < ClosestToEnd)
                 {
@@ -111,17 +112,15 @@ public class Tower : MonoBehaviour
 
     private void last()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); //finds all object tags as enemy
         float longestDistance = Mathf.NegativeInfinity; //initialise the distance as negative infinity so "enemy" distance will actually replace this
-        GameObject furthestEnemy = null; //enemy object thats furtherest from fortress
+        Enemy furthestEnemy = null; //enemy object thats furtherest from fortress
 
-        foreach (GameObject enemy in enemies) //loop through array of "enemy" in list "enemies"
+        foreach (Enemy enemy in WaveTracker.activeEnemies) //loop through array of "enemy" in list "enemies"
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position); //calculate the distance from tower to enemy
-            Enemy Enemy_script = enemy.GetComponent<Enemy>(); //grabs enemy script
-            float distanceLeft = Enemy_script.totalDistance - Enemy_script.totalDistanceMoved; //calculate the distance left to fortress
+            float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved; //calculate the distance left to fortress
 
-            if (distanceLeft > longestDistance) //checks if the current enemy object's distance left is greater than the stored distance
+            if (distanceLeft > longestDistance && distanceToEnemy <= range) //if the enemy is within range and the distance left is bigger than the longest distance
             {                                   // if the current enemy object has a bigger distance than stored one... ->
                 longestDistance = distanceLeft; //replace the distance 
                 furthestEnemy = enemy;          //replace the enemy object with current enemy
