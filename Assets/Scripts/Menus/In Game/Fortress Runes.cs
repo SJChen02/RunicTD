@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
-public class SkillTree : MonoBehaviour {
+public class FortressRunes : MonoBehaviour {
 
     List<UnityAction> ListOfActivatedBuff = new List<UnityAction>();
     private bool FireRateBuff = false;
@@ -46,20 +46,19 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = towerScript.DefaultfireRate*1.1; 
-            
+            towerScript.fireRate = towerScript.DefaultfireRate * 1.1;
+
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
         }
-        
-        if (FireRateBuff == false)
-        {
+
+        if (FireRateBuff == false) {
             GameObject.Find("Fire Rate Button").SetActive(false); // deactivate button
             FireRateBuff = true;
             ListOfActivatedBuff.Add(FireRateUp);
         }
-        
-        
+
+
         //Debug.Log("CurrentBuffActivated: " + towers); //for debugging
 
     }
@@ -71,14 +70,13 @@ public class SkillTree : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.range = towerScript.Defaultrange*1.25; 
-            
+            towerScript.range = towerScript.Defaultrange * 1.25;
+
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
         }
 
-        if (RangeUpBuff == false)
-        {
+        if (RangeUpBuff == false) {
             GameObject.Find("Range Button").SetActive(false); // deactivate button
             RangeUpBuff = true;
             ListOfActivatedBuff.Add(RangeUp);
@@ -108,6 +106,7 @@ public class SkillTree : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        /*
         switch (Buffs) {
 
             case Buff.None:
@@ -132,7 +131,7 @@ public class SkillTree : MonoBehaviour {
         {
             action.Invoke();
         }
-
+        */
         //Debug.Log("CurrentBuffActivated: " + Buffs);
     }
 

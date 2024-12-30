@@ -34,16 +34,16 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Position"",
+                    ""name"": ""Point"",
                     ""type"": ""PassThrough"",
                     ""id"": ""444acea4-658e-47b7-b6f1-a5275ace4926"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -65,54 +65,6 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Position"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""UI"",
-            ""id"": ""4c880c58-8f4c-4582-b440-88a5606dbee7"",
-            ""actions"": [
-                {
-                    ""name"": ""Left Click"",
-                    ""type"": ""Button"",
-                    ""id"": ""2e9686f0-d7c4-446f-a556-e0c8787c4eaf"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Point"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6be95b7d-d3c1-4523-af6d-4d06bd9b99c5"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a078a1c0-6ea3-4c99-b66e-d346ed0f0661"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Left Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""50f61c14-bd55-4054-bfc5-1cca80612425"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -125,11 +77,7 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_LeftClick = m_Mouse.FindAction("Left Click", throwIfNotFound: true);
-        m_Mouse_Position = m_Mouse.FindAction("Position", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_LeftClick = m_UI.FindAction("Left Click", throwIfNotFound: true);
-        m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_Mouse_Point = m_Mouse.FindAction("Point", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -192,13 +140,13 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Mouse;
     private List<IMouseActions> m_MouseActionsCallbackInterfaces = new List<IMouseActions>();
     private readonly InputAction m_Mouse_LeftClick;
-    private readonly InputAction m_Mouse_Position;
+    private readonly InputAction m_Mouse_Point;
     public struct MouseActions
     {
         private @Keybindings m_Wrapper;
         public MouseActions(@Keybindings wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftClick => m_Wrapper.m_Mouse_LeftClick;
-        public InputAction @Position => m_Wrapper.m_Mouse_Position;
+        public InputAction @Point => m_Wrapper.m_Mouse_Point;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -211,9 +159,9 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
-            @Position.started += instance.OnPosition;
-            @Position.performed += instance.OnPosition;
-            @Position.canceled += instance.OnPosition;
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
         }
 
         private void UnregisterCallbacks(IMouseActions instance)
@@ -221,9 +169,9 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
-            @Position.started -= instance.OnPosition;
-            @Position.performed -= instance.OnPosition;
-            @Position.canceled -= instance.OnPosition;
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
         }
 
         public void RemoveCallbacks(IMouseActions instance)
@@ -241,66 +189,7 @@ public partial class @Keybindings: IInputActionCollection2, IDisposable
         }
     }
     public MouseActions @Mouse => new MouseActions(this);
-
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_LeftClick;
-    private readonly InputAction m_UI_Point;
-    public struct UIActions
-    {
-        private @Keybindings m_Wrapper;
-        public UIActions(@Keybindings wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftClick => m_Wrapper.m_UI_LeftClick;
-        public InputAction @Point => m_Wrapper.m_UI_Point;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @LeftClick.started += instance.OnLeftClick;
-            @LeftClick.performed += instance.OnLeftClick;
-            @LeftClick.canceled += instance.OnLeftClick;
-            @Point.started += instance.OnPoint;
-            @Point.performed += instance.OnPoint;
-            @Point.canceled += instance.OnPoint;
-        }
-
-        private void UnregisterCallbacks(IUIActions instance)
-        {
-            @LeftClick.started -= instance.OnLeftClick;
-            @LeftClick.performed -= instance.OnLeftClick;
-            @LeftClick.canceled -= instance.OnLeftClick;
-            @Point.started -= instance.OnPoint;
-            @Point.performed -= instance.OnPoint;
-            @Point.canceled -= instance.OnPoint;
-        }
-
-        public void RemoveCallbacks(IUIActions instance)
-        {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUIActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UIActions @UI => new UIActions(this);
     public interface IMouseActions
-    {
-        void OnLeftClick(InputAction.CallbackContext context);
-        void OnPosition(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
     {
         void OnLeftClick(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
