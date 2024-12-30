@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tower : MonoBehaviour
-{
+public class Tower : MonoBehaviour {
     // Basic tower defence tower unit which shoots at enemies targeting the enemy that is furthest down the path
     private Transform target;
 
@@ -14,51 +13,47 @@ public class Tower : MonoBehaviour
     private double DefaultfireCountdown = 0f;
 
     [Header("Attributes")]
+    public int rank = 0;
+    public string towerName;
     public double range;
     public double fireRate; //per second
     public int cost;
+    public string targeting = "First";
+    public int sellValue;
+    public GameObject tilePlacedOn;
+
     private double fireCountdown; //time until next shot
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-
     public float turnSpeed = 10f;
 
     public GameObject bulletPrefab;
     public Transform firePoint;
     private GameObject projectileBin;
 
-    private void Awake()
-    {
+    private void Awake() {
         // Initialize the attributes with default values
         range = Defaultrange;
         fireRate = DefaultfireRate;
         fireCountdown = DefaultfireCountdown;
+
+        // setting the sellValue
+        sellValue = (int)(0.75 * cost);
     }
 
     //------------------------------------------------------------------------------------------------------
-    //code for switching firing mode
-    public enum Mode
-    {
-        first,
-        close,
-        last
-    }
-    public Mode Modes;
 
     //targeting for close
-    private void close()
-    {
+    private void close() {
         float shortestDistance = Mathf.Infinity;
         Enemy nearestEnemy = null;
 
-        foreach (Enemy enemy in WaveTracker.activeEnemies)
-        {
+        foreach (Enemy enemy in WaveTracker.activeEnemies) {
             if (enemy == null) continue;
-            
+
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
+            if (distanceToEnemy < shortestDistance) {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
@@ -68,30 +63,25 @@ public class Tower : MonoBehaviour
         {
             target = nearestEnemy.transform;
         }
-        else
-        {
+        else {
             target = null;
         }
     }
 
     //targeting for first
-    private void first()
-    {
+    private void first() {
         float shortestDistance = Mathf.Infinity;
         Enemy CloseToEndEnemy = null;
         float ClosestToEnd = Mathf.Infinity;
 
-        foreach (Enemy enemy in WaveTracker.activeEnemies)
-        {
+        foreach (Enemy enemy in WaveTracker.activeEnemies) {
             if (enemy == null) continue;
 
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
+            if (distanceToEnemy < shortestDistance) {
                 float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved;
 
-                if (distanceLeft < ClosestToEnd)
-                {
+                if (distanceLeft < ClosestToEnd) {
                     ClosestToEnd = distanceLeft;
                     CloseToEndEnemy = enemy;
                 }
@@ -104,16 +94,14 @@ public class Tower : MonoBehaviour
         {
             target = CloseToEndEnemy.transform;
         }
-        else
-        {
+        else {
             target = null;
         }
     }
 
-    private void last()
-    {
+    private void last() {
         float longestDistance = Mathf.NegativeInfinity; //initialise the distance as negative infinity so "enemy" distance will actually replace this
-        Enemy furthestEnemy = null; //enemy object thats furtherest from fortress
+        Enemy furthestEnemy = null; //enemy object thats furthest from fortress
 
         foreach (Enemy enemy in WaveTracker.activeEnemies) //loop through array of "enemy" in list "enemies"
         {
@@ -130,50 +118,43 @@ public class Tower : MonoBehaviour
         }
 
         // Checks that there is a furthest enemy and within range
-        if (furthestEnemy != null && Vector3.Distance(transform.position, furthestEnemy.transform.position) <= range) 
-        {
+        if (furthestEnemy != null && Vector3.Distance(transform.position, furthestEnemy.transform.position) <= range) {
             target = furthestEnemy.transform; //variable for bullet to travel to "this" enemy
         }
-        else
-        {
+        else {
             target = null;
         }
     }
 
     //------------------------------------------------------------------------------------------------------
 
+    void UpdateTarget() {
+
+    }
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         projectileBin = GameObject.FindWithTag("EntityBin");
         //temporary way to change firing mode
         //----------------------------------------------------------------------------
-        Debug.Log("Selected Firing Mode: " + Modes);
+        //Debug.Log("Selected Firing Mode: " + Modes);
         //----------------------------------------------------------------------------
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
-    void UpdateTarget()
-    {
-
-
-    }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         //switch case, switch the firing mode in real time
-        switch (Modes)
-        {
-            case Mode.close:
+        switch (targeting) {
+            case "Close":
                 close();
                 break;
 
-            case Mode.first:
+            case "First":
                 first();
                 break;
 
-            case Mode.last:
+            case "Last":
                 last();
                 break;
         }
@@ -191,8 +172,7 @@ public class Tower : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        if (fireCountdown <= 0f)
-        {
+        if (fireCountdown <= 0f) {
             Shoot();
             fireCountdown = 1f / fireRate;
         }
@@ -200,19 +180,16 @@ public class Tower : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    void Shoot()
-    {
+    void Shoot() {
         GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, projectileBin.transform);//(GameObject) needed when wanting to store the result of Instantiate in a GameObject variable
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
-        if (bullet != null)
-        {
+        if (bullet != null) {
             bullet.Seek(target);
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
+    void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, (float)range);
     }

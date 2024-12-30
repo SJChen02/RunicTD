@@ -17,15 +17,13 @@ public class Fortress : MonoBehaviour {
     [Header("Upgrade UI")]
     public GameObject FortressSkillTree; // Reference to the upgrade UI panel
 
-    private SkillTree skillTree; // Reference to the SkillTree component
+    private FortressRunes fortressRunes; // Reference to the SkillTree component
 
-    private void Start()
-    {
+    private void Start() {
         // Use the new method to find the SkillTree component in the scene
-        skillTree = Object.FindFirstObjectByType<SkillTree>(); // Updated from FindObjectOfType
+        fortressRunes = Object.FindFirstObjectByType<FortressRunes>(); // Updated from FindObjectOfType
 
-        if (skillTree == null)
-        {
+        if (fortressRunes == null) {
             Debug.LogError("SkillTree component not found in the scene!");
         }
     }
@@ -53,7 +51,7 @@ public class Fortress : MonoBehaviour {
     }
 
     public static void TakeHit() {
-        
+
         // considers the enemy gone, take away health from the fortress
         WaveTracker.totalEnemiesLeft -= 1;
         health -= 20;
@@ -66,22 +64,23 @@ public class Fortress : MonoBehaviour {
         }
 
         if (health <= 0) {
-            
+
             // notify the GameManager that the game is over
             if (GameManager.instance != null) {
 
                 GameManager.instance.GameOver();
-                
+
             }
 
             // 'destroys' the fortress by making it invisible
             // the component is still active, so gold and health are still able to be updated
-            GameObject.Find("Fortress").GetComponent<Renderer>().enabled = false; 
+            GameObject.Find("Fortress").GetComponent<Renderer>().enabled = false;
             // at present, the waves still continue after the fortress dies
         }
 
     }
 
+    /* Legacy Fortress Runes
     private void OnMouseDown()
     {
         Debug.Log("Fortress clicked!"); // Check if the fortress is being clicked
@@ -113,9 +112,9 @@ public class Fortress : MonoBehaviour {
             Debug.Log("Attack speed upgraded!");
 
             // Apply the upgrade logic if skillTree exists
-            if (skillTree != null)
+            if (fortressRunes != null)
             {
-                skillTree.Buffs = SkillTree.Buff.FireRateUp;
+                fortressRunes.Buffs = FortressRunes.Buff.FireRateUp;
             }
         }
         else
@@ -134,9 +133,9 @@ public class Fortress : MonoBehaviour {
             Debug.Log("Range upgraded!");
 
             // Apply the upgrade logic if skillTree exists
-            if (skillTree != null)
+            if (fortressRunes != null)
             {
-                skillTree.Buffs = SkillTree.Buff.RangeUp;
+                fortressRunes.Buffs = FortressRunes.Buff.RangeUp;
             }
         }
         else
@@ -155,9 +154,9 @@ public class Fortress : MonoBehaviour {
             Debug.Log("Ultimate upgrade activated!");
 
             // Apply the upgrade logic if skillTree exists
-            if (skillTree != null)
+            if (fortressRunes != null)
             {
-                skillTree.Buffs = SkillTree.Buff.UltimateMode;
+                fortressRunes.Buffs = FortressRunes.Buff.UltimateMode;
             }
         }
         else
@@ -165,6 +164,8 @@ public class Fortress : MonoBehaviour {
             Debug.Log("Not enough gold!");
         }
     }
+    */
+
 
     //for level unlocks
     //void UnlockNewLevel()
