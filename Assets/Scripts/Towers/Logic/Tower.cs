@@ -193,4 +193,13 @@ public class Tower : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, (float)range);
     }
+
+    public void UpgradeTower()
+    {
+        Bullet bullet = bulletPrefab.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            bullet.Upgrade(); // Call the upgrade method on the bullet
+        }
+    }
 }

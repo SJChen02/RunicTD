@@ -8,6 +8,8 @@ public abstract class Bullet : MonoBehaviour
     public float speed = 70f;
     public int damage = 40;
 
+    public abstract void Upgrade(); // Upgrade method for specialized bullets
+
     public void Seek(Transform _target) {
         target = _target;
     }

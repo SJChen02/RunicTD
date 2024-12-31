@@ -6,6 +6,12 @@ public class BulletWater : Bullet
 {
     public float splashRadius = 20f;
 
+    public override void Upgrade()
+    {
+        splashRadius += 1f;
+        damage += 10;
+    }
+
     protected override void HitTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, splashRadius);
