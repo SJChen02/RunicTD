@@ -82,17 +82,8 @@ public class Enemy : MonoBehaviour
     }
     
     public void TakeDamage(int amount, string towerType = "Neutral") {
-
         int finalDamage = CalculateDamage(amount, towerType);
         health -= finalDamage;
-
-        if (health <= 0) {
-            WaveTracker.EnemyKilled();
-            WaveTracker.UnregisterEnemy(this);
-            Destroy(gameObject);
-            Fortress.gold += 10;
-        }
-
     }
 
     private int CalculateDamage(int baseDamage, string towerType)
@@ -188,7 +179,13 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
-
+        if (health <= 0) {
+            WaveTracker.EnemyKilled();
+            WaveTracker.UnregisterEnemy(this);
+            Destroy(gameObject);
+            Fortress.gold += 10;
+        }
+        
         if (Vector3.Distance(target.position, transform.position) <= 1f) {
 
             pathIndex++;
