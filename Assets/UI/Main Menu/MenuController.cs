@@ -23,11 +23,6 @@ public class NewBehaviourScript : MonoBehaviour
     private Slider volumeSlider;
     private SliderInt mouseSensitivitySlider;
 
-    private int originalQualityIndex;
-    private int originalResolutionIndex;
-    private float originalVolume;
-    private int originalMouseSensitivity;
-
     private int currentMouseSensitivity = 10; // Default sensitivity value
 
     private void Awake()
@@ -91,25 +86,14 @@ public class NewBehaviourScript : MonoBehaviour
     private void OptionsClicked()
     {
         optionsMenu.style.display = DisplayStyle.Flex;
-
-        // Store original settings
-        originalResolutionIndex = displayRes.index;
-        originalQualityIndex = quality.index;
-        originalVolume = volumeSlider.value;
-        originalMouseSensitivity = currentMouseSensitivity;
     }
 
     private void CloseOptionsMenuClicked()
     {
         optionsMenu.style.display = DisplayStyle.None;
 
-        // Revert changes if not applied
-        displayRes.index = originalResolutionIndex;
-        quality.index = originalQualityIndex;
-        volumeSlider.value = originalVolume;
-        AudioListener.volume = originalVolume / 100f; // Convert back to 0-1 range
-        mouseSensitivitySlider.value = originalMouseSensitivity;
-        currentMouseSensitivity = originalMouseSensitivity;
+        // Reload stored settings
+        LoadPreferences();
     }
 
     private void ApplyClicked()
@@ -121,32 +105,27 @@ public class NewBehaviourScript : MonoBehaviour
 
         currentMouseSensitivity = mouseSensitivitySlider.value;
 
-        // Update stored settings
-        originalResolutionIndex = displayRes.index;
-        originalQualityIndex = quality.index;
-        originalVolume = volumeSlider.value;
-        originalMouseSensitivity = currentMouseSensitivity;
+        // Save preferences
+        SavePreferences();
     }
 
     private void InitDisplayRes()
     {
         displayRes = doc.rootVisualElement.Q<DropdownField>("DisplayRes");
         displayRes.choices = Screen.resolutions.Select(res => $"{res.width}x{res.height}").ToList();
-        displayRes.index = Screen.resolutions
-            .Select((res, index) => (res, index))
-            .First(value => value.res.width == Screen.currentResolution.width && value.res.height == Screen.currentResolution.height)
-            .index;
 
-        originalResolutionIndex = displayRes.index;
+        // Load saved resolution index or use default
+        int savedResIndex = PlayerPrefs.GetInt("ResolutionIndex", GetDefaultResolutionIndex());
+        displayRes.index = savedResIndex;
     }
 
     private void InitQuality()
     {
         quality = doc.rootVisualElement.Q<DropdownField>("Quality");
         quality.choices = QualitySettings.names.ToList();
-        quality.index = QualitySettings.GetQualityLevel();
 
-        originalQualityIndex = quality.index;
+        // Load saved quality level or use current
+        quality.index = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
     }
 
     private void InitVolumeSlider()
@@ -154,14 +133,15 @@ public class NewBehaviourScript : MonoBehaviour
         volumeSlider = doc.rootVisualElement.Q<Slider>("VolumeSlider");
         volumeSlider.lowValue = 0;
         volumeSlider.highValue = 100;
-        volumeSlider.value = AudioListener.volume * 100; // Convert from 0-1 to 0-100 range
+
+        // Load saved volume or use current
+        float savedVolume = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
+        volumeSlider.value = savedVolume;
 
         volumeSlider.RegisterValueChangedCallback(evt =>
         {
             AudioListener.volume = evt.newValue / 100f; // Convert back to 0-1 range
         });
-
-        originalVolume = volumeSlider.value;
     }
 
     private void InitMouseSensitivitySlider()
@@ -169,14 +149,56 @@ public class NewBehaviourScript : MonoBehaviour
         mouseSensitivitySlider = doc.rootVisualElement.Q<SliderInt>("MouseSensitivitySlider");
         mouseSensitivitySlider.lowValue = 1;
         mouseSensitivitySlider.highValue = 20;
+
+        // Load saved sensitivity or use default
+        currentMouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 10);
         mouseSensitivitySlider.value = currentMouseSensitivity;
 
         mouseSensitivitySlider.RegisterValueChangedCallback(evt =>
         {
             currentMouseSensitivity = evt.newValue;
         });
+    }
 
-        originalMouseSensitivity = currentMouseSensitivity;
+    private void SavePreferences()
+    {
+        PlayerPrefs.SetInt("ResolutionIndex", displayRes.index);
+        PlayerPrefs.SetInt("QualityIndex", quality.index);
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+        PlayerPrefs.SetInt("MouseSensitivity", currentMouseSensitivity);
+
+        PlayerPrefs.Save();
+        Debug.Log("Preferences saved.");
+    }
+
+    private void LoadPreferences()
+    {
+        // Reload resolution
+        int resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", GetDefaultResolutionIndex());
+        displayRes.index = resolutionIndex;
+
+        // Reload quality
+        int qualityIndex = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
+        quality.index = qualityIndex;
+
+        // Reload volume
+        float volume = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
+        volumeSlider.value = volume;
+        AudioListener.volume = volume / 100f;
+
+        // Reload mouse sensitivity
+        currentMouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 10);
+        mouseSensitivitySlider.value = currentMouseSensitivity;
+
+        Debug.Log("Preferences loaded.");
+    }
+
+    private int GetDefaultResolutionIndex()
+    {
+        return Screen.resolutions
+            .Select((res, index) => (res, index))
+            .First(value => value.res.width == Screen.currentResolution.width && value.res.height == Screen.currentResolution.height)
+            .index;
     }
 
     private IEnumerator PerformWithDelay(Action action, float delay)
