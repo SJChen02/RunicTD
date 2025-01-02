@@ -1,0 +1,21 @@
+.PauseMenuButtons {
+    width: 40%;
+    height: 9%;
+    align-self: center;
+    background-color: rgb(0, 75, 130);
+    -unity-font-definition: resource('Aetherius');
+    font-size: 40px;
+    -unity-font-style: bold;
+    color: rgb(209, 238, 253);
+}
+
+.button:active {
+    transition: transform 0.2s ease;
+    transform-origin: center;
+    scale: 1.2 1.2;
+    opacity: 0.75;
+    overflow: visible;
+    transition-timing-function: ease-in;
+    transition-duration: 1s;
+    transition-delay: 0.4s;
+}
