@@ -211,11 +211,33 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public float rotationSpeed = 2f;
+    public bool firstRun = false;
+
     private void FixedUpdate() {
 
         Vector3 direction = (target.position - transform.position);
         Vector3 movement = direction.normalized * moveSpeed;
         rb.velocity = new Vector3(movement.x, movement.y, movement.z);
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion offset = Quaternion.Euler(0, 270, 0);
+            Quaternion toRotation = Quaternion.LookRotation(-direction, Vector3.up) * offset;
+
+
+            //Forces enemy object to instantly face the right direction when spawned
+            if (firstRun == false) {
+                transform.rotation = toRotation;
+                firstRun = true;
+            }
+
+            //makes enemy turn smoothly with slower rotation speed
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime*10f); 
+            
+           
+            
+        }
 
     }
 

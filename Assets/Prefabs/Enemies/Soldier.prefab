@@ -149,5 +149,9 @@ MonoBehaviour:
   rb: {fileID: 1924939848024064202}
   moveSpeed: 10
   health: 13
+  enemyType: 0
+  PathManager: {fileID: 0}
   totalDistance: 0
   totalDistanceMoved: 0
+  rotationSpeed: 100
+  firstRun: 0
