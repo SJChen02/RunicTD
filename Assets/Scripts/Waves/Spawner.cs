@@ -7,30 +7,38 @@ public class Spawner : MonoBehaviour {
     [SerializeField] private GameObject spawnPoint;
     [SerializeField] private PathManager pathManager;
     public Wave[] waves;
-    //public WaveTracker waveTracker;
+    public float enemySpawnCooldown = 1f;
 
     private void Start() {
-        // Set the enemiesLeft variable to the length of the enemies array
+        // Calculate the total number of enemies in the waves
         foreach (Wave wave in waves)
         {
-            wave.enemiesLeft = wave.enemyGroupCounts.Sum();
+            wave.enemiesLeft = wave.enemySets.Sum(detail => detail.count);
         }
         makeReport();
     }
 
+    // makeReport() is called by WaveTracker when the wave is over to track each Spawners enemies left
     public void makeReport() {
         WaveTracker.ReportEnemiesLeft(waves[WaveTracker.currentWave].enemiesLeft);
     }
 
+    /* SpawnWave() is a coroutine that spawns enemies in the scene. It is called by WaveTracker when the wave is over.
+     * It spawns enemies in the scene with a delay of enemySpawnCooldown between each enemy.
+     * It also registers the spawned enemies in the WaveTracker. (used in tower targetting)
+     */
     public IEnumerator SpawnWave() { // IEnumerator is a type of function that can be paused and resumed 
-        if (WaveTracker.currentWave < waves.Length) {
-            for (int i = 0; i < waves[WaveTracker.currentWave].enemyGroups.Length; i++) {
-                for (int j = 0; j < waves[WaveTracker.currentWave].enemyGroupCounts[i]; j++) {
-                    Enemy spawnedEnemy = Instantiate(waves[WaveTracker.currentWave].enemyGroups[i], spawnPoint.transform);
+        if (WaveTracker.currentWave < waves.Length)
+        {
+            foreach (var enemySet in waves[WaveTracker.currentWave].enemySets)
+            {
+                for (int j = 0; j < enemySet.count; j++)
+                {
+                    Enemy spawnedEnemy = Instantiate(enemySet.prefab, spawnPoint.transform);
                     spawnedEnemy.transform.SetParent(this.transform);
                     spawnedEnemy.SetPathManager(pathManager);
                     WaveTracker.RegisterEnemy(spawnedEnemy);
-                    yield return new WaitForSeconds(waves[WaveTracker.currentWave].enemySpawnCooldown); // Pauses until the time has passed
+                    yield return new WaitForSeconds(enemySpawnCooldown);
                 }
             }
         }
@@ -38,11 +46,18 @@ public class Spawner : MonoBehaviour {
     }
 }
 
+/* Wave is a class that holds the details of the enemies that will be spawned in a wave.*/
 [System.Serializable] // This attribute allows us to see the class in the inspector
 public class Wave {
-    public Enemy[] enemyGroups;
-    public int[] enemyGroupCounts;
-    public float enemySpawnCooldown;
+    [System.Serializable]
+    public struct EnemyDetail
+    {
+        public Enemy prefab;
+        public int count;
+    }
+
+    public List<EnemyDetail> enemySets;
+
 
     [HideInInspector] public int enemiesLeft; // "HideInInspector" hides the variable in the inspector
 }
