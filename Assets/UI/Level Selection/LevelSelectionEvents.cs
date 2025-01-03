@@ -102,12 +102,6 @@ public class LevelSelectionEvents : MonoBehaviour
         PlayerPrefs.SetString("SelectedLevel", selectedLevel);
         PlayerPrefs.SetString("Difficulty", difficulty);
 
-        int levelNumber = int.Parse(selectedLevel.Split(' ')[1]);
-        if (playerData.highestUnlockedLevel == levelNumber)
-        {
-            playerData.highestUnlockedLevel++;
-            saveManager.SaveProgress(playerData);
-        }
 
         StartCoroutine(PerformWithDelay(() => SceneManager.LoadScene(selectedLevel), 1f));
     }

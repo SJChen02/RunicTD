@@ -19,3 +19,13 @@
     transition-duration: 1s;
     transition-delay: 0.4s;
 }
+
+.fade-in {
+    transition-duration: 1s;
+}
+
+.fade-out {
+    opacity: 0;
+    transition-duration: 1s;
+    transition-timing-function: ease-in;
+}
