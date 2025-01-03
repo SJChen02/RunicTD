@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
     // a reference to RigidBody
-    [SerializeField] private Rigidbody rb; 
+    [SerializeField] private Rigidbody rb;
+    public Image healthBar; 
 
     [Header("Attributes")]
     // read move speed of a object from unity (if we want standard move speed from another script then change this)
     [SerializeField] private float moveSpeed; 
     public int health;
+    private int maxHealth;
 
     public enum EnemyType { Fire, Water, Earth, Ice, Neutral, Wind }
     public EnemyType enemyType;
@@ -84,6 +87,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount, string towerType = "Neutral") {
         int finalDamage = CalculateDamage(amount, towerType);
         health -= finalDamage;
+
+        healthBar.fillAmount = (float)health / maxHealth;
     }
 
     private int CalculateDamage(int baseDamage, string towerType)
@@ -167,6 +172,7 @@ public class Enemy : MonoBehaviour
     private int pathIndex = 0;
 
     private void Start() {
+        maxHealth = health;
 
         //spawner = GetComponentInParent<Spawner>();
 
