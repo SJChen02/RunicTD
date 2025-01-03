@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
     // a reference to RigidBody
-    [SerializeField] private Rigidbody rb; 
+    [SerializeField] private Rigidbody rb;
+    public Image healthBar; 
 
     [Header("Attributes")]
     // read move speed of a object from unity (if we want standard move speed from another script then change this)
     [SerializeField] private float moveSpeed; 
     public int health;
+    private int maxHealth;
 
     public enum EnemyType { Fire, Water, Earth, Ice, Neutral, Wind }
     public EnemyType enemyType;
@@ -84,29 +87,41 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount, string towerType = "Neutral") {
         int finalDamage = CalculateDamage(amount, towerType);
         health -= finalDamage;
+
+        healthBar.fillAmount = (float)health / maxHealth;
     }
 
     private int CalculateDamage(int baseDamage, string towerType)
     {
         float multiplier = 1f;
         // EDIT THIS SWITCH STATEMENT TO ADD MORE ENEMY TYPES
+        // Earth -> water -> fire -> wind -> earth
         switch (enemyType)
         {
             case EnemyType.Fire:
                 if (towerType == "Fire") multiplier = 0.9f; // same type is 10% weaker
                 if (towerType == "Water") multiplier = 1.2f; // advantage 20% stronger
-                if (towerType == "Ice") multiplier = 0.5f; // Rock is weak against Fire
+                if (towerType == "Wind") multiplier = 0.5f; // Wind is weak against Fire
                 break;
 
             case EnemyType.Water:
+                if (towerType == "Water") multiplier = 0.9f;
+                if (towerType == "Earth") multiplier = 1.2f;
+                if (towerType == "Fire") multiplier = 0.5f;
                 break;
 
             case EnemyType.Earth:
+                if (towerType == "Earth") multiplier = 0.9f;
+                if (towerType == "Wind") multiplier = 1.2f;
+                if (towerType == "Water") multiplier = 0.5f;
                 break;
 
             case EnemyType.Ice:
                 break;
             case EnemyType.Wind:
+                if (towerType == "Wind") multiplier = 0.9f;
+                if (towerType == "Fire") multiplier = 1.2f;
+                if (towerType == "Earth") multiplier = 0.5f;
                 break;
 
             default: // Neutral type
@@ -167,6 +182,7 @@ public class Enemy : MonoBehaviour
     private int pathIndex = 0;
 
     private void Start() {
+        maxHealth = health;
 
         //spawner = GetComponentInParent<Spawner>();
 
