@@ -95,23 +95,33 @@ public class Enemy : MonoBehaviour
     {
         float multiplier = 1f;
         // EDIT THIS SWITCH STATEMENT TO ADD MORE ENEMY TYPES
+        // Earth -> water -> fire -> wind -> earth
         switch (enemyType)
         {
             case EnemyType.Fire:
                 if (towerType == "Fire") multiplier = 0.9f; // same type is 10% weaker
                 if (towerType == "Water") multiplier = 1.2f; // advantage 20% stronger
-                if (towerType == "Ice") multiplier = 0.5f; // Rock is weak against Fire
+                if (towerType == "Wind") multiplier = 0.5f; // Wind is weak against Fire
                 break;
 
             case EnemyType.Water:
+                if (towerType == "Water") multiplier = 0.9f;
+                if (towerType == "Earth") multiplier = 1.2f;
+                if (towerType == "Fire") multiplier = 0.5f;
                 break;
 
             case EnemyType.Earth:
+                if (towerType == "Earth") multiplier = 0.9f;
+                if (towerType == "Wind") multiplier = 1.2f;
+                if (towerType == "Water") multiplier = 0.5f;
                 break;
 
             case EnemyType.Ice:
                 break;
             case EnemyType.Wind:
+                if (towerType == "Wind") multiplier = 0.9f;
+                if (towerType == "Fire") multiplier = 1.2f;
+                if (towerType == "Earth") multiplier = 0.5f;
                 break;
 
             default: // Neutral type
