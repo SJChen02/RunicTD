@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            TakeDamage((int)burnDamage);
+            TakeDamage(burnDamage);
             elapsedTime += 1f; // Apply burn damage every second
             yield return new WaitForSeconds(1f);
         }
@@ -84,14 +84,14 @@ public class Enemy : MonoBehaviour
         isStunned = false;
     }
     
-    public void TakeDamage(int amount, string towerType = "Neutral") {
+    public void TakeDamage(float amount, string towerType = "Neutral") {
         int finalDamage = CalculateDamage(amount, towerType);
         health -= finalDamage;
 
         healthBar.fillAmount = (float)health / maxHealth;
     }
 
-    private int CalculateDamage(int baseDamage, string towerType)
+    private int CalculateDamage(float baseDamage, string towerType)
     {
         float multiplier = 1f;
         // EDIT THIS SWITCH STATEMENT TO ADD MORE ENEMY TYPES

@@ -3,33 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// attached to tower prefabs, keeps track of tower attributes and contains targeting methods
 public class Tower : MonoBehaviour {
-    // Basic tower defence tower unit which shoots at enemies targeting the enemy that is furthest down the path
+
+    // set during the targeting methods to decide where the bullet is fired
     private Transform target;
 
     //default stat of the tower
-    public double Defaultrange = 20f;
-    public double DefaultfireRate = 1.25f;
-    private double DefaultfireCountdown = 0f;
+    public float Defaultrange = 20f;
+    public float DefaultfireRate = 1.25f;
+    private float DefaultfireCountdown = 0f;
 
     [Header("Attributes")]
     public int rank = 0;
-    public string towerName;
-    public double range;
-    public double fireRate; //per second
     public int cost;
-    public string targeting = "First";
     public int sellValue;
+    public float range;
+    public float fireRate; //per second
+    public string targeting = "First";
+    public string towerName;
     public GameObject tilePlacedOn;
 
-    private double fireCountdown; //time until next shot
+    [Header("Bullet Attributes")]
+    public float damage = 40;
+    public int bulletSpeed;
+
+    [Header("Elemental Attributes")]
+    public float stunDuration = 1f;
+    public float burnDuration = 3f;
+    public float burnDamage = 5f;
+    public float critChance = 0.2f;  // 20% chance to land a critical hit
+    public float critDamage = 1.5f;  // 50% extra damage on crit (1.5 means 150%)
+    public float splashRadius = 20f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public float turnSpeed = 10f;
-
-    public GameObject bulletPrefab;
     public Transform firePoint;
+    public GameObject bulletPrefab;
+
+    private float fireCountdown; //time until next shot
     private GameObject projectileBin;
 
     private void Awake() {
@@ -181,16 +194,32 @@ public class Tower : MonoBehaviour {
     }
 
     void Shoot() {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, projectileBin.transform);//(GameObject) needed when wanting to store the result of Instantiate in a GameObject variable
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        // creating a bullet
+        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, projectileBin.transform);
 
-        if (bullet != null) {
-            bullet.Seek(target);
+        // accessing the bullet script attached to the instantiated bullet
+        Bullet bulletScript = bulletGo.GetComponent<Bullet>();
+
+        if (bulletScript != null) {
+            switch (towerName) {
+                case "Earth Wizard":
+                    bulletScript.SeekEarth(target, damage, stunDuration);
+                    break;
+                case "Fire Wizard":
+                    bulletScript.SeekFire(target, damage, burnDuration, burnDamage);
+                    break;
+                case "Wind Wizard":
+                    bulletScript.SeekWind(target, damage);
+                    break;
+                case "Water Wizard":
+                    bulletScript.SeekWater(target, damage, splashRadius);
+                    break;
+            }
         }
     }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, (float)range);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
