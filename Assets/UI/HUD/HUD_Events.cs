@@ -25,15 +25,32 @@ public class HUD_Events : MonoBehaviour
     private Button ApplyButton;
     private Button CancelButton;
 
+    private VisualElement VictoryScreen;
+    private VisualElement LoseScreen;
+    private Button MenuButton;
+    private Button RetryButton;
+    private Button NextLevelButton;
+    private Button MenuButton2;
+    private Button RetryButton2;
+
     private int currentMouseSensitivity = 10; // Default sensitivity value
+    private SaveManager saveManager;
+    private PlayerData playerData;
+    private bool victoryProcessed = false; // Flag to prevent multiple increments
+    private bool defeatProcessed = false;  // Flag for defeat condition
+    private int levelNumber;
 
     private void Awake()
     {
         doc = GetComponent<UIDocument>();
+        saveManager = new SaveManager();
+        playerData = saveManager.LoadProgress();
 
         PauseMenu = doc.rootVisualElement.Q<VisualElement>("PauseMenu");
         transition = doc.rootVisualElement.Q<VisualElement>("Transition");
         OptionsMenu = doc.rootVisualElement.Q<VisualElement>("OptionsMenu");
+        VictoryScreen = doc.rootVisualElement.Q<VisualElement>("VictoryScreen");
+        LoseScreen = doc.rootVisualElement.Q<VisualElement>("LoseScreen");
 
         PauseButton = doc.rootVisualElement.Q<Button>("PauseButton");
         PauseButton.clicked += PauseButtonClicked;
@@ -59,6 +76,24 @@ public class HUD_Events : MonoBehaviour
         CancelButton = doc.rootVisualElement.Q<Button>("CancelButton");
         CancelButton.clicked += CloseClicked;
 
+        MenuButton = doc.rootVisualElement.Q<Button>("MenuButton");
+        MenuButton.clicked += ExitGameClicked;
+
+        RetryButton = doc.rootVisualElement.Q<Button>("RetryButton");
+        RetryButton.clicked += RetryClicked;
+
+        MenuButton2 = doc.rootVisualElement.Q<Button>("MenuButton2");
+        MenuButton2.clicked += ExitGameClicked;
+
+        RetryButton2 = doc.rootVisualElement.Q<Button>("RetryButton2");
+        RetryButton2.clicked += RetryClicked;
+
+        NextLevelButton = doc.rootVisualElement.Q<Button>("NextLevelButton");
+        NextLevelButton.clicked += NextLevelButtonClicked;
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        levelNumber = int.Parse(currentScene.name.Split(' ')[1]);
+
         // Initialize UI elements
         InitDisplayRes();
         InitQuality();
@@ -71,7 +106,36 @@ public class HUD_Events : MonoBehaviour
         StartSceneFadeIn();
         PauseMenu.style.display = DisplayStyle.None;
         OptionsMenu.style.display = DisplayStyle.None;
+        VictoryScreen.style.display = DisplayStyle.None;
+        LoseScreen.style.display = DisplayStyle.None;
         Time.timeScale = 1f;
+    }
+
+    private void Update()
+    {
+        // Handle Victory Condition
+        if (WaveTracker.gameWon && !victoryProcessed)
+        {
+            VictoryScreen.style.display = DisplayStyle.Flex;
+            VictoryScreen.RemoveFromClassList("fade-out");
+            if (playerData.highestUnlockedLevel == levelNumber)
+            {
+                playerData.highestUnlockedLevel++;
+                saveManager.SaveProgress(playerData);
+            }
+            victoryProcessed = true; // Prevent further increments
+
+            // Optionally, enable NextLevelButton if there are more levels
+            NextLevelButton.style.display = DisplayStyle.Flex;
+        }
+
+        // Handle Defeat Condition
+        if (Fortress.health <= 0 && !defeatProcessed)
+        {
+            LoseScreen.style.display = DisplayStyle.Flex;
+            LoseScreen.RemoveFromClassList("fade-out");
+            defeatProcessed = true; // Prevent further processing
+        }
     }
 
     private void PauseButtonClicked()
@@ -84,6 +148,8 @@ public class HUD_Events : MonoBehaviour
     {
         PauseMenu.style.display = DisplayStyle.None;
         OptionsMenu.style.display = DisplayStyle.None;
+        VictoryScreen.style.display = DisplayStyle.None;
+        LoseScreen.style.display = DisplayStyle.None;
         Time.timeScale = 1f;
 
         // Reload preferences to revert any unsaved changes
@@ -104,7 +170,8 @@ public class HUD_Events : MonoBehaviour
 
     private void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // This reloads the scene completely
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
     private void ExitGameClicked()
@@ -116,6 +183,30 @@ public class HUD_Events : MonoBehaviour
     private void ExitScene()
     {
         SceneManager.LoadScene("Level Selection");
+    }
+
+    private void NextLevelButtonClicked()
+    {
+        Time.timeScale = 1f;
+        StartCoroutine(PerformWithDelay(NextScene, 2f));
+    }
+
+    private void NextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // Check if the next scene is within the build settings range
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogWarning("No more levels to load. This is the last level.");
+            // Optionally, you can disable the NextLevelButton or redirect to a main menu
+            NextLevelButton.style.display = DisplayStyle.None;
+        }
     }
 
     private void ApplyClicked()
@@ -222,7 +313,7 @@ public class HUD_Events : MonoBehaviour
     {
         return Screen.resolutions
             .Select((res, index) => (res, index))
-            .First(value => value.res.width == Screen.currentResolution.width && value.res.height == Screen.currentResolution.height)
+            .FirstOrDefault(value => value.res.width == Screen.currentResolution.width && value.res.height == Screen.currentResolution.height)
             .index;
     }
 

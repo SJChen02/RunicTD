@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/3.HUD/HUD_Styles.uss?fileID=7433441132597879392&amp;guid=163aec387188f074bb3503d8cc284675&amp;type=3#HUD_Styles" />
+    <Style src="project://database/Assets/UI/HUD/HUD_Styles.uss?fileID=7433441132597879392&amp;guid=163aec387188f074bb3503d8cc284675&amp;type=3#HUD_Styles" />
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=cbbd56ae0f60684428019015c773a7d6&amp;type=3#MenuStyles" />
     <ui:VisualElement name="HUD_Element" picking-mode="Ignore" style="flex-grow: 1; overflow: hidden;">
         <ui:VisualElement name="HUD_Header" picking-mode="Ignore" style="flex-grow: 1;">
@@ -31,7 +31,21 @@
                 <ui:Button text="Cancel" display-tooltip-when-elided="true" name="CancelButton" class="option-Buttons menu-button" style="width: 15%; height: 40%; margin-left: 1.5%; margin-right: 2px;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Transition" class="transition-Out transition-In" style="background-color: rgb(142, 3, 3); transition-duration: 1s; transition-timing-function: ease-in-out; transition-delay: 0s; display: none; position: absolute; width: 100%; height: 100%; opacity: 1;" />
     </ui:VisualElement>
-    <ui:VisualElement name="VictoryScreen" style="flex-grow: 1; display: none; position: absolute; width: 100%; height: 100%;" />
+    <ui:VisualElement name="VictoryScreen" class="fade-in fade-out" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 0, 0);">
+        <ui:Label tabindex="-1" text="VICTORY" display-tooltip-when-elided="true" name="VictoryLabel" style="height: 345px; color: rgb(255, 255, 255); align-self: center; font-size: 100px; -unity-font-style: bold; -unity-text-align: lower-left;" />
+        <ui:VisualElement name="buttons" style="flex-grow: 1; flex-direction: row; align-items: center; align-self: center; justify-content: center; height: auto; max-height: 40%; min-height: 20%; top: 20%;">
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MenuButton" class="text-Button" style="margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%;" />
+            <ui:Button text="Retry" display-tooltip-when-elided="true" name="RetryButton" class="text-Button" style="margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%;" />
+            <ui:Button text="Next Level" display-tooltip-when-elided="true" name="NextLevelButton" class="text-Button" style="margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="LoseScreen" class="fade-in fade-out" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 0, 0); display: none;">
+        <ui:Label tabindex="-1" text="YOU LOST" display-tooltip-when-elided="true" name="LoseLabel" style="height: 345px; color: rgb(255, 255, 255); align-self: center; font-size: 100px; -unity-font-style: bold; -unity-text-align: lower-left;" />
+        <ui:VisualElement name="loseButtons" style="flex-grow: 1; flex-direction: row; align-items: center; align-self: center; justify-content: center; height: auto; max-height: 40%; min-height: 20%; top: 20%;">
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MenuButton2" class="text-Button" style="margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%;" />
+            <ui:Button text="Retry" display-tooltip-when-elided="true" name="RetryButton2" class="text-Button" style="margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Transition" class="transition-Out transition-In" style="background-color: rgb(142, 3, 3); transition-duration: 1s; transition-timing-function: ease-in-out; transition-delay: 0s; position: absolute; width: 100%; height: 100%; display: none;" />
 </ui:UXML>
