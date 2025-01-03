@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed; 
     public int health;
 
-    public enum EnemyType { Fire, Water, Earth, Ice, Neutral }
+    public enum EnemyType { Fire, Water, Earth, Ice, Neutral, Wind }
     public EnemyType enemyType;
     private bool isSlowed = false;
     private bool isBurning = false;
@@ -105,6 +105,8 @@ public class Enemy : MonoBehaviour
                 break;
 
             case EnemyType.Ice:
+                break;
+            case EnemyType.Wind:
                 break;
 
             default: // Neutral type

@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
 
     // Volume categories
     public static float MasterVolume = 1f;
-    public static float MusicVolume = 1f;
+    public static float MusicVolume = 0.15f;
     public static float SoundEffectVolume = 1f;
 
     private void Awake()
@@ -51,16 +51,17 @@ public class SoundManager : MonoBehaviour
             backgroundMusicSource.loop = true; // Ensure looping
             backgroundMusicSource.playOnAwake = false;
             backgroundMusicSource.volume = MusicVolume * MasterVolume;
+            PlayBackgroundMusic(SoundType.BackgroundMusic);
         }
     }
 
-    public static void PlayBackgroundMusic(AudioClip musicClip)
+    public static void PlayBackgroundMusic(SoundType soundType)
     {
         if (instance.backgroundMusicSource.isPlaying)
         {
             instance.backgroundMusicSource.Stop();
         }
-        instance.backgroundMusicSource.clip = musicClip;
+        instance.backgroundMusicSource.clip = instance.soundList[(int)soundType];
         instance.backgroundMusicSource.volume = MusicVolume * MasterVolume;
         instance.backgroundMusicSource.Play();
     }

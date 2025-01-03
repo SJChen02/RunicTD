@@ -1571,7 +1571,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: daa28117c262b4c4da4c4f8a4514bc5c, type: 3}
   audioSourcePoolSize: 20
 --- !u!4 &403206500
 Transform:
