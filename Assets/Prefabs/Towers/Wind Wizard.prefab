@@ -61,7 +61,7 @@ MonoBehaviour:
   tilePlacedOn: {fileID: 0}
   enemyTag: Enemy
   turnSpeed: 10
-  bulletPrefab: {fileID: 6603946675287671961, guid: 7477098bba6fda6418a515e24850835b, type: 3}
+  bulletPrefab: {fileID: 410755028381099563, guid: 4e634aa0e79c30549baef12693708164, type: 3}
   firePoint: {fileID: 3131185403058838964}
 --- !u!65 &2078780808128593480
 BoxCollider:

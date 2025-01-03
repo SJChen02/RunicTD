@@ -22,6 +22,7 @@ public class Controller : MonoBehaviour {
     private Transform targetingParent;
     private Transform sellParent;
     private Transform towerMenuParent;
+    private Transform runicTabletsParent;
 
     // tile and store
     public static GameObject store;
@@ -34,6 +35,10 @@ public class Controller : MonoBehaviour {
     public static GameObject towerMenu;
     public static GameObject currentTower;
     private bool mouseOverUI;
+    public static GameObject earthRunicTablet;
+    public static GameObject fireRunicTablet;
+    public static GameObject iceRunicTablet;
+    public static GameObject waterRunicTablet;
 
     // fortress menu
     public static GameObject fortressMenu;
@@ -57,7 +62,7 @@ public class Controller : MonoBehaviour {
         selectedTileMaterial = Resources.Load<Material>("Materials/Level/Selected Tile");
         tileMaterial = Resources.Load<Material>("Materials/Level/Tile");
 
-        // obtaining references for scene objects
+        // obtaining references for scene menus
         parentUI = GameObject.Find("UI").transform;
         store = parentUI.Find("Store").gameObject;
         towerMenu = parentUI.Find("Tower Menu").gameObject;
@@ -69,6 +74,13 @@ public class Controller : MonoBehaviour {
         targetingText = targetingParent.Find("Targeting Text").GetComponent<TextMeshProUGUI>();
         sellParent = towerMenuParent.Find("Sell").gameObject.transform;
         sellText = sellParent.Find("Sell Text").GetComponent<TextMeshProUGUI>();
+
+        // obtaining references for Runic Tablets
+        runicTabletsParent = towerMenuParent.Find("Runic Tablets").gameObject.transform;
+        earthRunicTablet = runicTabletsParent.Find("Earth Runic Tablet").gameObject;
+        fireRunicTablet = runicTabletsParent.Find("Fire Runic Tablet").gameObject;
+        iceRunicTablet = runicTabletsParent.Find("Ice Runic Tablet").gameObject;
+        waterRunicTablet = runicTabletsParent.Find("Water Runic Tablet").gameObject;
 
         keybindings = new Keybindings();
         mainCamera = Camera.main;
@@ -102,49 +114,44 @@ public class Controller : MonoBehaviour {
 
     //---------------------------------------------------------//
 
-    private void SelectTile() {
-        // if a tower menu is currently open, deselect the tower and close the menu
-        if (currentTower != null) {
-            currentTower = null;
-            towerMenu.SetActive(false);
-        }
-        // if the fortress menu is already open, close it
-        if (fortressOpened) {
-            fortressOpened = false;
-            fortressMenu.SetActive(false);
+    private void CloseStore() {
+        currentTile.GetComponent<Renderer>().material = tileMaterial;
+        currentTile = null;
+        store.SetActive(false);
+    }
+
+    private void OpenStore() {
+        // check if the clicked tile already has a tower on it
+        Tile tileScript = objectClicked.GetComponent<Tile>();
+        if (tileScript.towerPlaced) {
+            tileScript = null;
+            return;
         }
 
-        // if there is no selected tile already, select clicked tile
+        // if a tower menu is currently open, close it
+        if (currentTower != null) {
+            RunicTablet("Close", currentTower);
+            CloseTowerMenu();
+        }
+        // if the fortress menu is already open, close it
+        else if (fortressOpened) {
+            CloseFortress();
+        }
+
+        // if the store is closed, open it
         if (currentTile == null) {
             currentTile = objectClicked;
-            // exit if a tower is placed on the tile
-            Tile tileScript = currentTile.GetComponent<Tile>();
-            if (tileScript.towerPlaced) {
-                currentTile = null;
-                tileScript = null;
-                return;
-            }
-            // otherwise, highlight tile and open store
             currentTile.GetComponent<Renderer>().material = selectedTileMaterial;
             store.SetActive(true);
         }
-        // a tile is selected already
+        // if the store is open, confirm which tile was clicked
         else {
-            // if it is the tile clicked, unhighlight it, deselect it, and close the store
+            // if the store is already open on the clicked tile, close the store
             if (currentTile == objectClicked) {
-                currentTile.GetComponent<Renderer>().material = tileMaterial;
-                currentTile = null;
-                store.SetActive(false);
+                CloseStore();
             }
-            // a different tile was clicked
+            // if the store is open on a different tile, deselect it and select the clicked tile
             else {
-                // exit if a tower is placed on the clicked tile, without deselecting the previous tile
-                Tile tileScript = objectClicked.GetComponent<Tile>();
-                if (tileScript.towerPlaced) {
-                    tileScript = null;
-                    return;
-                }
-                // otherwise, unhighlight previous tile, select the new tile and highlight it
                 currentTile.GetComponent<Renderer>().material = tileMaterial;
                 currentTile = objectClicked;
                 currentTile.GetComponent<Renderer>().material = selectedTileMaterial;
@@ -152,79 +159,114 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    // fills in the required information for the tower menu
-    private void SetTowerInfo() {
-        Tower towerScript = currentTower.GetComponent<Tower>();
+    private void RunicTablet(string openOrClose, GameObject tower) {
+        Tower towerScript = tower.GetComponent<Tower>();
 
-        string nameValue = towerScript.towerName;
-        int rankValue = towerScript.rank;
-        string targeting = towerScript.targeting;
-        int sellValue = towerScript.sellValue;
-
-        nameText.text = nameValue;
-        rankText.text = "Rank: " + rankValue;
-        targetingText.text = targeting;
-        sellText.text = "Sell: " + sellValue;
+        if (openOrClose.Equals("Open")) {
+            switch (towerScript.towerName) {
+                case "Earth Wizard":
+                    earthRunicTablet.SetActive(true);
+                    break;
+                case "Fire Wizard":
+                    fireRunicTablet.SetActive(true);
+                    break;
+                case "Ice Wizard":
+                    iceRunicTablet.SetActive(true);
+                    break;
+                case "Water Wizard":
+                    waterRunicTablet.SetActive(true);
+                    break;
+            }
+        }
+        else if (openOrClose.Equals("Close")) {
+            switch (towerScript.towerName) {
+                case "Earth Wizard":
+                    earthRunicTablet.SetActive(false);
+                    break;
+                case "Fire Wizard":
+                    fireRunicTablet.SetActive(false);
+                    break;
+                case "Ice Wizard":
+                    iceRunicTablet.SetActive(false);
+                    break;
+                case "Water Wizard":
+                    waterRunicTablet.SetActive(false);
+                    break;
+            }
+        }
     }
 
+    // fills in the required information for the tower menu
+    private void FillTowerMenu() {
+        Tower towerScript = currentTower.GetComponent<Tower>();
 
-    private void SelectTower() {
-        // if a tile is already selected, deselect it
+        // fill in the tower info
+        nameText.text = towerScript.towerName;
+        rankText.text = "Rank: " + towerScript.rank;
+        targetingText.text = towerScript.targeting;
+        sellText.text = "Sell: " + towerScript.sellValue;
+
+        // enable the tower's runic tablet
+        RunicTablet("Open", currentTower);
+    }
+
+    private void CloseTowerMenu() {
+        currentTower = null;
+        towerMenu.SetActive(false);
+    }
+
+    private void OpenTowerMenu() {
+        // if the store is already open, close it
         if (currentTile != null) {
-            currentTile.GetComponent<Renderer>().material = tileMaterial;
-            currentTile = null;
-            store.SetActive(false);
+            CloseStore();
         }
         // if the fortress menu is already open, close it
-        if (fortressOpened) {
-            fortressOpened = false;
-            fortressMenu.SetActive(false);
+        else if (fortressOpened) {
+            CloseFortress();
         }
 
-        // if there is no selected tower already, select this tower and open the tower menu
+        // if there is no selected tower already, open the menu with runic tablet and info
         if (currentTower == null) {
             currentTower = objectClicked;
             towerMenu.SetActive(true);
-            SetTowerInfo();
+            RunicTablet("Open", currentTower);
+            FillTowerMenu();
         }
         // a tower is selected already
         else {
-            // if the same selected tower was clicked again, deselect it, reset the selected tower and close the tower menu
+            // if it's the same tower, close the tower menu
             if (currentTower == objectClicked) {
-                currentTower = null;
-                towerMenu.SetActive(false);
+                RunicTablet("Close", currentTower);
+                CloseTowerMenu();
             }
-            // a different tower was clicked
+            // if it's a different tower, reload the menu with its information
             else {
-                // deselect current tower; assign new current tower; select it
+                RunicTablet("Close", currentTower);
                 currentTower = objectClicked;
-                SetTowerInfo();
+                RunicTablet("Open", currentTower);
+                FillTowerMenu();
             }
         }
     }
 
-    private void SelectFortress() {
-        // close the fortress menu if it is already open
-        if (fortressOpened) {
-            fortressOpened = false;
-            fortressMenu.SetActive(false);
+    private void CloseFortress() {
+        fortressOpened = false;
+        fortressMenu.SetActive(false);
+    }
+
+    private void OpenFortress() {
+        // if the store is already open, close it
+        if (currentTile != null) {
+            CloseStore();
         }
-        // open the fortress menu
-        else {
-            // if a tile is already selected, deselect it
-            if (currentTile != null) {
-                currentTile.GetComponent<Renderer>().material = tileMaterial;
-                currentTile = null;
-                store.SetActive(false);
-            }
-            // if a tower menu is currently open, deselect the tower and close the menu
-            if (currentTower != null) {
-                currentTower = null;
-                towerMenu.SetActive(false);
-            }
-            fortressOpened = true;
-            fortressMenu.SetActive(true);
+        // if a tower menu is currently open, deselect the tower and close the menu
+        else if (currentTower != null) {
+            RunicTablet("Close", currentTower);
+            CloseTowerMenu();
         }
+
+        fortressOpened = true;
+        fortressMenu.SetActive(true);
     }
 
     private void LateUpdate() { // after all updates, flag if the mouse is over the UI
@@ -249,13 +291,18 @@ public class Controller : MonoBehaviour {
 
         // check what was clicked and select accordingly
         if (objectClicked.CompareTag("Tile")) {
-            SelectTile();
+            OpenStore();
         }
         else if (objectClicked.CompareTag("Tower")) {
-            SelectTower();
+            OpenTowerMenu();
         }
         else if (objectClicked.CompareTag("Fortress")) {
-            SelectFortress();
+            if (fortressOpened) {
+                CloseFortress();
+            }
+            else {
+                OpenFortress();
+            }
         }
     }
 }
