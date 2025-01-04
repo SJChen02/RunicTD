@@ -6,17 +6,14 @@ public class CloseMenu : MonoBehaviour {
 
     public static void Close() {
         if (Controller.currentTile != null) {
-            Controller.currentTile.GetComponent<Renderer>().material = Controller.tileMaterial;
-            Controller.currentTile = null;
-            Controller.store.SetActive(false);
+            Controller.CloseStore();
         }
         else if (Controller.currentTower != null) {
-            Controller.currentTower = null;
-            Controller.towerMenu.SetActive(false);
+            Controller.ToggleRunicTablet();
+            Controller.CloseTowerMenu();
         }
         else if (Controller.fortressOpened) {
-            Controller.fortressOpened = false;
-            Controller.fortressMenu.SetActive(false);
+            Controller.CloseFortress();
         }
     }
 }

@@ -127,7 +127,7 @@ public class Controller : MonoBehaviour {
         sellText.text = "Sell: " + towerScript.sellValue;
     }
 
-    private void CloseStore() {
+    public static void CloseStore() {
         currentTile.GetComponent<Renderer>().material = tileMaterial;
         currentTile = null;
         store.SetActive(false);
@@ -253,7 +253,7 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    private void CloseFortress() {
+    public static void CloseFortress() {
         fortressOpened = false;
         fortressMenu.SetActive(false);
     }
