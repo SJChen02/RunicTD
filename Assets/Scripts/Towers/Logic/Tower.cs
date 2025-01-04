@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour {
     private float DefaultfireCountdown = 0f;
 
     [Header("Attributes")]
+    public int path = 0;
     public int rank = 0;
     public int cost;
     public int sellValue;
@@ -112,6 +113,7 @@ public class Tower : MonoBehaviour {
         }
     }
 
+    // targeting for last
     private void last() {
         float longestDistance = Mathf.NegativeInfinity; //initialise the distance as negative infinity so "enemy" distance will actually replace this
         Enemy furthestEnemy = null; //enemy object thats furthest from fortress

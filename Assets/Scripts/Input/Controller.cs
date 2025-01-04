@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -21,34 +22,35 @@ public class Controller : MonoBehaviour {
     private Transform parentUI;
     private Transform targetingParent;
     private Transform sellParent;
+    private Transform rankParent;
     private Transform towerMenuParent;
     private Transform runicTabletsParent;
 
     // tile and store
+    private Material selectedTileMaterial;
     public static GameObject store;
     public static GameObject currentTile;
-    private Material selectedTileMaterial;
     public static Material tileMaterial;
-    private bool eventConsumed;
 
     // tower menu
+    private bool mouseOverUI;
+    private static GameObject tablet;
     public static GameObject towerMenu;
     public static GameObject currentTower;
-    private bool mouseOverUI;
     public static GameObject earthRunicTablet;
     public static GameObject fireRunicTablet;
-    public static GameObject iceRunicTablet;
+    public static GameObject windRunicTablet;
     public static GameObject waterRunicTablet;
 
     // fortress menu
     public static GameObject fortressMenu;
     public static bool fortressOpened;
 
-    // these can be static, but don't need to be because the script is attached to one object
+    // this does not need to be static
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI rankText;
 
     // these need to be static to be accessed from other scripts when the values are updated
+    public static TextMeshProUGUI rankText;
     public static TextMeshProUGUI targetingText;
     public static TextMeshProUGUI sellText;
 
@@ -70,16 +72,21 @@ public class Controller : MonoBehaviour {
 
         // targetingText and sellText are static, so they must be set via script, not via inspector
         towerMenuParent = parentUI.Find("Tower Menu").transform;
+
         targetingParent = towerMenuParent.Find("Targeting").gameObject.transform;
         targetingText = targetingParent.Find("Targeting Text").GetComponent<TextMeshProUGUI>();
+
         sellParent = towerMenuParent.Find("Sell").gameObject.transform;
         sellText = sellParent.Find("Sell Text").GetComponent<TextMeshProUGUI>();
+
+        rankParent = towerMenuParent.Find("Rank").gameObject.transform;
+        rankText = rankParent.Find("Rank Text").GetComponent<TextMeshProUGUI>();
 
         // obtaining references for Runic Tablets
         runicTabletsParent = towerMenuParent.Find("Runic Tablets").gameObject.transform;
         earthRunicTablet = runicTabletsParent.Find("Earth Runic Tablet").gameObject;
         fireRunicTablet = runicTabletsParent.Find("Fire Runic Tablet").gameObject;
-        iceRunicTablet = runicTabletsParent.Find("Ice Runic Tablet").gameObject;
+        windRunicTablet = runicTabletsParent.Find("Wind Runic Tablet").gameObject;
         waterRunicTablet = runicTabletsParent.Find("Water Runic Tablet").gameObject;
 
         keybindings = new Keybindings();
@@ -114,6 +121,12 @@ public class Controller : MonoBehaviour {
 
     //---------------------------------------------------------//
 
+    public static void UpdateSellValue(int value) {
+        Tower towerScript = currentTower.GetComponent<Tower>();
+        towerScript.sellValue += (int)(0.75 * value);
+        sellText.text = "Sell: " + towerScript.sellValue;
+    }
+
     private void CloseStore() {
         currentTile.GetComponent<Renderer>().material = tileMaterial;
         currentTile = null;
@@ -130,7 +143,7 @@ public class Controller : MonoBehaviour {
 
         // if a tower menu is currently open, close it
         if (currentTower != null) {
-            RunicTablet("Close", currentTower);
+            ToggleRunicTablet();
             CloseTowerMenu();
         }
         // if the fortress menu is already open, close it
@@ -159,40 +172,34 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    private void RunicTablet(string openOrClose, GameObject tower) {
-        Tower towerScript = tower.GetComponent<Tower>();
+    public static void ToggleRunicTablet() {
+        Tower towerScript = currentTower.GetComponent<Tower>();
 
-        if (openOrClose.Equals("Open")) {
-            switch (towerScript.towerName) {
-                case "Earth Wizard":
-                    earthRunicTablet.SetActive(true);
-                    break;
-                case "Fire Wizard":
-                    fireRunicTablet.SetActive(true);
-                    break;
-                case "Ice Wizard":
-                    iceRunicTablet.SetActive(true);
-                    break;
-                case "Water Wizard":
-                    waterRunicTablet.SetActive(true);
-                    break;
-            }
+        // obtain the relevant tablet
+        switch (towerScript.towerName) {
+            case "Earth Wizard":
+                tablet = earthRunicTablet;
+                break;
+            case "Fire Wizard":
+                tablet = fireRunicTablet;
+                break;
+            case "Wind Wizard":
+                tablet = windRunicTablet;
+                break;
+            case "Water Wizard":
+                tablet = waterRunicTablet;
+                break;
         }
-        else if (openOrClose.Equals("Close")) {
-            switch (towerScript.towerName) {
-                case "Earth Wizard":
-                    earthRunicTablet.SetActive(false);
-                    break;
-                case "Fire Wizard":
-                    fireRunicTablet.SetActive(false);
-                    break;
-                case "Ice Wizard":
-                    iceRunicTablet.SetActive(false);
-                    break;
-                case "Water Wizard":
-                    waterRunicTablet.SetActive(false);
-                    break;
-            }
+
+        if (tablet.activeInHierarchy) {
+            // close and reset the runes
+            tablet.SetActive(false);
+            Runes.ClearRunes(tablet, towerScript.rank);
+        }
+        else {
+            // fill in the runes and open
+            Runes.FillRunes(tablet, towerScript.path, towerScript.rank);
+            tablet.SetActive(true);
         }
     }
 
@@ -205,12 +212,9 @@ public class Controller : MonoBehaviour {
         rankText.text = "Rank: " + towerScript.rank;
         targetingText.text = towerScript.targeting;
         sellText.text = "Sell: " + towerScript.sellValue;
-
-        // enable the tower's runic tablet
-        RunicTablet("Open", currentTower);
     }
 
-    private void CloseTowerMenu() {
+    public static void CloseTowerMenu() {
         currentTower = null;
         towerMenu.SetActive(false);
     }
@@ -229,21 +233,21 @@ public class Controller : MonoBehaviour {
         if (currentTower == null) {
             currentTower = objectClicked;
             towerMenu.SetActive(true);
-            RunicTablet("Open", currentTower);
             FillTowerMenu();
+            ToggleRunicTablet();
         }
         // a tower is selected already
         else {
             // if it's the same tower, close the tower menu
             if (currentTower == objectClicked) {
-                RunicTablet("Close", currentTower);
+                ToggleRunicTablet();
                 CloseTowerMenu();
             }
             // if it's a different tower, reload the menu with its information
             else {
-                RunicTablet("Close", currentTower);
+                ToggleRunicTablet();
                 currentTower = objectClicked;
-                RunicTablet("Open", currentTower);
+                ToggleRunicTablet();
                 FillTowerMenu();
             }
         }
@@ -261,7 +265,7 @@ public class Controller : MonoBehaviour {
         }
         // if a tower menu is currently open, deselect the tower and close the menu
         else if (currentTower != null) {
-            RunicTablet("Close", currentTower);
+            ToggleRunicTablet();
             CloseTowerMenu();
         }
 
@@ -269,7 +273,8 @@ public class Controller : MonoBehaviour {
         fortressMenu.SetActive(true);
     }
 
-    private void LateUpdate() { // after all updates, flag if the mouse is over the UI
+    private void LateUpdate() {
+        // after all updates, flag if the mouse is over the UI
         mouseOverUI = EventSystem.current.IsPointerOverGameObject();
     }
 
