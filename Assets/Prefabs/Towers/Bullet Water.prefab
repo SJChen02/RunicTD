@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3638654536675821665}
   - component: {fileID: 8440519054934549351}
   - component: {fileID: 2249460028131971709}
-  - component: {fileID: 6451285903755367189}
+  - component: {fileID: 6874210469149786966}
   m_Layer: 0
   m_Name: Bullet Water
   m_TagString: Untagged
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6451285903755367189
+--- !u!114 &6874210469149786966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 741375603087042898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d008dc5c35a3264182da5648d01f225, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7fbb59d655ed54ca591ec3a9bcde6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
+  towerName: Water Wizard
+  target: {fileID: 0}
   damage: 40
-  splashRadius: 20
+  stunDuration: 0
+  burnDuration: 0
+  burnDamage: 0
+  splashRadius: 0

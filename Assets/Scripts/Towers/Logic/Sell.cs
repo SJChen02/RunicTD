@@ -15,12 +15,13 @@ public class Sell : MonoBehaviour {
         tileScript.towerPlaced = false;
         Controller.currentTile = null;
 
+        // close menu and clear runes
+        Controller.ToggleRunicTablet();
+
         // deleting the tower
         Destroy(Controller.currentTower);
-        Controller.currentTower = null;
 
-        // closing the menu
-        Controller.towerMenu.SetActive(false);
+        // close the menu
+        Controller.CloseTowerMenu();
     }
-
 }

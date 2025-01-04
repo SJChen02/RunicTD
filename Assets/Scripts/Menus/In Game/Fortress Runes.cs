@@ -46,7 +46,7 @@ public class FortressRunes : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.fireRate = towerScript.DefaultfireRate * 1.1;
+            towerScript.fireRate = towerScript.DefaultfireRate * 1.1f;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 
@@ -70,7 +70,7 @@ public class FortressRunes : MonoBehaviour {
         foreach (GameObject tower in towers) {
 
             Tower towerScript = tower.GetComponent<Tower>(); // Grabs the Tower script
-            towerScript.range = towerScript.Defaultrange * 1.25;
+            towerScript.range = towerScript.Defaultrange * 1.25f;
 
             //Debug.Log("CurrentBuffActivated: " + towerScript.fireRate); //for debugging
 

@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFire : Bullet
-{
-    public float burnDuration = 3f;
-    public float burnDamage = 5f;
-
-    protected override void HitTarget()
-    {
+public class BulletFire : MonoBehaviour {
+    public static void HitTarget(Transform target, float damage, float burnDuration, float burnDamage) {
         Enemy enemy = target.GetComponent<Enemy>();
+
         if (enemy != null)
         {
             enemy.TakeDamage(damage, "Fire");
             enemy.ApplyBurnDebuff(burnDamage, burnDuration);
         }
-
-        Destroy(gameObject);
     }
 }
