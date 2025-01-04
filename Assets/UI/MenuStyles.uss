@@ -2,6 +2,21 @@
     scale: 1.2 1.2;
     transition-duration: 0.4s;
     transition-timing-function: ease-in-out-circ;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.button:active {
+    transition: transform 0.2s ease;
+    transform-origin: center;
+    scale: 1.2 1.2;
+    opacity: 0.75;
+    overflow: visible;
+    transition-timing-function: ease-in;
+    transition-duration: 1s;
+    transition-delay: 0.4s;
 }
 
 .menu-button:active {
@@ -87,7 +102,7 @@
     transition-timing-function: ease-in-out-circ;
     transition-property: all;
     scale: 1.1 1.1;
-    transform-origin: right top;
+    transform-origin: center;
 }
 
 .text-Button {
@@ -121,4 +136,15 @@
     transition-duration: 1s;
     transition-delay: 0s;
     display: flex;
+}
+
+.LevelSelectionButtons {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgba(27, 27, 27, 0);
+    width: 220px;
+    height: 220px;
 }

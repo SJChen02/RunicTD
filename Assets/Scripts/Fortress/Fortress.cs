@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Fortress : MonoBehaviour {
-
+public class Fortress : MonoBehaviour
+{
     [Header("Health")]
-
     public static int health = 100;
     public static int gold = 100;
     public TextMeshProUGUI goldAmount;
@@ -19,66 +16,59 @@ public class Fortress : MonoBehaviour {
 
     private FortressRunes fortressRunes; // Reference to the SkillTree component
 
-    private void Start() {
+    [Header("Mana Generation")]
+    public static float manaGenerationInterval = 10f; // Interval for gold generation in seconds
+    private float manaGenerationTimer = 0f;
+
+    private void Start()
+    {
         // Use the new method to find the SkillTree component in the scene
         fortressRunes = Object.FindFirstObjectByType<FortressRunes>(); // Updated from FindObjectOfType
 
-        if (fortressRunes == null) {
+        if (fortressRunes == null)
+        {
             Debug.LogError("SkillTree component not found in the scene!");
         }
     }
 
-
-    void Update() {
-
+    private void Update()
+    {
         SetText();
-
     }
 
-    private void SetText() {
-
+    private void SetText()
+    {
         goldAmount.text = "Gold: " + gold;
         healthAmount.text = "Health: " + health;
         waveCount.text = "Wave: " + (WaveTracker.currentWave + 1);
-
     }
 
-    // cannot call Destroy() directly in TakeHit(), so this is a workaround
-    public static void DestroyFortress(GameObject fortress) {
-
+    public static void DestroyFortress(GameObject fortress)
+    {
         Destroy(fortress);
-
     }
 
-    public static void TakeHit() {
-
-        // considers the enemy gone, take away health from the fortress
+    public static void TakeHit()
+    {
+        // Considers the enemy gone, take away health from the fortress
         WaveTracker.totalEnemiesLeft -= 1;
         health -= 20;
 
-        // ensures that health doesn't display as negative
-        if (health < 0) {
-
+        // Ensures that health doesn't display as negative
+        if (health < 0)
+        {
             health = 0;
-
         }
 
-        if (health <= 0) {
-
-            // notify the GameManager that the game is over
-            if (GameManager.instance != null) {
-
-                GameManager.instance.GameOver();
-
-            }
-
-            // 'destroys' the fortress by making it invisible
-            // the component is still active, so gold and health are still able to be updated
+        if (health <= 0)
+        {
+            // 'Destroys' the fortress by making it invisible
+            // The component is still active, so gold and health are still able to be updated
             GameObject.Find("Fortress").GetComponent<Renderer>().enabled = false;
-            // at present, the waves still continue after the fortress dies
         }
-
     }
+}
+
 
     /* Legacy Fortress Runes
     private void OnMouseDown()
@@ -177,5 +167,5 @@ public class Fortress : MonoBehaviour {
     //        PlayerPrefs.Save();
     //    }
     //}
-}
+//}
 

@@ -201,7 +201,6 @@ public class Enemy : MonoBehaviour
             WaveTracker.EnemyKilled();
             WaveTracker.UnregisterEnemy(this);
             Destroy(gameObject);
-            Fortress.gold += 10;
         }
         
         if (Vector3.Distance(target.position, transform.position) <= 1f) {
