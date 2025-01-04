@@ -51,18 +51,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Defaultrange: 20
   DefaultfireRate: 1.25
+  path: 0
   rank: 0
-  towerName: Ice Wizard
+  cost: 50
+  sellValue: 0
   range: 10
   fireRate: 1.25
-  cost: 50
   targeting: First
-  sellValue: 0
+  towerName: Wind Wizard
   tilePlacedOn: {fileID: 0}
+  damage: 40
+  bulletSpeed: 0
+  stunDuration: 1
+  burnDuration: 3
+  burnDamage: 5
+  critChance: 0.2
+  critDamage: 1.5
+  splashRadius: 20
   enemyTag: Enemy
   turnSpeed: 10
-  bulletPrefab: {fileID: 410755028381099563, guid: 4e634aa0e79c30549baef12693708164, type: 3}
   firePoint: {fileID: 3131185403058838964}
+  bulletPrefab: {fileID: 410755028381099563, guid: 4e634aa0e79c30549baef12693708164, type: 3}
 --- !u!65 &2078780808128593480
 BoxCollider:
   m_ObjectHideFlags: 0

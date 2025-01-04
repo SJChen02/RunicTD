@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour {
     public float burnDuration;
     public float burnDamage;
     public float splashRadius;
+    public float critChance;
+    public float critDamage;
 
     public void SeekEarth(Transform _target, float _damage, float _stunDuration) {
         target = _target;
@@ -26,9 +28,11 @@ public class Bullet : MonoBehaviour {
         burnDuration = _burnDuration;
         burnDamage = _burnDamage;
     }
-    public void SeekWind(Transform _target, float _damage) {
+    public void SeekWind(Transform _target, float _damage, float _critChance, float _critDamage) {
         target = _target;
         damage = _damage;
+        critChance = _critChance;
+        critDamage = _critDamage;
     }
     public void SeekWater(Transform _target, float _damage, float _splashRadius) {
         target = _target;
@@ -56,6 +60,7 @@ public class Bullet : MonoBehaviour {
                     Destroy(gameObject);
                     return;
                 case "Wind Wizard":
+                    BulletWind.HitTarget(target, damage, critChance, critDamage);
                     Destroy(gameObject);
                     return;
                 case "Water Wizard":

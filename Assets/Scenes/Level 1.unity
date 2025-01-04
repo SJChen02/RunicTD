@@ -1357,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 71031468654612050, guid: 138b8a730a093b54483775d77d6e7f3f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 5200557027017837293, guid: 43715f368851b8142a314f2f2e0939bd, type: 3}
+      objectReference: {fileID: 1816473111041204641, guid: 70c405536d21ea44a80ecb4b2e73e3b7, type: 3}
     - target: {fileID: 2184085718622594876, guid: 138b8a730a093b54483775d77d6e7f3f, type: 3}
       propertyPath: m_text
       value: Ice Wizard 50 Gold

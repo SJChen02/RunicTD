@@ -211,7 +211,7 @@ public class Tower : MonoBehaviour {
                     bulletScript.SeekFire(target, damage, burnDuration, burnDamage);
                     break;
                 case "Wind Wizard":
-                    bulletScript.SeekWind(target, damage);
+                    bulletScript.SeekWind(target, damage, critChance, critDamage);
                     break;
                 case "Water Wizard":
                     bulletScript.SeekWater(target, damage, splashRadius);
