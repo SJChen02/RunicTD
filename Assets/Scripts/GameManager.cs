@@ -44,10 +44,10 @@ public class GameManager : MonoBehaviour
         }
 
         // Stop the game (freeze time)
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
 
         // Start coroutine to wait for a few seconds and then exit the game
-        StartCoroutine(ExitGameAfterDelay(5f)); // Wait for 5 seconds before exiting
+        //StartCoroutine(ExitGameAfterDelay(5f)); // Wait for 5 seconds before exiting
     }
 
     private IEnumerator ExitGameAfterDelay(float delay)

@@ -11,6 +11,7 @@ public class HUD_Events : MonoBehaviour
     private VisualElement PauseMenu;
     private VisualElement transition;
     private Button PauseButton;
+    private ProgressBar ManaBar;
     private Button exit;
     private Button options;
     private Button retry;
@@ -39,6 +40,8 @@ public class HUD_Events : MonoBehaviour
     private bool victoryProcessed = false; // Flag to prevent multiple increments
     private bool defeatProcessed = false;  // Flag for defeat condition
     private int levelNumber;
+    private float manaBarTimer = 0f; // Timer for the ManaBar fill
+    public float manaFillDuration = 10f; // Duration for the progress bar to fill
 
     private void Awake()
     {
@@ -51,6 +54,7 @@ public class HUD_Events : MonoBehaviour
         OptionsMenu = doc.rootVisualElement.Q<VisualElement>("OptionsMenu");
         VictoryScreen = doc.rootVisualElement.Q<VisualElement>("VictoryScreen");
         LoseScreen = doc.rootVisualElement.Q<VisualElement>("LoseScreen");
+        ManaBar = doc.rootVisualElement.Q<ProgressBar>("ManaBar");
 
         PauseButton = doc.rootVisualElement.Q<Button>("PauseButton");
         PauseButton.clicked += PauseButtonClicked;
@@ -136,6 +140,9 @@ public class HUD_Events : MonoBehaviour
             LoseScreen.RemoveFromClassList("fade-out");
             defeatProcessed = true; // Prevent further processing
         }
+
+        // Update Mana Progress Bar
+        UpdateManaBar();
     }
 
     private void PauseButtonClicked()
@@ -274,6 +281,37 @@ public class HUD_Events : MonoBehaviour
         {
             currentMouseSensitivity = evt.newValue;
         });
+    }
+    private void UpdateManaBar()
+    {
+        if (ManaBar != null)
+        {
+            // Increment timer by delta time
+            manaBarTimer += Time.deltaTime;
+
+            // Calculate progress as a percentage of the fill duration
+            float progress = manaBarTimer / manaFillDuration;
+
+            // Clamp progress between 0 and 1
+            progress = Mathf.Clamp01(progress);
+
+            // Update progress bar value
+            ManaBar.value = progress * 100; // ProgressBar's value ranges from 0 to 100
+
+            // Check if progress is complete
+            if (manaBarTimer >= manaFillDuration)
+            {
+                // Reset timer and perform mana creation action
+                manaBarTimer = 0f;
+                HandleManaCreation();
+            }
+        }
+    }
+
+    private void HandleManaCreation()
+    {
+        Fortress.gold += 20; // Add 20 gold
+        Debug.Log($"Mana created! Gold increased to: {Fortress.gold}");
     }
 
     private void SavePreferences()
