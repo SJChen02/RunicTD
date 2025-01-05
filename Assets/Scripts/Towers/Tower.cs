@@ -9,18 +9,13 @@ public class Tower : MonoBehaviour {
     // set during the targeting methods to decide where the bullet is fired
     private Transform target;
 
-    //default stat of the tower
-    public float Defaultrange = 20f;
-    public float DefaultfireRate = 1.25f;
-    private float DefaultfireCountdown = 0f;
-
     [Header("Attributes")]
+    public float range;
+    public float fireRate; //per second
     public int path = 0;
     public int rank = 0;
     public int cost;
     public int sellValue;
-    public float range;
-    public float fireRate; //per second
     public string targeting = "First";
     public string towerName;
     public GameObject tilePlacedOn;
@@ -43,14 +38,29 @@ public class Tower : MonoBehaviour {
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    private float fireCountdown; //time until next shot
+    private float fireCountdown = 0f; //time until next shot
     private GameObject projectileBin;
 
     private void Awake() {
-        // Initialize the attributes with default values
-        range = Defaultrange;
-        fireRate = DefaultfireRate;
-        fireCountdown = DefaultfireCountdown;
+        // updating the tower with global buffs
+        switch (towerName) {
+            case "Earth Wizard":
+                fireRate += FortressRunes.earthFireRateIncrease;
+                range += FortressRunes.earthRangeIncrease;
+                break;
+            case "Fire Wizard":
+                fireRate += FortressRunes.fireFireRateIncrease;
+                range += FortressRunes.fireRangeIncrease;
+                break;
+            case "Wind Wizard":
+                fireRate += FortressRunes.windFireRateIncrease;
+                range += FortressRunes.windRangeIncrease;
+                break;
+            case "Water Wizard":
+                fireRate += FortressRunes.waterFireRateIncrease;
+                range += FortressRunes.waterRangeIncrease;
+                break;
+        }
 
         // setting the sellValue
         sellValue = (int)(0.75 * cost);
@@ -205,16 +215,26 @@ public class Tower : MonoBehaviour {
         if (bulletScript != null) {
             switch (towerName) {
                 case "Earth Wizard":
-                    bulletScript.SeekEarth(target, damage, stunDuration);
+                    bulletScript.SeekEarth(target,
+                                           FortressRunes.earthDmgMulti * damage,
+                                           FortressRunes.stunDurationMulti * stunDuration);
                     break;
                 case "Fire Wizard":
-                    bulletScript.SeekFire(target, damage, burnDuration, burnDamage);
+                    bulletScript.SeekFire(target,
+                                          FortressRunes.fireDmgMulti * damage,
+                                          FortressRunes.burnDurationMulti * burnDuration,
+                                          FortressRunes.burnDmgMulti * burnDamage);
                     break;
                 case "Wind Wizard":
-                    bulletScript.SeekWind(target, damage, critChance, critDamage);
+                    bulletScript.SeekWind(target,
+                                          FortressRunes.windDmgMulti * damage,
+                                          FortressRunes.critChanceMulti * critChance,
+                                          FortressRunes.critDmgMulti * critDamage);
                     break;
                 case "Water Wizard":
-                    bulletScript.SeekWater(target, damage, splashRadius);
+                    bulletScript.SeekWater(target,
+                                           FortressRunes.waterDmgMulti * damage,
+                                           FortressRunes.splashRadiusMulti * splashRadius);
                     break;
             }
         }

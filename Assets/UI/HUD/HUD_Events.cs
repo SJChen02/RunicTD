@@ -41,7 +41,8 @@ public class HUD_Events : MonoBehaviour
     private bool defeatProcessed = false;  // Flag for defeat condition
     private int levelNumber;
     private float manaBarTimer = 0f; // Timer for the ManaBar fill
-    public float manaFillDuration = 10f; // Duration for the progress bar to fill
+    public static float manaFillDuration = 10f; // Duration for the progress bar to fill
+    public static int manaGain = 20;
 
     private void Awake()
     {
@@ -310,7 +311,7 @@ public class HUD_Events : MonoBehaviour
 
     private void HandleManaCreation()
     {
-        Fortress.mana += 20; // Add 20 mana
+        Fortress.mana += manaGain; // add mana
         Debug.Log($"Mana created! Now up to: {Fortress.mana}");
     }
 

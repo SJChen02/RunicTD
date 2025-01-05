@@ -41,9 +41,9 @@ public class Runes : MonoBehaviour {
     private static int windPath2Rune2 = 120;
     private static int windPath2Rune3 = 200;
 
-    private static void MarkRuneAsPurchased(GameObject tablet, string runeName) {
+    public static void MarkRuneAsPurchased(GameObject parent, string runeName) {
         // get button and disable it
-        button = tablet.transform.Find(runeName).GetComponent<Button>();
+        button = parent.transform.Find(runeName).GetComponent<Button>();
         button.interactable = false;
 
         // assign its colour
@@ -140,7 +140,7 @@ public class Runes : MonoBehaviour {
                     return false;
                 case 1:
                     if (Fortress.mana >= earthPath1Rune2) {
-                        towerScript.fireRate *= 0.8f;
+                        towerScript.fireRate -= 0.15f;
                         towerScript.stunDuration *= 1.25f;
                         Fortress.mana -= earthPath1Rune2;
                         Controller.UpdateSellValue(earthPath1Rune2);
@@ -182,7 +182,7 @@ public class Runes : MonoBehaviour {
                 case 2:
                     if (Fortress.mana >= earthPath2Rune3) {
                         towerScript.damage *= 1.5f;
-                        towerScript.fireRate *= 1.25f;
+                        towerScript.fireRate += 0.3f;
                         Fortress.mana -= earthPath2Rune3;
                         Controller.UpdateSellValue(earthPath2Rune3);
                         return true;
@@ -199,7 +199,7 @@ public class Runes : MonoBehaviour {
             switch (rank) {
                 case 0:
                     if (Fortress.mana >= firePath1Rune1) {
-                        towerScript.fireRate *= 0.75f;
+                        towerScript.fireRate -= 0.2f;
                         towerScript.damage *= 1.25f;
                         Fortress.mana -= firePath1Rune1;
                         Controller.UpdateSellValue(firePath1Rune1);
@@ -249,7 +249,7 @@ public class Runes : MonoBehaviour {
                     return false;
                 case 2:
                     if (Fortress.mana >= firePath2Rune3) {
-                        towerScript.fireRate *= 1.5f;
+                        towerScript.fireRate += 0.4f;
                         towerScript.damage *= 1.25f;
                         Fortress.mana -= firePath2Rune3;
                         Controller.UpdateSellValue(firePath2Rune3);
@@ -268,7 +268,7 @@ public class Runes : MonoBehaviour {
                 case 0:
                     if (Fortress.mana >= windPath1Rune1) {
                         towerScript.range *= 1.25f;
-                        towerScript.fireRate *= 0.8f;
+                        towerScript.fireRate -= 0.2f;
                         Fortress.mana -= windPath1Rune1;
                         Controller.UpdateSellValue(windPath1Rune1);
                         return true;
@@ -277,7 +277,7 @@ public class Runes : MonoBehaviour {
                 case 1:
                     if (Fortress.mana >= windPath1Rune2) {
                         towerScript.critChance *= 2.5f;
-                        towerScript.fireRate *= 0.8f;
+                        towerScript.fireRate -= 0.2f;
                         Fortress.mana -= windPath1Rune2;
                         Controller.UpdateSellValue(windPath1Rune2);
                         return true;
@@ -309,7 +309,7 @@ public class Runes : MonoBehaviour {
                 case 1:
                     if (Fortress.mana >= windPath2Rune2) {
                         towerScript.critChance *= 0f;
-                        towerScript.fireRate *= 1.5f;
+                        towerScript.fireRate += 0.3f;
                         Fortress.mana -= windPath2Rune2;
                         Controller.UpdateSellValue(windPath2Rune2);
                         return true;
@@ -317,7 +317,7 @@ public class Runes : MonoBehaviour {
                     return false;
                 case 2:
                     if (Fortress.mana >= windPath2Rune3) {
-                        towerScript.fireRate *= 1.5f;
+                        towerScript.fireRate += 0.45f;
                         towerScript.range *= 1.5f;
                         Fortress.mana -= windPath2Rune3;
                         Controller.UpdateSellValue(windPath2Rune3);
@@ -336,7 +336,7 @@ public class Runes : MonoBehaviour {
                 case 0:
                     if (Fortress.mana >= waterPath1Rune1) {
                         towerScript.splashRadius *= 1.25f;
-                        towerScript.fireRate *= 0.75f;
+                        towerScript.fireRate -= 0.25f;
                         Fortress.mana -= waterPath1Rune1;
                         Controller.UpdateSellValue(waterPath1Rune1);
                         return true;
