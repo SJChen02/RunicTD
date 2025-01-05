@@ -112,6 +112,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void EarthRune1() {
         if (Fortress.mana >= 100) {
+            Fortress.mana -= 100;
             IncreaseGlobalRange(2.5f, "Earth Wizard");
             Runes.MarkRuneAsPurchased(earthPath, "Rune 1");
 
@@ -120,6 +121,7 @@ public class FortressRunes : MonoBehaviour {
     }
     public static void EarthRune2() {
         if (Fortress.mana >= 200) {
+            Fortress.mana -= 200;
             IncreaseGlobalFireRate(0.1f, "Earth Wizard");
             Runes.MarkRuneAsPurchased(earthPath, "Rune 2");
 
@@ -129,6 +131,7 @@ public class FortressRunes : MonoBehaviour {
     }
     public static void EarthRune3a() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             stunDurationMulti += 0.15f;
             Runes.MarkRuneAsPurchased(earthPath, "Rune 3a");
 
@@ -137,6 +140,7 @@ public class FortressRunes : MonoBehaviour {
     }
     public static void EarthRune3b() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             earthDmgMulti += 0.2f;
             Runes.MarkRuneAsPurchased(earthPath, "Rune 3b");
 
@@ -148,6 +152,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void FireRune1() {
         if (Fortress.mana >= 100) {
+            Fortress.mana -= 100;
             fireDmgMulti += 0.1f;
             Runes.MarkRuneAsPurchased(firePath, "Rune 1");
 
@@ -157,6 +162,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void FireRune2() {
         if (Fortress.mana >= 200) {
+            Fortress.mana -= 200;
             IncreaseGlobalRange(3.5f, "Fire Wizard");
             Runes.MarkRuneAsPurchased(firePath, "Rune 2");
 
@@ -167,6 +173,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void FireRune3a() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             burnDmgMulti += 0.15f;
             burnDurationMulti += 0.1f;
             Runes.MarkRuneAsPurchased(firePath, "Rune 3a");
@@ -177,6 +184,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void FireRune3b() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             IncreaseGlobalRange(5f, "Fire Wizard");
             Runes.MarkRuneAsPurchased(firePath, "Rune 3b");
 
@@ -188,6 +196,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WindRune1() {
         if (Fortress.mana >= 100) {
+            Fortress.mana -= 100;
             IncreaseGlobalFireRate(0.1f, "Wind Wizard");
             Runes.MarkRuneAsPurchased(windPath, "Rune 1");
 
@@ -197,6 +206,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WindRune2() {
         if (Fortress.mana >= 200) {
+            Fortress.mana -= 200;
             IncreaseGlobalRange(2f, "Wind Wizard");
             Runes.MarkRuneAsPurchased(windPath, "Rune 2");
 
@@ -207,6 +217,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WindRune3a() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             critDmgMulti += 0.15f;
             Runes.MarkRuneAsPurchased(windPath, "Rune 3a");
 
@@ -216,6 +227,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WindRune3b() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             windDmgMulti += 0.2f;
             Runes.MarkRuneAsPurchased(windPath, "Rune 3b");
 
@@ -227,6 +239,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WaterRune1() {
         if (Fortress.mana >= 100) {
+            Fortress.mana -= 100;
             IncreaseGlobalRange(3f, "Water Wizard");
             Runes.MarkRuneAsPurchased(waterPath, "Rune 1");
 
@@ -236,6 +249,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WaterRune2() {
         if (Fortress.mana >= 200) {
+            Fortress.mana -= 200;
             waterDmgMulti += 0.1f;
             Runes.MarkRuneAsPurchased(waterPath, "Rune 2");
 
@@ -246,6 +260,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WaterRune3a() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             splashRadiusMulti += 0.1f;
             Runes.MarkRuneAsPurchased(waterPath, "Rune 3a");
 
@@ -255,6 +270,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void WaterRune3b() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             IncreaseGlobalFireRate(0.15f, "Water Wizard");
             Runes.MarkRuneAsPurchased(waterPath, "Rune 3b");
 
@@ -266,6 +282,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void ManaGainRune1() {
         if (Fortress.mana >= 250) {
+            Fortress.mana -= 250;
             HUD_Events.manaGain += 10;
             Runes.MarkRuneAsPurchased(manaGainPath, "Rune 1");
 
@@ -275,6 +292,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void ManaGainRune2() {
         if (Fortress.mana >= 400) {
+            Fortress.mana -= 400;
             HUD_Events.manaGain += 20;
             Runes.MarkRuneAsPurchased(manaGainPath, "Rune 2");
         }
@@ -282,6 +300,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void ManaRateRune1() {
         if (Fortress.mana >= 300) {
+            Fortress.mana -= 300;
             HUD_Events.manaFillDuration -= 1;
             Runes.MarkRuneAsPurchased(manaRatePath, "Rune 1");
 
@@ -291,6 +310,7 @@ public class FortressRunes : MonoBehaviour {
 
     public static void ManaRateRune2() {
         if (Fortress.mana >= 500) {
+            Fortress.mana -= 500;
             HUD_Events.manaFillDuration -= 2;
             Runes.MarkRuneAsPurchased(manaRatePath, "Rune 2");
         }
