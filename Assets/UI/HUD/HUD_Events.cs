@@ -341,8 +341,8 @@ public class HUD_Events : MonoBehaviour
 
     private void HandleManaCreation()
     {
-        Fortress.mana += 20; // Add 20 gold
-        Debug.Log($"Mana created! Gold increased to: {Fortress.mana}");
+        Fortress.mana += manaGain; // Add 20 mana
+        Debug.Log($"Mana created! Mana up to: {Fortress.mana}");
     }
 
     private void SavePreferences()
