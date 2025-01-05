@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Store : MonoBehaviour {
 
-    private Vector3 offsetVector = new Vector3(0, 5, 0);
-
     public void PurchaseTower() {
 
         // referencing the script to access the tower cost in the if statement
@@ -29,7 +27,7 @@ public class Store : MonoBehaviour {
             // placing the tower
             Instantiate(
                 towerSelected,
-                Controller.currentTile.transform.position + offsetVector,
+                Controller.currentTile.transform.position,
                 Quaternion.identity,
                 GameObject.Find("Towers").transform
             );

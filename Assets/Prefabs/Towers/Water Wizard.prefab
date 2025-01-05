@@ -49,20 +49,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd0dee9c03ae934fa38f7361b56f521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Defaultrange: 20
-  DefaultfireRate: 1.25
-  rank: 0
-  towerName: Water Wizard
-  range: 10
+  range: 20
   fireRate: 1.25
+  path: 0
+  rank: 0
   cost: 50
-  targeting: First
   sellValue: 0
+  targeting: First
+  towerName: Water Wizard
   tilePlacedOn: {fileID: 0}
+  damage: 40
+  bulletSpeed: 0
+  stunDuration: 1
+  burnDuration: 3
+  burnDamage: 5
+  critChance: 0.2
+  critDamage: 1.5
+  splashRadius: 20
   enemyTag: Enemy
   turnSpeed: 10
-  bulletPrefab: {fileID: 741375603087042898, guid: 1cc61a22bdb063040a82eb3873368d4f, type: 3}
   firePoint: {fileID: 8465691569154119655}
+  bulletPrefab: {fileID: 741375603087042898, guid: 1cc61a22bdb063040a82eb3873368d4f, type: 3}
 --- !u!65 &1930666961851625833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83,7 +90,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.81, y: 2.01, z: 0.81}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 1.06, z: 0}
 --- !u!1 &2531057562103784457
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 2531057562103784457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1, z: 0}
+  m_LocalPosition: {x: -0, y: 1.81, z: 0}
   m_LocalScale: {x: 0.8, y: 0.5, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -217,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 3751018790601649578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.33333334, z: 0.5}
+  m_LocalPosition: {x: 0.5, y: 1.143333, z: 0.5}
   m_LocalScale: {x: 0.2, y: 0.7, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -322,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 4278663885727058208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.81, z: 0}
   m_LocalScale: {x: 0.8, y: 1.5, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -424,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 6633699600417205546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6666666, z: 0.5}
+  m_LocalPosition: {x: 0.5, y: 1.476667, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
