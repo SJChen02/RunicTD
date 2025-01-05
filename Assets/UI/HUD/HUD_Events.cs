@@ -10,6 +10,9 @@ public class HUD_Events : MonoBehaviour
     private UIDocument doc;
     private VisualElement PauseMenu;
     private VisualElement transition;
+    private VisualElement TutorialBackground;
+    private VisualElement TutorialPage1;
+    private VisualElement TutorialPage2;
     private Button PauseButton;
     private ProgressBar ManaBar;
     private Button exit;
@@ -17,6 +20,8 @@ public class HUD_Events : MonoBehaviour
     private Button retry;
     private Button exitGame;
     private Button exitOptions;
+    private Button TutorialButton;
+    private Button TutorialEndButton;
     private VisualElement OptionsMenu;
 
     private DropdownField displayRes;
@@ -54,6 +59,14 @@ public class HUD_Events : MonoBehaviour
         OptionsMenu = doc.rootVisualElement.Q<VisualElement>("OptionsMenu");
         VictoryScreen = doc.rootVisualElement.Q<VisualElement>("VictoryScreen");
         ManaBar = doc.rootVisualElement.Q<ProgressBar>("ManaBar");
+        TutorialBackground = doc.rootVisualElement.Q<VisualElement>("Tutorial");
+        TutorialPage1 = doc.rootVisualElement.Q<VisualElement>("TutorialPage1");
+        TutorialPage2 = doc.rootVisualElement.Q<VisualElement>("TutorialPage2");
+        TutorialButton = doc.rootVisualElement.Q<Button>("TutorialButton");
+        TutorialButton.clicked += TutorialButtonClicked;
+
+        TutorialEndButton = doc.rootVisualElement.Q<Button>("TutorialEndButton");
+        TutorialEndButton.clicked += TutorialEndButtonClicked;
 
         PauseButton = doc.rootVisualElement.Q<Button>("PauseButton");
         PauseButton.clicked += PauseButtonClicked;
@@ -107,6 +120,12 @@ public class HUD_Events : MonoBehaviour
         OptionsMenu.style.display = DisplayStyle.None;
         VictoryScreen.style.display = DisplayStyle.None;
         Time.timeScale = 1f;
+
+        if (!playerData.Tutorial)
+        {
+            Time.timeScale = 0f;
+            TutorialBackground.style.display = DisplayStyle.Flex;
+        }
     }
 
     private void Update()
@@ -343,6 +362,20 @@ public class HUD_Events : MonoBehaviour
     {
         Fortress.mana += manaGain; // Add 20 mana
         Debug.Log($"Mana created! Mana up to: {Fortress.mana}");
+    }
+
+    private void TutorialButtonClicked()
+    {
+        TutorialPage1.style.display = DisplayStyle.None;
+        TutorialPage2.style.display = DisplayStyle.Flex;
+    }
+
+    private void TutorialEndButtonClicked()
+    {
+        TutorialBackground.style.display = DisplayStyle.None;
+        playerData.Tutorial = true;
+        saveManager.SaveProgress(playerData);
+        Time.timeScale = 0f;
     }
 
     private void SavePreferences()
