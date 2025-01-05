@@ -130,28 +130,28 @@ public class Runes : MonoBehaviour {
         if (path == 1) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= earthPath1Rune1) {
+                    if (Fortress.mana >= earthPath1Rune1) {
                         towerScript.range *= 0.75f;
                         towerScript.damage *= 1.25f;
-                        Fortress.gold -= earthPath1Rune1;
+                        Fortress.mana -= earthPath1Rune1;
                         Controller.UpdateSellValue(earthPath1Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= earthPath1Rune2) {
+                    if (Fortress.mana >= earthPath1Rune2) {
                         towerScript.fireRate *= 0.8f;
                         towerScript.stunDuration *= 1.25f;
-                        Fortress.gold -= earthPath1Rune2;
+                        Fortress.mana -= earthPath1Rune2;
                         Controller.UpdateSellValue(earthPath1Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= earthPath1Rune3) {
+                    if (Fortress.mana >= earthPath1Rune3) {
                         towerScript.damage *= 1.5f;
                         towerScript.stunDuration *= 1.5f;
-                        Fortress.gold -= earthPath1Rune3;
+                        Fortress.mana -= earthPath1Rune3;
                         Controller.UpdateSellValue(earthPath1Rune3);
                         return true;
                     }
@@ -162,28 +162,28 @@ public class Runes : MonoBehaviour {
         else if (path == 2) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= earthPath2Rune1) {
+                    if (Fortress.mana >= earthPath2Rune1) {
                         towerScript.stunDuration *= 0.5f;
                         towerScript.damage *= 1.25f;
-                        Fortress.gold -= earthPath2Rune1;
+                        Fortress.mana -= earthPath2Rune1;
                         Controller.UpdateSellValue(earthPath2Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= earthPath2Rune2) {
+                    if (Fortress.mana >= earthPath2Rune2) {
                         towerScript.range *= 1.25f;
                         towerScript.stunDuration = 0.0f;
-                        Fortress.gold -= earthPath2Rune2;
+                        Fortress.mana -= earthPath2Rune2;
                         Controller.UpdateSellValue(earthPath2Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= earthPath2Rune3) {
+                    if (Fortress.mana >= earthPath2Rune3) {
                         towerScript.damage *= 1.5f;
                         towerScript.fireRate *= 1.25f;
-                        Fortress.gold -= earthPath2Rune3;
+                        Fortress.mana -= earthPath2Rune3;
                         Controller.UpdateSellValue(earthPath2Rune3);
                         return true;
                     }
@@ -198,28 +198,28 @@ public class Runes : MonoBehaviour {
         if (path == 1) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= firePath1Rune1) {
+                    if (Fortress.mana >= firePath1Rune1) {
                         towerScript.fireRate *= 0.75f;
                         towerScript.damage *= 1.25f;
-                        Fortress.gold -= firePath1Rune1;
+                        Fortress.mana -= firePath1Rune1;
                         Controller.UpdateSellValue(firePath1Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= firePath1Rune2) {
+                    if (Fortress.mana >= firePath1Rune2) {
                         towerScript.range *= 0.7f;
                         towerScript.burnDamage *= 1.25f;
-                        Fortress.gold -= firePath1Rune2;
+                        Fortress.mana -= firePath1Rune2;
                         Controller.UpdateSellValue(firePath1Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= firePath1Rune3) {
+                    if (Fortress.mana >= firePath1Rune3) {
                         towerScript.burnDamage *= 1.5f;
                         towerScript.burnDuration *= 2.0f;
-                        Fortress.gold -= firePath1Rune3;
+                        Fortress.mana -= firePath1Rune3;
                         Controller.UpdateSellValue(firePath1Rune3);
                         return true;
                     }
@@ -230,28 +230,28 @@ public class Runes : MonoBehaviour {
         else if (path == 2) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= firePath2Rune1) {
+                    if (Fortress.mana >= firePath2Rune1) {
                         towerScript.damage *= 1.25f;
                         towerScript.burnDamage *= 0.4f;
-                        Fortress.gold -= firePath2Rune1;
+                        Fortress.mana -= firePath2Rune1;
                         Controller.UpdateSellValue(firePath2Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= firePath2Rune2) {
+                    if (Fortress.mana >= firePath2Rune2) {
                         towerScript.burnDamage *= 0f;
                         towerScript.range *= 1.25f;
-                        Fortress.gold -= firePath2Rune2;
+                        Fortress.mana -= firePath2Rune2;
                         Controller.UpdateSellValue(firePath2Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= firePath2Rune3) {
+                    if (Fortress.mana >= firePath2Rune3) {
                         towerScript.fireRate *= 1.5f;
                         towerScript.damage *= 1.25f;
-                        Fortress.gold -= firePath2Rune3;
+                        Fortress.mana -= firePath2Rune3;
                         Controller.UpdateSellValue(firePath2Rune3);
                         return true;
                     }
@@ -266,28 +266,28 @@ public class Runes : MonoBehaviour {
         if (path == 1) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= windPath1Rune1) {
+                    if (Fortress.mana >= windPath1Rune1) {
                         towerScript.range *= 1.25f;
                         towerScript.fireRate *= 0.8f;
-                        Fortress.gold -= windPath1Rune1;
+                        Fortress.mana -= windPath1Rune1;
                         Controller.UpdateSellValue(windPath1Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= windPath1Rune2) {
+                    if (Fortress.mana >= windPath1Rune2) {
                         towerScript.critChance *= 2.5f;
                         towerScript.fireRate *= 0.8f;
-                        Fortress.gold -= windPath1Rune2;
+                        Fortress.mana -= windPath1Rune2;
                         Controller.UpdateSellValue(windPath1Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= windPath1Rune3) {
+                    if (Fortress.mana >= windPath1Rune3) {
                         towerScript.critDamage *= 1.75f;
                         towerScript.damage *= 1.5f;
-                        Fortress.gold -= windPath1Rune3;
+                        Fortress.mana -= windPath1Rune3;
                         Controller.UpdateSellValue(windPath1Rune3);
                         return true;
                     }
@@ -298,28 +298,28 @@ public class Runes : MonoBehaviour {
         else if (path == 2) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= windPath2Rune1) {
+                    if (Fortress.mana >= windPath2Rune1) {
                         towerScript.critChance *= 0.5f;
                         towerScript.damage *= 1.5f;
-                        Fortress.gold -= windPath2Rune1;
+                        Fortress.mana -= windPath2Rune1;
                         Controller.UpdateSellValue(windPath2Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= windPath2Rune2) {
+                    if (Fortress.mana >= windPath2Rune2) {
                         towerScript.critChance *= 0f;
                         towerScript.fireRate *= 1.5f;
-                        Fortress.gold -= windPath2Rune2;
+                        Fortress.mana -= windPath2Rune2;
                         Controller.UpdateSellValue(windPath2Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= windPath2Rune3) {
+                    if (Fortress.mana >= windPath2Rune3) {
                         towerScript.fireRate *= 1.5f;
                         towerScript.range *= 1.5f;
-                        Fortress.gold -= windPath2Rune3;
+                        Fortress.mana -= windPath2Rune3;
                         Controller.UpdateSellValue(windPath2Rune3);
                         return true;
                     }
@@ -334,29 +334,29 @@ public class Runes : MonoBehaviour {
         if (path == 1) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= waterPath1Rune1) {
+                    if (Fortress.mana >= waterPath1Rune1) {
                         towerScript.splashRadius *= 1.25f;
                         towerScript.fireRate *= 0.75f;
-                        Fortress.gold -= waterPath1Rune1;
+                        Fortress.mana -= waterPath1Rune1;
                         Controller.UpdateSellValue(waterPath1Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= waterPath1Rune2) {
+                    if (Fortress.mana >= waterPath1Rune2) {
                         towerScript.damage *= 1.25f;
                         towerScript.range *= 0.75f;
-                        Fortress.gold -= waterPath1Rune2;
+                        Fortress.mana -= waterPath1Rune2;
                         Controller.UpdateSellValue(waterPath1Rune2);
                         return true;
                     }
                     return false;
 
                 case 2:
-                    if (Fortress.gold >= waterPath1Rune3) {
+                    if (Fortress.mana >= waterPath1Rune3) {
                         towerScript.splashRadius *= 1.35f;
                         towerScript.damage *= 1.5f;
-                        Fortress.gold -= waterPath1Rune3;
+                        Fortress.mana -= waterPath1Rune3;
                         Controller.UpdateSellValue(waterPath1Rune3);
                         return true;
                     }
@@ -367,28 +367,28 @@ public class Runes : MonoBehaviour {
         else if (path == 2) {
             switch (rank) {
                 case 0:
-                    if (Fortress.gold >= waterPath2Rune1) {
+                    if (Fortress.mana >= waterPath2Rune1) {
                         towerScript.splashRadius *= 0.7f;
                         towerScript.range *= 1.25f;
-                        Fortress.gold -= waterPath2Rune1;
+                        Fortress.mana -= waterPath2Rune1;
                         Controller.UpdateSellValue(waterPath2Rune1);
                         return true;
                     }
                     return false;
                 case 1:
-                    if (Fortress.gold >= waterPath2Rune2) {
+                    if (Fortress.mana >= waterPath2Rune2) {
                         towerScript.splashRadius *= 0f;
                         towerScript.damage *= 1.3f;
-                        Fortress.gold -= waterPath2Rune2;
+                        Fortress.mana -= waterPath2Rune2;
                         Controller.UpdateSellValue(waterPath2Rune2);
                         return true;
                     }
                     return false;
                 case 2:
-                    if (Fortress.gold >= waterPath2Rune3) {
+                    if (Fortress.mana >= waterPath2Rune3) {
                         towerScript.range *= 1.35f;
                         towerScript.damage *= 1.5f;
-                        Fortress.gold -= waterPath2Rune3;
+                        Fortress.mana -= waterPath2Rune3;
                         Controller.UpdateSellValue(waterPath2Rune3);
                         return true;
                     }

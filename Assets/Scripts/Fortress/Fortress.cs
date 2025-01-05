@@ -6,8 +6,8 @@ public class Fortress : MonoBehaviour
 {
     [Header("Health")]
     public static int health = 100;
-    public static int gold = 100;
-    public TextMeshProUGUI goldAmount;
+    public static int mana = 100;
+    public TextMeshProUGUI manaAmount;
     public TextMeshProUGUI healthAmount;
     public TextMeshProUGUI waveCount;
 
@@ -17,7 +17,7 @@ public class Fortress : MonoBehaviour
     private FortressRunes fortressRunes; // Reference to the SkillTree component
 
     [Header("Mana Generation")]
-    public static float manaGenerationInterval = 10f; // Interval for gold generation in seconds
+    public static float manaGenerationInterval = 10f; // Interval for mana generation in seconds
     private float manaGenerationTimer = 0f;
 
     private void Start()
@@ -38,7 +38,7 @@ public class Fortress : MonoBehaviour
 
     private void SetText()
     {
-        goldAmount.text = "Gold: " + gold;
+        manaAmount.text = "Mana: " + mana;
         healthAmount.text = "Health: " + health;
         waveCount.text = "Wave: " + (WaveTracker.currentWave + 1);
     }
@@ -63,7 +63,7 @@ public class Fortress : MonoBehaviour
         if (health <= 0)
         {
             // 'Destroys' the fortress by making it invisible
-            // The component is still active, so gold and health are still able to be updated
+            // The component is still active, so mana and health are still able to be updated
             GameObject.Find("Fortress").GetComponent<Renderer>().enabled = false;
         }
     }
@@ -96,9 +96,9 @@ public class Fortress : MonoBehaviour
     {
         int upgradeCost = 200;
 
-        if (gold >= upgradeCost)
+        if (mana >= upgradeCost)
         {
-            gold -= upgradeCost;
+            mana -= upgradeCost;
             Debug.Log("Attack speed upgraded!");
 
             // Apply the upgrade logic if skillTree exists
@@ -109,7 +109,7 @@ public class Fortress : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough gold!");
+            Debug.Log("Not enough mana!");
         }
     }
 
@@ -117,9 +117,9 @@ public class Fortress : MonoBehaviour
     {
         int upgradeCost = 100;
 
-        if (gold >= upgradeCost)
+        if (mana >= upgradeCost)
         {
-            gold -= upgradeCost;
+            mana -= upgradeCost;
             Debug.Log("Range upgraded!");
 
             // Apply the upgrade logic if skillTree exists
@@ -130,7 +130,7 @@ public class Fortress : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough gold!");
+            Debug.Log("Not enough mana!");
         }
     }
 
@@ -138,9 +138,9 @@ public class Fortress : MonoBehaviour
     {
         int upgradeCost = 100;
 
-        if (gold >= upgradeCost)
+        if (mana >= upgradeCost)
         {
-            gold -= upgradeCost;
+            mana -= upgradeCost;
             Debug.Log("Ultimate upgrade activated!");
 
             // Apply the upgrade logic if skillTree exists
@@ -151,7 +151,7 @@ public class Fortress : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough gold!");
+            Debug.Log("Not enough mana!");
         }
     }
     */

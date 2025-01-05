@@ -14,7 +14,7 @@ public class Store : MonoBehaviour {
         GameObject towerSelected = TowerIdentifier.GetTower();
         Tower towerScript = towerSelected.GetComponent<Tower>();
 
-        if (Fortress.gold >= towerScript.cost) {
+        if (Fortress.mana >= towerScript.cost) {
 
             // flagging the tile as deactivated
             Tile tileScript = Controller.currentTile.GetComponent<Tile>();
@@ -35,7 +35,7 @@ public class Store : MonoBehaviour {
             );
 
             // paying for the tower, unselecting the tile, closing the store
-            Fortress.gold -= towerScript.cost;
+            Fortress.mana -= towerScript.cost;
             Controller.currentTile = null;
             Controller.store.SetActive(false);
         }

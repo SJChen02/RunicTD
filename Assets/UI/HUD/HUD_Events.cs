@@ -310,8 +310,8 @@ public class HUD_Events : MonoBehaviour
 
     private void HandleManaCreation()
     {
-        Fortress.gold += 20; // Add 20 gold
-        Debug.Log($"Mana created! Gold increased to: {Fortress.gold}");
+        Fortress.mana += 20; // Add 20 mana
+        Debug.Log($"Mana created! Now up to: {Fortress.mana}");
     }
 
     private void SavePreferences()

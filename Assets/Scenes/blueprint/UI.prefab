@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Health: 100'
+  m_text: 'Health:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c58bff026bf1e934f8ca7d8ad58a7d6b, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: c58bff026bf1e934f8ca7d8ad58a7d6b, type: 2}
@@ -9647,7 +9647,7 @@ GameObject:
   - component: {fileID: 4506629324783964546}
   - component: {fileID: 7295224555717100950}
   m_Layer: 5
-  m_Name: Gold
+  m_Name: Mana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9700,7 +9700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold: 100'
+  m_text: 'Mana:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c58bff026bf1e934f8ca7d8ad58a7d6b, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: c58bff026bf1e934f8ca7d8ad58a7d6b, type: 2}
