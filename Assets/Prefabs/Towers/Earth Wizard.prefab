@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3331757315967049371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1, z: 0}
+  m_LocalPosition: {x: -0, y: 1.81, z: 0}
   m_LocalScale: {x: 0.8, y: 0.5, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 3551737492471203513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6666666, z: 0.5}
+  m_LocalPosition: {x: 0.5, y: 1.476667, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,14 +185,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd0dee9c03ae934fa38f7361b56f521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Defaultrange: 20
-  DefaultfireRate: 1.25
+  range: 20
+  fireRate: 1
   path: 0
   rank: 0
   cost: 50
   sellValue: 0
-  range: 10
-  fireRate: 1
   targeting: First
   towerName: Earth Wizard
   tilePlacedOn: {fileID: 0}
@@ -228,7 +226,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.81, y: 2.01, z: 0.81}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 1.06, z: 0}
 --- !u!1 &6979538598005272271
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 6979538598005272271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.81, z: 0}
   m_LocalScale: {x: 0.8, y: 1.5, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -362,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 7537032571374466112}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.33333334, z: 0.5}
+  m_LocalPosition: {x: 0.5, y: 1.143333, z: 0.5}
   m_LocalScale: {x: 0.2, y: 0.7, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

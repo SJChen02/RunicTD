@@ -27,7 +27,7 @@ public class Runes : MonoBehaviour {
     private static int firePath2Rune2 = 120;
     private static int firePath2Rune3 = 200;
 
-    private static int earthPath1Rune1 = 80;
+    private static int earthPath1Rune1 = 10;
     private static int earthPath1Rune2 = 120;
     private static int earthPath1Rune3 = 200;
     private static int earthPath2Rune1 = 80;
@@ -133,6 +133,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath1Rune1) {
                         towerScript.range *= 0.75f;
                         towerScript.damage *= 1.25f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= earthPath1Rune1;
                         Controller.UpdateSellValue(earthPath1Rune1);
                         return true;
@@ -142,6 +144,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath1Rune2) {
                         towerScript.fireRate -= 0.15f;
                         towerScript.stunDuration *= 1.25f;
+
                         Fortress.mana -= earthPath1Rune2;
                         Controller.UpdateSellValue(earthPath1Rune2);
                         return true;
@@ -151,6 +154,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath1Rune3) {
                         towerScript.damage *= 1.5f;
                         towerScript.stunDuration *= 1.5f;
+
                         Fortress.mana -= earthPath1Rune3;
                         Controller.UpdateSellValue(earthPath1Rune3);
                         return true;
@@ -165,6 +169,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath2Rune1) {
                         towerScript.stunDuration *= 0.5f;
                         towerScript.damage *= 1.25f;
+
                         Fortress.mana -= earthPath2Rune1;
                         Controller.UpdateSellValue(earthPath2Rune1);
                         return true;
@@ -174,6 +179,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath2Rune2) {
                         towerScript.range *= 1.25f;
                         towerScript.stunDuration = 0.0f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= earthPath2Rune2;
                         Controller.UpdateSellValue(earthPath2Rune2);
                         return true;
@@ -183,6 +190,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= earthPath2Rune3) {
                         towerScript.damage *= 1.5f;
                         towerScript.fireRate += 0.3f;
+
                         Fortress.mana -= earthPath2Rune3;
                         Controller.UpdateSellValue(earthPath2Rune3);
                         return true;
@@ -201,6 +209,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath1Rune1) {
                         towerScript.fireRate -= 0.2f;
                         towerScript.damage *= 1.25f;
+
                         Fortress.mana -= firePath1Rune1;
                         Controller.UpdateSellValue(firePath1Rune1);
                         return true;
@@ -210,6 +219,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath1Rune2) {
                         towerScript.range *= 0.7f;
                         towerScript.burnDamage *= 1.25f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= firePath1Rune2;
                         Controller.UpdateSellValue(firePath1Rune2);
                         return true;
@@ -219,6 +230,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath1Rune3) {
                         towerScript.burnDamage *= 1.5f;
                         towerScript.burnDuration *= 2.0f;
+
                         Fortress.mana -= firePath1Rune3;
                         Controller.UpdateSellValue(firePath1Rune3);
                         return true;
@@ -233,6 +245,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath2Rune1) {
                         towerScript.damage *= 1.25f;
                         towerScript.burnDamage *= 0.4f;
+
                         Fortress.mana -= firePath2Rune1;
                         Controller.UpdateSellValue(firePath2Rune1);
                         return true;
@@ -242,6 +255,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath2Rune2) {
                         towerScript.burnDamage *= 0f;
                         towerScript.range *= 1.25f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= firePath2Rune2;
                         Controller.UpdateSellValue(firePath2Rune2);
                         return true;
@@ -251,6 +266,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= firePath2Rune3) {
                         towerScript.fireRate += 0.4f;
                         towerScript.damage *= 1.25f;
+
                         Fortress.mana -= firePath2Rune3;
                         Controller.UpdateSellValue(firePath2Rune3);
                         return true;
@@ -269,6 +285,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath1Rune1) {
                         towerScript.range *= 1.25f;
                         towerScript.fireRate -= 0.2f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= windPath1Rune1;
                         Controller.UpdateSellValue(windPath1Rune1);
                         return true;
@@ -278,6 +296,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath1Rune2) {
                         towerScript.critChance *= 2.5f;
                         towerScript.fireRate -= 0.2f;
+
                         Fortress.mana -= windPath1Rune2;
                         Controller.UpdateSellValue(windPath1Rune2);
                         return true;
@@ -287,6 +306,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath1Rune3) {
                         towerScript.critDamage *= 1.75f;
                         towerScript.damage *= 1.5f;
+
                         Fortress.mana -= windPath1Rune3;
                         Controller.UpdateSellValue(windPath1Rune3);
                         return true;
@@ -301,6 +321,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath2Rune1) {
                         towerScript.critChance *= 0.5f;
                         towerScript.damage *= 1.5f;
+
                         Fortress.mana -= windPath2Rune1;
                         Controller.UpdateSellValue(windPath2Rune1);
                         return true;
@@ -310,6 +331,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath2Rune2) {
                         towerScript.critChance *= 0f;
                         towerScript.fireRate += 0.3f;
+
                         Fortress.mana -= windPath2Rune2;
                         Controller.UpdateSellValue(windPath2Rune2);
                         return true;
@@ -319,6 +341,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= windPath2Rune3) {
                         towerScript.fireRate += 0.45f;
                         towerScript.range *= 1.5f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= windPath2Rune3;
                         Controller.UpdateSellValue(windPath2Rune3);
                         return true;
@@ -337,6 +361,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath1Rune1) {
                         towerScript.splashRadius *= 1.25f;
                         towerScript.fireRate -= 0.25f;
+
                         Fortress.mana -= waterPath1Rune1;
                         Controller.UpdateSellValue(waterPath1Rune1);
                         return true;
@@ -346,6 +371,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath1Rune2) {
                         towerScript.damage *= 1.25f;
                         towerScript.range *= 0.75f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= waterPath1Rune2;
                         Controller.UpdateSellValue(waterPath1Rune2);
                         return true;
@@ -356,6 +383,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath1Rune3) {
                         towerScript.splashRadius *= 1.35f;
                         towerScript.damage *= 1.5f;
+
                         Fortress.mana -= waterPath1Rune3;
                         Controller.UpdateSellValue(waterPath1Rune3);
                         return true;
@@ -370,6 +398,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath2Rune1) {
                         towerScript.splashRadius *= 0.7f;
                         towerScript.range *= 1.25f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= waterPath2Rune1;
                         Controller.UpdateSellValue(waterPath2Rune1);
                         return true;
@@ -379,6 +409,7 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath2Rune2) {
                         towerScript.splashRadius *= 0f;
                         towerScript.damage *= 1.3f;
+
                         Fortress.mana -= waterPath2Rune2;
                         Controller.UpdateSellValue(waterPath2Rune2);
                         return true;
@@ -388,6 +419,8 @@ public class Runes : MonoBehaviour {
                     if (Fortress.mana >= waterPath2Rune3) {
                         towerScript.range *= 1.35f;
                         towerScript.damage *= 1.5f;
+
+                        Controller.UpdateRangeIndicator();
                         Fortress.mana -= waterPath2Rune3;
                         Controller.UpdateSellValue(waterPath2Rune3);
                         return true;

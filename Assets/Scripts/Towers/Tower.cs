@@ -160,10 +160,6 @@ public class Tower : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         projectileBin = GameObject.FindWithTag("EntityBin");
-        //temporary way to change firing mode
-        //----------------------------------------------------------------------------
-        //Debug.Log("Selected Firing Mode: " + Modes);
-        //----------------------------------------------------------------------------
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 

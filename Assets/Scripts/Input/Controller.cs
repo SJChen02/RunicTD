@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour {
     private static Transform rankParent;
     private static Transform towerMenuParent;
     private static Transform runicTabletsParent;
+    private static Transform towersParent;
 
     // tile and store
     private static Material selectedTileMaterial;
@@ -35,6 +36,7 @@ public class Controller : MonoBehaviour {
     // tower menu
     private bool mouseOverUI;
     private static GameObject tablet;
+    private static GameObject rangeIndicator;
     public static GameObject towerMenu;
     public static GameObject currentTower;
     public static GameObject earthRunicTablet;
@@ -87,6 +89,10 @@ public class Controller : MonoBehaviour {
         windRunicTablet = runicTabletsParent.Find("Wind Runic Tablet").gameObject;
         waterRunicTablet = runicTabletsParent.Find("Water Runic Tablet").gameObject;
 
+        // obtaining reference to the range indicator disk
+        towersParent = GameObject.Find("Towers").transform;
+        rangeIndicator = towersParent.Find("Range Indicator").gameObject;
+
         keybindings = new Keybindings();
         mainCamera = Camera.main;
     }
@@ -118,6 +124,24 @@ public class Controller : MonoBehaviour {
     }
 
     //---------------------------------------------------------//
+
+    private static void ToggleRangeIndicator() {
+        if (rangeIndicator.activeInHierarchy) {
+            rangeIndicator.SetActive(false);
+            return;
+        }
+
+        Tower towerScript = currentTower.GetComponent<Tower>();
+        rangeIndicator.transform.localScale = new Vector3(2 * towerScript.range, 2 * towerScript.range, 2 * towerScript.range);
+        rangeIndicator.transform.position = currentTower.transform.position + new Vector3(0f, 0.01f, 0f);
+        rangeIndicator.SetActive(true);
+    }
+
+    // for updating the range indicator while it's active, e.g. when purchasing a range tower rune
+    public static void UpdateRangeIndicator() {
+        Tower towerScript = currentTower.GetComponent<Tower>();
+        rangeIndicator.transform.localScale = new Vector3(2 * towerScript.range, 2 * towerScript.range, 2 * towerScript.range);
+    }
 
     public static void UpdateSellValue(int value) {
         Tower towerScript = currentTower.GetComponent<Tower>();
@@ -215,6 +239,7 @@ public class Controller : MonoBehaviour {
     public static void CloseTowerMenu() {
         currentTower = null;
         towerMenu.SetActive(false);
+        rangeIndicator.SetActive(false);
     }
 
     private void OpenTowerMenu() {
@@ -232,6 +257,7 @@ public class Controller : MonoBehaviour {
             currentTower = objectClicked;
             towerMenu.SetActive(true);
             FillTowerMenu();
+            ToggleRangeIndicator();
             ToggleRunicTablet();
         }
         // a tower is selected already
@@ -241,11 +267,16 @@ public class Controller : MonoBehaviour {
                 ToggleRunicTablet();
                 CloseTowerMenu();
             }
-            // if it's a different tower, reload the menu with its information
+            // if it's a different tower, reload it
             else {
+                // unload the currently selected tower
                 ToggleRunicTablet();
+                ToggleRangeIndicator();
+
+                // move to the other tower and load it
                 currentTower = objectClicked;
                 ToggleRunicTablet();
+                ToggleRangeIndicator();
                 FillTowerMenu();
             }
         }
