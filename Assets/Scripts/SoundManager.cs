@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] soundList;
     [SerializeField] private int audioSourcePoolSize = 20;
     [SerializeField] private AudioMixer audioMixer;
+    private float MinSoundInterval = 0.1f;
     private static SoundManager instance;
     private List<AudioSource> audioSourcePool;
 
@@ -130,6 +131,19 @@ public class SoundManager : MonoBehaviour
     // Play a sound effect and set its volume and priority
     public static void PlaySound(SoundType soundType, float volume = 1f, int priority = 128)
     {
+        string clipName = instance.soundList[(int)soundType].name;
+
+        // Check if the sound is already playing and if it is within the minimum interval time don't play it
+        foreach (AudioSource audioSource in instance.audioSourcePool)
+        {
+            if (audioSource.isPlaying && 
+                audioSource.clip.name == clipName && 
+                audioSource.time <= instance.MinSoundInterval)
+            {
+                return; 
+            }
+        }
+
         AudioSource source = instance.GetAvailableAudioSource(priority);
         if (source == null) return; // No available AudioSource
 
