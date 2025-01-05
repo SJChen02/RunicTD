@@ -19,21 +19,26 @@
     transition-timing-function: ease-in;
 }
 
+.Tutorial-Text {
+    color: rgb(209, 237, 253);
+    -unity-font-definition: resource('Aetherius');
+    font-size: 40px;
+}
+
 .unity-progress-bar__container {
-    max-height:50px;
+    max-height: 50px;
     height: 50px;
     margin-left: 35px;
     margin-bottom: 10px;
-    
 }
 
 .unity-progress-bar__progress {
-    background-color: #D1EDFD;
+    background-color: rgb(209, 237, 253);
     border-radius: 18px;
     margin: 12px;
 }
 
 .unity-progress-bar__background {
     border-radius: 18px;
-    background-color: #375A7D;
+    background-color: rgb(55, 90, 125);
 }
