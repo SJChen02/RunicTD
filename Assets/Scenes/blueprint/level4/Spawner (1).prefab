@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4691454606366675071
+--- !u!1 &731442528302013626
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7042089251286336156}
+  - component: {fileID: 1631838860164086413}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -16,22 +16,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7042089251286336156
+--- !u!4 &1631838860164086413
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4691454606366675071}
+  m_GameObject: {fileID: 731442528302013626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80, y: 1, z: 35}
+  m_LocalPosition: {x: -70, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 53337212231431410}
+  m_Father: {fileID: 5193714237978508893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6910967696100400566
+--- !u!1 &6853243841901843940
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,46 +39,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 53337212231431410}
-  - component: {fileID: 7974720766512822279}
-  - component: {fileID: 7877955760690519290}
+  - component: {fileID: 5193714237978508893}
+  - component: {fileID: 8711986928777450873}
+  - component: {fileID: 8599933270681942814}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Spawner (1)
   m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &53337212231431410
+--- !u!4 &5193714237978508893
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6910967696100400566}
+  m_GameObject: {fileID: 6853243841901843940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7042089251286336156}
+  - {fileID: 1631838860164086413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7974720766512822279
+--- !u!114 &8711986928777450873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6910967696100400566}
+  m_GameObject: {fileID: 6853243841901843940}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 344c467d0dbcff544942f974f0b95da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 4691454606366675071}
-  pathManager: {fileID: 7877955760690519290}
+  spawnPoint: {fileID: 731442528302013626}
+  pathManager: {fileID: 8599933270681942814}
   waves:
   - enemySets:
     - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
@@ -219,21 +219,19 @@ MonoBehaviour:
       count: 2
     enemiesLeft: 0
   enemySpawnCooldown: 0.5
---- !u!114 &7877955760690519290
+--- !u!114 &8599933270681942814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6910967696100400566}
+  m_GameObject: {fileID: 6853243841901843940}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa77ddda0d2733c478ffdba71388644c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,18 +229,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundList:
   - {fileID: 0}
+  - {fileID: 8300000, guid: cbc30a835bf90ba41ba17c13ce04d64b, type: 3}
+  - {fileID: 8300000, guid: 695ace36230bd9549a4b5955223b00e0, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 37a73cebf4c7dfe4484769d0ae86ee6b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: e45f11e1896221346a8ac2df5e0f95c1, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: daa28117c262b4c4da4c4f8a4514bc5c, type: 3}
+  - {fileID: 8300000, guid: 401145d2c37868642b91a8103593b089, type: 3}
   audioSourcePoolSize: 20
 --- !u!4 &1055807801
 Transform:
