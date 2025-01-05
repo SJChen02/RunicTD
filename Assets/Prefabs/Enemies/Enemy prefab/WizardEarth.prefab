@@ -151,13 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  fireRate: 1.25
+  fireRate: 1
   path: 0
   rank: 0
   cost: 50
   sellValue: 0
   targeting: First
-  towerName: Fire Wizard
+  towerName: Earth Wizard
   tilePlacedOn: {fileID: 0}
   damage: 40
   bulletSpeed: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
   splashRadius: 20
   enemyTag: Enemy
   turnSpeed: 10
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 2789820183578080101}
+  bulletPrefab: {fileID: 3171372271674859866, guid: 9cda566ec7c56434d8d390789317a3b4, type: 3}
 --- !u!54 &6476284599109509105
 Rigidbody:
   m_ObjectHideFlags: 0
