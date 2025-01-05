@@ -16,7 +16,8 @@ public enum SoundType
     WaveStart,
     WaveEnd,
     ButtonClick,
-    BackgroundMusic
+    BackgroundMusic,
+    FortressHit
 }
 
 public class SoundManager : MonoBehaviour
