@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ArmMainColor
-    second: {fileID: 2100000, guid: 2d4ce8039a4168a41bddd28401839267, type: 2}
+    second: {fileID: 2100000, guid: 27a49a6c87f810d4496b62b4230f4a43, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ArmSubColor
-    second: {fileID: 2100000, guid: acb48bcbabae24647ac888cbce6c6864, type: 2}
+    second: {fileID: 2100000, guid: 27a49a6c87f810d4496b62b4230f4a43, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -38,7 +38,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Head
-    second: {fileID: 2100000, guid: fe55cd65165142a49a8502507c3a38ef, type: 2}
+    second: {fileID: 2100000, guid: 27a49a6c87f810d4496b62b4230f4a43, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -53,7 +53,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MaskMainColour
-    second: {fileID: 2100000, guid: d13b70d8373f81b4183eb93b58861731, type: 2}
+    second: {fileID: 2100000, guid: 361af52ec35b52d4e8e4d76ab043c6bf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -63,12 +63,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MiainBodyColor
-    second: {fileID: 2100000, guid: 1bde0b2bd13a22546a00cdaffc9c6439, type: 2}
+    second: {fileID: 2100000, guid: 27a49a6c87f810d4496b62b4230f4a43, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SubBodyColor
-    second: {fileID: 2100000, guid: 1109cc85a65bd5240a9c24a67407a5b2, type: 2}
+    second: {fileID: 2100000, guid: 27a49a6c87f810d4496b62b4230f4a43, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
