@@ -108,8 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: -4837306198856704324}
   healthBar: {fileID: 6536158635512177378}
-  moveSpeed: 10
-  health: 500
+  moveSpeed: 3
+  health: 1000
   enemyType: 4
   PathManager: {fileID: 0}
   totalDistance: 0
@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3592572076591254700, guid: 15877b65f032a284b86518f70d239033, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.5
+      value: 3.688
       objectReference: {fileID: 0}
     - target: {fileID: 3592572076591254700, guid: 15877b65f032a284b86518f70d239033, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
