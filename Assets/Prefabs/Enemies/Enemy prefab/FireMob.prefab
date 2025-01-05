@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5133394063864807198}
+  healthBar: {fileID: 4835321561782188414, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
   moveSpeed: 10
   health: 13
   enemyType: 0
