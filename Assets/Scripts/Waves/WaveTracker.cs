@@ -47,6 +47,7 @@ public class WaveTracker : MonoBehaviour {
         if (readyToCountdown) {countdown -= Time.deltaTime;}
 
         if (totalEnemiesLeft == 0) {
+            SoundManager.PlaySound(SoundType.WaveStart);
             currentWave++;
             if (currentWave < lastWave) {
                 foreach (Spawner spawner in spScripts) {
