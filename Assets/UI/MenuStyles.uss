@@ -112,6 +112,7 @@
     -unity-font-definition: resource('Aetherius');
     font-size: 50px;
     -unity-font-style: bold;
+    color: rgb(206, 235, 255);
 }
 
 .transition-Out {
