@@ -19,14 +19,9 @@ public class Fortress : MonoBehaviour
 
     private void SetText()
     {
-        manaAmount.text = "Mana: " + mana;
-        healthAmount.text = "Health: " + health;
+        manaAmount.text = mana.ToString();
+        healthAmount.text = health.ToString();
         waveCount.text = "Wave: " + (WaveTracker.currentWave + 1);
-    }
-
-    public static void DestroyFortress(GameObject fortress)
-    {
-        Destroy(fortress);
     }
 
     public static void TakeHit()
