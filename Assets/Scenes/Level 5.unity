@@ -1317,64 +1317,142 @@ MonoBehaviour:
   pathManager: {fileID: 493147367}
   waves:
   - enemySets:
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
       count: 3
     enemiesLeft: 0
   - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 365614374841004155, guid: 632d647c07c55984fafad23814e47602, type: 3}
       count: 1
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
       count: 2
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 2455012470877211780, guid: c086330d96342fc46a342a16804b7b0d, type: 3}
       count: 1
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
       count: 2
     enemiesLeft: 0
   - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
       count: 2
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
+    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
       count: 3
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
       count: 1
     enemiesLeft: 0
   - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
-      count: 5
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 5
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
-      count: 2
-    enemiesLeft: 0
-  - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
       count: 3
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 5
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
-      count: 5
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 8
-    enemiesLeft: 0
-  - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
-      count: 3
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 5
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
-      count: 2
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 8
-    enemiesLeft: 0
-  - enemySets:
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
       count: 4
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 5
-    - prefab: {fileID: 5394781087380085806, guid: 8281685e43b1eb8429fb4d4375222c34, type: 3}
+    - prefab: {fileID: 1320710875528061096, guid: 4dee1ebca54fc9443ad28c84fd87b19b, type: 3}
       count: 2
-    - prefab: {fileID: 8024118360108171867, guid: 3daa2438034177a4faf491b40c9140bc, type: 3}
-      count: 10
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 3
+    - prefab: {fileID: 365614374841004155, guid: 632d647c07c55984fafad23814e47602, type: 3}
+      count: 5
+    - prefab: {fileID: -3088299535594727169, guid: 819c307c8c0a5844b823891dc1733c29, type: 3}
+      count: 3
+    - prefab: {fileID: -8112547145543391192, guid: 1627df068373d5643b0a567b0fae87a5, type: 3}
+      count: 3
+    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
+      count: 3
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: -8148443395532421581, guid: 4b99a7074de0d734da3937254286bcd5, type: 3}
+      count: 5
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 3
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 3
+    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
+      count: 3
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
+      count: 3
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
+      count: 3
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 2
+    - prefab: {fileID: -8148443395532421581, guid: 4b99a7074de0d734da3937254286bcd5, type: 3}
+      count: 5
+    - prefab: {fileID: 1320710875528061096, guid: 4dee1ebca54fc9443ad28c84fd87b19b, type: 3}
+      count: 3
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 5
+    - prefab: {fileID: 2455012470877211780, guid: c086330d96342fc46a342a16804b7b0d, type: 3}
+      count: 3
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
+      count: 3
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 2
+    - prefab: {fileID: -8112547145543391192, guid: 1627df068373d5643b0a567b0fae87a5, type: 3}
+      count: 5
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: 1320710875528061096, guid: 4dee1ebca54fc9443ad28c84fd87b19b, type: 3}
+      count: 5
+    - prefab: {fileID: -8148443395532421581, guid: 4b99a7074de0d734da3937254286bcd5, type: 3}
+      count: 3
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 5
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 3
+    - prefab: {fileID: -3088299535594727169, guid: 819c307c8c0a5844b823891dc1733c29, type: 3}
+      count: 2
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 5
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: 2455012470877211780, guid: c086330d96342fc46a342a16804b7b0d, type: 3}
+      count: 5
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 3
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 5
+    - prefab: {fileID: -8148443395532421581, guid: 4b99a7074de0d734da3937254286bcd5, type: 3}
+      count: 2
+    enemiesLeft: 0
+  - enemySets:
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
+      count: 3
+    - prefab: {fileID: -3088299535594727169, guid: 819c307c8c0a5844b823891dc1733c29, type: 3}
+      count: 2
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 5
+    - prefab: {fileID: 1620395190880327844, guid: 84c4df581fea99548bf550aa9603c04f, type: 3}
+      count: 3
+    - prefab: {fileID: 2455012470877211780, guid: c086330d96342fc46a342a16804b7b0d, type: 3}
+      count: 5
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 3
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 3
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 5
+    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
+      count: 2
+    - prefab: {fileID: -1167677590433002777, guid: daa6eec4e0db0e44fb7f755dd5b3c8c4, type: 3}
+      count: 2
+    - prefab: {fileID: 8826637245137975042, guid: 3d0e6319d5bd27d4394c73b794368482, type: 3}
+      count: 3
+    - prefab: {fileID: -8148443395532421581, guid: 4b99a7074de0d734da3937254286bcd5, type: 3}
+      count: 3
+    - prefab: {fileID: 365614374841004155, guid: 632d647c07c55984fafad23814e47602, type: 3}
+      count: 2
     enemiesLeft: 0
   enemySpawnCooldown: 0.5
 --- !u!114 &493147367
@@ -2651,17 +2729,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5681961582486627888, guid: a3ac3f03c0f69254fa011208c7e0dfcc, type: 3}
   m_PrefabInstance: {fileID: 1934526311}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &852172106 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7295224555717100950, guid: 0e582ce9e556ac84ba3c2483e930cf18, type: 3}
-  m_PrefabInstance: {fileID: 4301559497734545173}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &873078689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5439,10 +5506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8966e863e2a1493449667462a5f42cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldAmount: {fileID: 852172106}
+  manaAmount: {fileID: 0}
   healthAmount: {fileID: 1381878830}
   waveCount: {fileID: 1744263300}
-  FortressSkillTree: {fileID: 0}
 --- !u!1001 &1986114324
 PrefabInstance:
   m_ObjectHideFlags: 0
