@@ -1,0 +1,106 @@
+.unity-base-slider__text_field {
+    max-width: 220px;
+    min-width: 220px;
+    width: 220px;
+    min-height: 120px;
+    height: 120px;
+    max-height: 120px;
+    border-top-left-radius: 120px;
+    border-top-right-radius: 120px;
+    border-bottom-right-radius: 120px;
+    border-bottom-left-radius: 120px;
+}
+
+.unity-base-text-field__input {
+    border-radius: 10px;
+    -unity-text-align: middle-center;
+    background-color: rgb(209, 237, 253);
+    color: rgb(170, 125, 64);
+}
+
+.unity-base-slider__drag-container {
+    margin-right: 20px;
+}
+
+.unity-base-slider__dragger-border {
+    height: 100px;
+    max-height: 100px;
+    min-height: 100px;
+}
+
+.unity-base-slider__tracker {
+    height: 20px;
+    max-height: 20px;
+    min-height: 20px;
+    background-color: rgb(209, 237, 253);
+    border-radius: 200px;
+}
+
+.unity-base-slider__dragger {
+    width: 25px;
+    border-radius: 20px;
+    height: 40px;
+    background-color: rgb(55, 90, 125);
+    border-color: rgb(209, 237, 253);
+    border-width: 3px;
+}
+
+.unity-base-popup-field__input {
+    background-color: rgb(55, 90, 125);
+    color: rgb(209, 237, 253);
+}
+
+.Option-Settings {
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-font-style: bold;
+    font-size: 40px;
+    width: 70%;
+    -unity-font-definition: resource('Aetherius');
+    align-self: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.option-Buttons {
+    width: 15%;
+    height: 40%;
+    justify-content: flex-start;
+    -unity-font-definition: resource('Aetherius');
+    align-self: auto;
+    color: rgb(201, 255, 247);
+    font-size: 50px;
+    -unity-font-style: bold;
+    margin-top: 2px;
+    margin-right: 1.5%;
+    margin-bottom: 2px;
+    margin-left: 1px;
+    flex-direction: row;
+    border-left-color: rgba(201, 255, 247, 0);
+    border-right-color: rgba(201, 255, 247, 0);
+    border-top-color: rgba(201, 255, 247, 0);
+    border-bottom-color: rgba(201, 255, 247, 0);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(170, 125, 64);
+}
