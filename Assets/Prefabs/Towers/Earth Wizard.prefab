@@ -187,18 +187,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Defaultrange: 20
   DefaultfireRate: 1.25
+  path: 0
   rank: 0
-  towerName: Earth Wizard
-  range: 10
-  fireRate: 1.25
   cost: 50
-  targeting: First
   sellValue: 0
+  range: 10
+  fireRate: 1
+  targeting: First
+  towerName: Earth Wizard
   tilePlacedOn: {fileID: 0}
+  damage: 40
+  bulletSpeed: 0
+  stunDuration: 1
+  burnDuration: 3
+  burnDamage: 5
+  critChance: 0.2
+  critDamage: 1.5
+  splashRadius: 20
   enemyTag: Enemy
   turnSpeed: 10
-  bulletPrefab: {fileID: 3171372271674859866, guid: 9cda566ec7c56434d8d390789317a3b4, type: 3}
   firePoint: {fileID: 6951237426181639080}
+  bulletPrefab: {fileID: 3171372271674859866, guid: 9cda566ec7c56434d8d390789317a3b4, type: 3}
 --- !u!65 &6450784563109325120
 BoxCollider:
   m_ObjectHideFlags: 0

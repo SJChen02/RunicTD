@@ -8,26 +8,26 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.WSA;
 
-// this script is solely attached to Input Manager
+// this script is solely attached to the UI canvas
 public class Controller : MonoBehaviour {
 
     // setting up for input
-    private PlayerInput playerInput;
-    private InputAction placeTowerAction;
-    private Keybindings keybindings;
-    private Camera mainCamera;
-    private GameObject objectClicked;
+    private static PlayerInput playerInput;
+    private static InputAction placeTowerAction;
+    private static Keybindings keybindings;
+    private static Camera mainCamera;
+    private static GameObject objectClicked;
 
     // transforms for finding scene object references
-    private Transform parentUI;
-    private Transform targetingParent;
-    private Transform sellParent;
-    private Transform rankParent;
-    private Transform towerMenuParent;
-    private Transform runicTabletsParent;
+    public static Transform parentUI;
+    private static Transform targetingParent;
+    private static Transform sellParent;
+    private static Transform rankParent;
+    private static Transform towerMenuParent;
+    private static Transform runicTabletsParent;
 
     // tile and store
-    private Material selectedTileMaterial;
+    private static Material selectedTileMaterial;
     public static GameObject store;
     public static GameObject currentTile;
     public static Material tileMaterial;
@@ -46,10 +46,8 @@ public class Controller : MonoBehaviour {
     public static GameObject fortressMenu;
     public static bool fortressOpened;
 
-    // this does not need to be static
+    // setting up text references
     public TextMeshProUGUI nameText;
-
-    // these need to be static to be accessed from other scripts when the values are updated
     public static TextMeshProUGUI rankText;
     public static TextMeshProUGUI targetingText;
     public static TextMeshProUGUI sellText;
@@ -70,7 +68,7 @@ public class Controller : MonoBehaviour {
         towerMenu = parentUI.Find("Tower Menu").gameObject;
         fortressMenu = parentUI.Find("Fortress Menu").gameObject;
 
-        // targetingText and sellText are static, so they must be set via script, not via inspector
+        // setting the static texts via script as they cannot be set via inspector
         towerMenuParent = parentUI.Find("Tower Menu").transform;
 
         targetingParent = towerMenuParent.Find("Targeting").gameObject.transform;

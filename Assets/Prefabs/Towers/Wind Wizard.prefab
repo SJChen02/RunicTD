@@ -56,7 +56,7 @@ MonoBehaviour:
   cost: 50
   sellValue: 0
   range: 10
-  fireRate: 1.25
+  fireRate: 1.4
   targeting: First
   towerName: Wind Wizard
   tilePlacedOn: {fileID: 0}

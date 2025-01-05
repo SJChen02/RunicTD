@@ -88,7 +88,7 @@ public class WaveTracker : MonoBehaviour {
         spawnersCount = 0;
         readyToCountdown = false;
         gameWon = false;
-        Fortress.gold = 100;
+        Fortress.mana = 100;
         Fortress.health = 100;
     }
 }
