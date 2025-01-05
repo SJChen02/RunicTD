@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+// This class is a custom property drawer for the EnemyDetail struct.
+// It allows for the prefab and count fields to be displayed in the inspector on the same line.
 [CustomPropertyDrawer(typeof(Wave.EnemyDetail))]
 public class EnemyDetailDrawer : PropertyDrawer
 {

@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+// Custom editor for the SoundManager class
+// This editor displays the SoundType enum names next to the SoundData elements
 [CustomEditor(typeof(SoundManager))]
 public class SoundManagerEditor : Editor
 {
