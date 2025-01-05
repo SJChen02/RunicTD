@@ -243,6 +243,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: daa28117c262b4c4da4c4f8a4514bc5c, type: 3}
   - {fileID: 8300000, guid: 401145d2c37868642b91a8103593b089, type: 3}
   audioSourcePoolSize: 20
+  audioMixer: {fileID: 24100000, guid: 64c5b5a38b0901140afed669ac317afb, type: 2}
 --- !u!4 &1055807801
 Transform:
   m_ObjectHideFlags: 0

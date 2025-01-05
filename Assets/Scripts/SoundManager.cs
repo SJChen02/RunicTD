@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum SoundType
 {
@@ -24,6 +25,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] soundList;
     [SerializeField] private int audioSourcePoolSize = 20;
+    [SerializeField] private AudioMixer audioMixer;
     private static SoundManager instance;
     private List<AudioSource> audioSourcePool;
 
@@ -87,6 +89,9 @@ public class SoundManager : MonoBehaviour
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.playOnAwake = false;
+
+            source.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
+            
             audioSourcePool.Add(source);
         }
     }
