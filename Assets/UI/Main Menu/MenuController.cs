@@ -11,9 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
     private VisualElement optionsMenu, transition;
     private Button play, exit, options, closeOptionsMenu, cancelOptionMenu, apply;
     private DropdownField displayRes, quality;
-    private Slider MusicVolumeSlider;
-    private Slider MasterVolumeSlider;
-    private Slider SoundEffectVolumeSlider;
+    private Slider volumeSlider;
     private SliderInt mouseSensitivitySlider;
 
     private int currentMouseSensitivity = 10;
@@ -43,9 +41,7 @@ public class NewBehaviourScript : MonoBehaviour
         // Initialize UI components
         InitDisplayRes();
         InitQuality();
-        InitMasterVolumeSlider();
-        InitMusicVolumeSlider();
-        InitSoundEffectVolumeSlider();
+        InitVolumeSlider();
         InitMouseSensitivitySlider();
 
         transition.style.display = DisplayStyle.Flex;
@@ -88,54 +84,13 @@ public class NewBehaviourScript : MonoBehaviour
         quality.index = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
     }
 
-    private void InitMasterVolumeSlider()
+    private void InitVolumeSlider()
     {
-        MasterVolumeSlider = doc.rootVisualElement.Q<Slider>("MasterVolumeSlider");
-        MasterVolumeSlider.lowValue = 0;
-        MasterVolumeSlider.highValue = 100;
-
-        // Load saved master volume or use default
-        float savedMasterVolume = PlayerPrefs.GetFloat("MasterVolume", SoundManager.MasterVolume * 100);
-        MasterVolumeSlider.value = savedMasterVolume;
-
-        MasterVolumeSlider.RegisterValueChangedCallback(evt =>
-        {
-            SoundManager.MasterVolume = evt.newValue / 100f; // Convert to 0-1 range
-            SoundManager.UpdateMusicVolume(); // Ensure all audio sources are updated
-        });
-    }
-
-    private void InitMusicVolumeSlider()
-    {
-        MusicVolumeSlider = doc.rootVisualElement.Q<Slider>("MusicVolumeSlider");
-        MusicVolumeSlider.lowValue = 0;
-        MusicVolumeSlider.highValue = 100;
-
-        // Load saved music volume or use default
-        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", SoundManager.MusicVolume * 100);
-        MusicVolumeSlider.value = savedMusicVolume;
-
-        MusicVolumeSlider.RegisterValueChangedCallback(evt =>
-        {
-            SoundManager.MusicVolume = evt.newValue / 100f; // Convert to 0-1 range
-            SoundManager.UpdateMusicVolume(); // Update the background music source
-        });
-    }
-
-    private void InitSoundEffectVolumeSlider()
-    {
-        SoundEffectVolumeSlider = doc.rootVisualElement.Q<Slider>("SoundEffectVolumeSlider");
-        SoundEffectVolumeSlider.lowValue = 0;
-        SoundEffectVolumeSlider.highValue = 100;
-
-        // Load saved sound effect volume or use default
-        float savedSoundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", SoundManager.SoundEffectVolume * 100);
-        SoundEffectVolumeSlider.value = savedSoundEffectVolume;
-
-        SoundEffectVolumeSlider.RegisterValueChangedCallback(evt =>
-        {
-            SoundManager.SoundEffectVolume = evt.newValue / 100f; // Convert to 0-1 range
-        });
+        volumeSlider = doc.rootVisualElement.Q<Slider>("VolumeSlider");
+        volumeSlider.lowValue = 0;
+        volumeSlider.highValue = 100;
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
+        volumeSlider.RegisterValueChangedCallback(evt => AudioListener.volume = evt.newValue / 100f);
     }
 
     private void InitMouseSensitivitySlider()
@@ -151,43 +106,20 @@ public class NewBehaviourScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("ResolutionIndex", displayRes.index);
         PlayerPrefs.SetInt("QualityIndex", quality.index);
-        PlayerPrefs.SetFloat("Volume", MasterVolumeSlider.value); // Overall volume
-        PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", MusicVolumeSlider.value);
-        PlayerPrefs.SetFloat("SoundEffectVolume", SoundEffectVolumeSlider.value);
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
         PlayerPrefs.SetInt("MouseSensitivity", currentMouseSensitivity);
-
         PlayerPrefs.Save();
         Debug.Log("Preferences saved.");
     }
 
     private void LoadPreferences()
     {
-        // Reload resolution
-        int resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", GetDefaultResolutionIndex());
-        displayRes.index = resolutionIndex;
-
-        // Reload quality
-        int qualityIndex = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
-        quality.index = qualityIndex;
-
-        // Reload volumes
-        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", SoundManager.MasterVolume * 100);
-        MasterVolumeSlider.value = masterVolume;
-        SoundManager.MasterVolume = masterVolume / 100f;
-
-        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", SoundManager.MusicVolume * 100);
-        MusicVolumeSlider.value = musicVolume;
-        SoundManager.MusicVolume = musicVolume / 100f;
-
-        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", SoundManager.SoundEffectVolume * 100);
-        SoundEffectVolumeSlider.value = soundEffectVolume;
-        SoundManager.SoundEffectVolume = soundEffectVolume / 100f;
-
-        // Reload mouse sensitivity
+        displayRes.index = PlayerPrefs.GetInt("ResolutionIndex", GetDefaultResolutionIndex());
+        quality.index = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
+        AudioListener.volume = volumeSlider.value / 100f;
         currentMouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 10);
         mouseSensitivitySlider.value = currentMouseSensitivity;
-
         Debug.Log("Preferences loaded.");
     }
 

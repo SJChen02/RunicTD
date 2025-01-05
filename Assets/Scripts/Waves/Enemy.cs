@@ -25,12 +25,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private PathManager PathManager;
 
-    //private Spawner spawner;
-
     public void SetPathManager(PathManager newPathManager) {
         PathManager = newPathManager;
     }
 
+    // Apply a slow debuff to the enemy
     public void ApplySlowDebuff(float slowAmount, float duration) {
         if (!isSlowed)
         {
@@ -38,6 +37,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Slow debuff to the enemy
+    // The enemy's move speed is reduced by the slow amount for the duration of the debuff
+    // After the duration, the enemy's move speed is set back to the original move speed
     private IEnumerator SlowDebuff(float slowAmount, float duration) {
         isSlowed = true;
         float originalMoveSpeed = moveSpeed;
@@ -47,6 +49,7 @@ public class Enemy : MonoBehaviour
         isSlowed = false;
     }
 
+    // Apply a burn debuff to the enemy
     public void ApplyBurnDebuff(float burnDamage, float duration) {
         if (!isBurning)
         {
@@ -54,6 +57,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Burn debuff to the enemy
+    // The enemy takes damage every second for the duration of the debuff
+    // The amount of damage taken is the burn damage
     private IEnumerator BurnDebuff(float burnDamage, float duration) {
         isBurning = true;
         float elapsedTime = 0f;
@@ -68,6 +74,7 @@ public class Enemy : MonoBehaviour
         isBurning = false;
     }
 
+    // Apply a stun debuff to the enemy
     public void ApplyStunDebuff(float duration) {
         if (!isStunned)
         {
@@ -75,6 +82,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Stun the enemy for a duration
+    // The enemy's move speed is set to 0 for the duration of the stun
+    // After the duration, the enemy's move speed is set back to the original move speed
     private IEnumerator StunDebuff(float duration) {
         isStunned = true;
         float originalMoveSpeed = moveSpeed;
@@ -84,6 +94,9 @@ public class Enemy : MonoBehaviour
         isStunned = false;
     }
     
+    // Take damage from a tower
+    // The health of the enemy is reduced by the amount of damage taken
+    // The health bar is updated to reflect the new health
     public void TakeDamage(float amount, string towerType = "Neutral") {
         int finalDamage = CalculateDamage(amount, towerType);
         health -= finalDamage;
@@ -91,10 +104,12 @@ public class Enemy : MonoBehaviour
         healthBar.fillAmount = (float)health / maxHealth;
     }
 
+    // Calculate the damage based on the type advantage/disadvantage
+    // Returns the final damage to be applied to the enemy
     private int CalculateDamage(float baseDamage, string towerType)
     {
         float multiplier = 1f;
-        // EDIT THIS SWITCH STATEMENT TO ADD MORE ENEMY TYPES
+        // Type advantage/disadvantage
         // Earth -> water -> fire -> wind -> earth
         switch (enemyType)
         {
@@ -197,12 +212,15 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
+        // If the health of the enemy is less than or equal to 0,
+        // the enemy is killed and the enemy is unregistered from the wave tracker.
         if (health <= 0) {
             WaveTracker.EnemyKilled();
             WaveTracker.UnregisterEnemy(this);
             Destroy(gameObject);
         }
         
+        // If the enemy reaches the end of the path, the enemy is destroyed and the fortress takes a hit.
         if (Vector3.Distance(target.position, transform.position) <= 1f) {
 
             pathIndex++;
@@ -215,17 +233,11 @@ public class Enemy : MonoBehaviour
                 return;
 
             } 
-
             else {
-
                 target = PathManager.path[pathIndex];
-
             }
-
         }
-
         DistanceMoved();
-
     }
 
     public float rotationSpeed = 2f;
@@ -251,8 +263,6 @@ public class Enemy : MonoBehaviour
 
             //makes enemy turn smoothly with slower rotation speed
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime*10f); 
-            
-           
             
         }
 

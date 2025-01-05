@@ -34,6 +34,9 @@ public class SoundManager : MonoBehaviour
     public static float MusicVolume = 0.15f;
     public static float SoundEffectVolume = 1f;
 
+    // Singleton pattern
+    // Ensure only one instance of the SoundManager exists
+    // and that it persists between scenes
     private void Awake()
     {
         if (instance != null)
@@ -55,6 +58,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // Play background music
     public static void PlayBackgroundMusic(SoundType soundType)
     {
         if (instance.backgroundMusicSource.isPlaying)
@@ -74,6 +78,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // Initialise the pool of AudioSources
     private void InitialiseAudioSourcePool()
     {
         audioSourcePool = new List<AudioSource>();
@@ -116,6 +121,7 @@ public class SoundManager : MonoBehaviour
         return null;
     }
 
+    // Play a sound effect and set its volume and priority
     public static void PlaySound(SoundType soundType, float volume = 1f, int priority = 128)
     {
         AudioSource source = instance.GetAvailableAudioSource(priority);
