@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class LevelSelectionEvents : MonoBehaviour
 {
+    public static float enemyHealthMulti;
+    public static float enemySpeedMulti;
+
     private SaveManager saveManager;
     private PlayerData playerData;
 
@@ -102,7 +105,20 @@ public class LevelSelectionEvents : MonoBehaviour
         PlayerPrefs.SetString("SelectedLevel", selectedLevel);
         PlayerPrefs.SetString("Difficulty", difficulty);
 
-
+        switch (difficulty) {
+            case "Easy":
+                enemyHealthMulti = 1;
+                enemySpeedMulti = 1;
+                break;
+            case "Medium":
+                enemyHealthMulti = 1.15f;
+                enemySpeedMulti = 1.15f;
+                break;
+            case "Hard":
+                enemyHealthMulti = 1.3f;
+                enemySpeedMulti = 1.3f;
+                break;
+        }
         StartCoroutine(PerformWithDelay(() => SceneManager.LoadScene(selectedLevel), 1f));
     }
 

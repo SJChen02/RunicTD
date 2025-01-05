@@ -197,6 +197,9 @@ public class Enemy : MonoBehaviour
     private int pathIndex = 0;
 
     private void Start() {
+        // applying difficulty multipliers
+        health = (int)(LevelSelectionEvents.enemyHealthMulti * health);
+        moveSpeed *= LevelSelectionEvents.enemySpeedMulti;
         maxHealth = health;
 
         //spawner = GetComponentInParent<Spawner>();
@@ -215,6 +218,7 @@ public class Enemy : MonoBehaviour
         // If the health of the enemy is less than or equal to 0,
         // the enemy is killed and the enemy is unregistered from the wave tracker.
         if (health <= 0) {
+            SoundManager.PlaySound(SoundType.EnemyDie);
             WaveTracker.EnemyKilled();
             WaveTracker.UnregisterEnemy(this);
             Destroy(gameObject);
