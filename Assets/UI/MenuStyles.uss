@@ -30,60 +30,6 @@
     transition-delay: 0.4s;
 }
 
-.option-Buttons {
-    width: 15%;
-    height: 40%;
-    justify-content: flex-start;
-    -unity-font-definition: resource('Aetherius');
-    align-self: auto;
-    color: rgb(201, 255, 247);
-    font-size: 50px;
-    -unity-font-style: bold;
-    margin-top: 2px;
-    margin-right: 1.5%;
-    margin-bottom: 2px;
-    margin-left: 1px;
-    flex-direction: row;
-    border-left-color: rgba(201, 255, 247, 0);
-    border-right-color: rgba(201, 255, 247, 0);
-    border-top-color: rgba(201, 255, 247, 0);
-    border-bottom-color: rgba(201, 255, 247, 0);
-    border-top-width: 10px;
-    border-right-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.Option-Settings {
-    margin-top: 2%;
-    margin-right: 2%;
-    margin-bottom: 1%;
-    margin-left: 2%;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    -unity-font-style: bold;
-    font-size: 40px;
-    width: 70%;
-    -unity-font-definition: resource('Aetherius');
-    align-self: center;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 0;
-}
-
 .Level-Rows {
     align-items: center;
     justify-content: space-evenly;
@@ -107,11 +53,12 @@
 
 .text-Button {
     width: 70%;
-    height: 20%;
+    height: 25%;
     align-self: center;
     -unity-font-definition: resource('Aetherius');
     font-size: 50px;
     -unity-font-style: bold;
+    color: rgb(206, 239, 255);
 }
 
 .transition-Out {

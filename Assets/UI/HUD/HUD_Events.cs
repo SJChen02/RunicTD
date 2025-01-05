@@ -21,18 +21,17 @@ public class HUD_Events : MonoBehaviour
 
     private DropdownField displayRes;
     private DropdownField quality;
-    private Slider volumeSlider;
+    private Slider MusicVolumeSlider;
+    private Slider MasterVolumeSlider;
+    private Slider SoundEffectVolumeSlider;
     private SliderInt mouseSensitivitySlider;
     private Button ApplyButton;
     private Button CancelButton;
 
     private VisualElement VictoryScreen;
-    private VisualElement LoseScreen;
     private Button MenuButton;
     private Button RetryButton;
     private Button NextLevelButton;
-    private Button MenuButton2;
-    private Button RetryButton2;
 
     private int currentMouseSensitivity = 10; // Default sensitivity value
     private SaveManager saveManager;
@@ -53,7 +52,6 @@ public class HUD_Events : MonoBehaviour
         transition = doc.rootVisualElement.Q<VisualElement>("Transition");
         OptionsMenu = doc.rootVisualElement.Q<VisualElement>("OptionsMenu");
         VictoryScreen = doc.rootVisualElement.Q<VisualElement>("VictoryScreen");
-        LoseScreen = doc.rootVisualElement.Q<VisualElement>("LoseScreen");
         ManaBar = doc.rootVisualElement.Q<ProgressBar>("ManaBar");
 
         PauseButton = doc.rootVisualElement.Q<Button>("PauseButton");
@@ -86,12 +84,6 @@ public class HUD_Events : MonoBehaviour
         RetryButton = doc.rootVisualElement.Q<Button>("RetryButton");
         RetryButton.clicked += RetryClicked;
 
-        MenuButton2 = doc.rootVisualElement.Q<Button>("MenuButton2");
-        MenuButton2.clicked += ExitGameClicked;
-
-        RetryButton2 = doc.rootVisualElement.Q<Button>("RetryButton2");
-        RetryButton2.clicked += RetryClicked;
-
         NextLevelButton = doc.rootVisualElement.Q<Button>("NextLevelButton");
         NextLevelButton.clicked += NextLevelButtonClicked;
 
@@ -101,7 +93,9 @@ public class HUD_Events : MonoBehaviour
         // Initialize UI elements
         InitDisplayRes();
         InitQuality();
-        InitVolumeSlider();
+        InitMasterVolumeSlider();
+        InitMusicVolumeSlider();
+        InitSoundEffectVolumeSlider();
         InitMouseSensitivitySlider();
     }
 
@@ -111,7 +105,6 @@ public class HUD_Events : MonoBehaviour
         PauseMenu.style.display = DisplayStyle.None;
         OptionsMenu.style.display = DisplayStyle.None;
         VictoryScreen.style.display = DisplayStyle.None;
-        LoseScreen.style.display = DisplayStyle.None;
         Time.timeScale = 1f;
     }
 
@@ -122,6 +115,7 @@ public class HUD_Events : MonoBehaviour
         {
             VictoryScreen.style.display = DisplayStyle.Flex;
             VictoryScreen.RemoveFromClassList("fade-out");
+            VictoryScreen.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>("Visuals/VICTORY"));
             if (playerData.highestUnlockedLevel == levelNumber)
             {
                 playerData.highestUnlockedLevel++;
@@ -136,8 +130,10 @@ public class HUD_Events : MonoBehaviour
         // Handle Defeat Condition
         if (Fortress.health <= 0 && !defeatProcessed)
         {
-            LoseScreen.style.display = DisplayStyle.Flex;
-            LoseScreen.RemoveFromClassList("fade-out");
+            NextLevelButton.style.display = DisplayStyle.None;
+            VictoryScreen.style.display = DisplayStyle.Flex;
+            VictoryScreen.RemoveFromClassList("fade-out");
+            VictoryScreen.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>("Visuals/game over"));
             defeatProcessed = true; // Prevent further processing
         }
 
@@ -156,7 +152,6 @@ public class HUD_Events : MonoBehaviour
         PauseMenu.style.display = DisplayStyle.None;
         OptionsMenu.style.display = DisplayStyle.None;
         VictoryScreen.style.display = DisplayStyle.None;
-        LoseScreen.style.display = DisplayStyle.None;
         Time.timeScale = 1f;
 
         // Reload preferences to revert any unsaved changes
@@ -251,21 +246,56 @@ public class HUD_Events : MonoBehaviour
         quality.index = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
     }
 
-    private void InitVolumeSlider()
+    private void InitMasterVolumeSlider()
     {
-        volumeSlider = doc.rootVisualElement.Q<Slider>("volumeSlider");
-        volumeSlider.lowValue = 0;
-        volumeSlider.highValue = 100;
+        MasterVolumeSlider = doc.rootVisualElement.Q<Slider>("MasterVolumeSlider");
+        MasterVolumeSlider.lowValue = 0;
+        MasterVolumeSlider.highValue = 100;
 
-        // Load saved volume or use current
-        float savedVolume = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
-        volumeSlider.value = savedVolume;
+        // Load saved master volume or use default
+        float savedMasterVolume = PlayerPrefs.GetFloat("MasterVolume", SoundManager.MasterVolume * 100);
+        MasterVolumeSlider.value = savedMasterVolume;
 
-        volumeSlider.RegisterValueChangedCallback(evt =>
+        MasterVolumeSlider.RegisterValueChangedCallback(evt =>
         {
-            AudioListener.volume = evt.newValue / 100f; // Convert to 0-1 range
+            SoundManager.MasterVolume = evt.newValue / 100f; // Convert to 0-1 range
+            SoundManager.UpdateMusicVolume(); // Ensure all audio sources are updated
         });
     }
+
+    private void InitMusicVolumeSlider()
+    {
+        MusicVolumeSlider = doc.rootVisualElement.Q<Slider>("MusicVolumeSlider");
+        MusicVolumeSlider.lowValue = 0;
+        MusicVolumeSlider.highValue = 100;
+
+        // Load saved music volume or use default
+        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", SoundManager.MusicVolume * 100);
+        MusicVolumeSlider.value = savedMusicVolume;
+
+        MusicVolumeSlider.RegisterValueChangedCallback(evt =>
+        {
+            SoundManager.MusicVolume = evt.newValue / 100f; // Convert to 0-1 range
+            SoundManager.UpdateMusicVolume(); // Update the background music source
+        });
+    }
+
+    private void InitSoundEffectVolumeSlider()
+    {
+        SoundEffectVolumeSlider = doc.rootVisualElement.Q<Slider>("SoundEffectVolumeSlider");
+        SoundEffectVolumeSlider.lowValue = 0;
+        SoundEffectVolumeSlider.highValue = 100;
+
+        // Load saved sound effect volume or use default
+        float savedSoundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", SoundManager.SoundEffectVolume * 100);
+        SoundEffectVolumeSlider.value = savedSoundEffectVolume;
+
+        SoundEffectVolumeSlider.RegisterValueChangedCallback(evt =>
+        {
+            SoundManager.SoundEffectVolume = evt.newValue / 100f; // Convert to 0-1 range
+        });
+    }
+
 
     private void InitMouseSensitivitySlider()
     {
@@ -318,7 +348,10 @@ public class HUD_Events : MonoBehaviour
     {
         PlayerPrefs.SetInt("ResolutionIndex", displayRes.index);
         PlayerPrefs.SetInt("QualityIndex", quality.index);
-        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+        PlayerPrefs.SetFloat("Volume", MasterVolumeSlider.value); // Overall volume
+        PlayerPrefs.SetFloat("MasterVolume", MasterVolumeSlider.value);
+        PlayerPrefs.SetFloat("MusicVolume", MusicVolumeSlider.value);
+        PlayerPrefs.SetFloat("SoundEffectVolume", SoundEffectVolumeSlider.value);
         PlayerPrefs.SetInt("MouseSensitivity", currentMouseSensitivity);
 
         PlayerPrefs.Save();
@@ -335,10 +368,18 @@ public class HUD_Events : MonoBehaviour
         int qualityIndex = PlayerPrefs.GetInt("QualityIndex", QualitySettings.GetQualityLevel());
         quality.index = qualityIndex;
 
-        // Reload volume
-        float volume = PlayerPrefs.GetFloat("Volume", AudioListener.volume * 100);
-        volumeSlider.value = volume;
-        AudioListener.volume = volume / 100f;
+        // Reload volumes
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", SoundManager.MasterVolume * 100);
+        MasterVolumeSlider.value = masterVolume;
+        SoundManager.MasterVolume = masterVolume / 100f;
+
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", SoundManager.MusicVolume * 100);
+        MusicVolumeSlider.value = musicVolume;
+        SoundManager.MusicVolume = musicVolume / 100f;
+
+        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", SoundManager.SoundEffectVolume * 100);
+        SoundEffectVolumeSlider.value = soundEffectVolume;
+        SoundManager.SoundEffectVolume = soundEffectVolume / 100f;
 
         // Reload mouse sensitivity
         currentMouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity", 10);

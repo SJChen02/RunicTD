@@ -16,10 +16,6 @@ public class Fortress : MonoBehaviour
 
     private FortressRunes fortressRunes; // Reference to the SkillTree component
 
-    [Header("Mana Generation")]
-    public static float manaGenerationInterval = 10f; // Interval for gold generation in seconds
-    private float manaGenerationTimer = 0f;
-
     private void Start()
     {
         // Use the new method to find the SkillTree component in the scene
