@@ -231,7 +231,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: cbc30a835bf90ba41ba17c13ce04d64b, type: 3}
   - {fileID: 8300000, guid: 695ace36230bd9549a4b5955223b00e0, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 008fe13720e14fa4eb192eb3fdfb2cd0, type: 3}
   - {fileID: 8300000, guid: 37a73cebf4c7dfe4484769d0ae86ee6b, type: 3}
   - {fileID: 0}
   - {fileID: 0}

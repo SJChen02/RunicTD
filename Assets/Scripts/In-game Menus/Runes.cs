@@ -42,6 +42,9 @@ public class Runes : MonoBehaviour {
     private static int windPath2Rune3 = 200;
 
     public static void MarkRuneAsPurchased(GameObject parent, string runeName) {
+        // sound effect
+        SoundManager.PlaySound(SoundType.TowerUpgrade);
+
         // get button and disable it
         button = parent.transform.Find(runeName).GetComponent<Button>();
         button.interactable = false;

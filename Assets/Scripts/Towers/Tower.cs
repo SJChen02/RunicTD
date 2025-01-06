@@ -73,6 +73,8 @@ public class Tower : MonoBehaviour {
         float shortestDistance = Mathf.Infinity;
         Enemy nearestEnemy = null;
 
+        // for each enemy in the activeEnemies list, check if the enemy is within range and if the distance is smaller than the shortest distance
+        // if it is, set the enemy as the nearest enemy
         foreach (Enemy enemy in WaveTracker.activeEnemies) {
             if (enemy == null) continue;
 
@@ -95,10 +97,11 @@ public class Tower : MonoBehaviour {
     //targeting for first
     private void first()
     {
-        float shortestDistance = Mathf.Infinity;
         Enemy CloseToEndEnemy = null;
         float ClosestToEnd = Mathf.Infinity;
 
+        // for each enemy in the activeEnemies list, check if the enemy is within range and if the distance left is smaller than the closest distance to the end
+        // if it is, set the enemy as the closest enemy to the end and set target to that enemy
         foreach (Enemy enemy in WaveTracker.activeEnemies)
         {
             if (enemy == null) continue;
@@ -125,26 +128,28 @@ public class Tower : MonoBehaviour {
 
     // targeting for last
     private void last() {
-        float longestDistance = Mathf.NegativeInfinity; //initialise the distance as negative infinity so "enemy" distance will actually replace this
-        Enemy furthestEnemy = null; //enemy object thats furthest from fortress
+        float longestDistance = Mathf.NegativeInfinity;
+        Enemy furthestEnemy = null; 
 
-        foreach (Enemy enemy in WaveTracker.activeEnemies) //loop through array of "enemy" in list "enemies"
+        // for each enemy in the activeEnemies list, check if the enemy is within range and if the distance left is bigger than the longest distance
+        // if it is, set the enemy as the furthest enemy
+        foreach (Enemy enemy in WaveTracker.activeEnemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position); //calculate the distance from tower to enemy
-            float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved; //calculate the distance left to fortress
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position); 
+            float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved; 
 
-            if (distanceLeft > longestDistance && distanceToEnemy <= range) //if the enemy is within range and the distance left is bigger than the longest distance
-            {                                   // if the current enemy object has a bigger distance than stored one... ->
-                longestDistance = distanceLeft; //replace the distance 
-                furthestEnemy = enemy;          //replace the enemy object with current enemy
+            if (distanceLeft > longestDistance && distanceToEnemy <= range)
+            {                                   
+                longestDistance = distanceLeft; 
+                furthestEnemy = enemy;          
             }
 
-            //Debug.Log("Checking enemy, distanceLeft: " + distanceLeft + " , longestDistance: " + longestDistance); //for debugging
+            //Debug.Log("Checking enemy, distanceLeft: " + distanceLeft + " , longestDistance: " + longestDistance);
         }
 
         // Checks that there is a furthest enemy and within range
         if (furthestEnemy != null && Vector3.Distance(transform.position, furthestEnemy.transform.position) <= range) {
-            target = furthestEnemy.transform; //variable for bullet to travel to "this" enemy
+            target = furthestEnemy.transform; 
         }
         else {
             target = null;
@@ -186,8 +191,7 @@ public class Tower : MonoBehaviour {
         //---------------------------------------------------------------------
 
         // Lock on target
-        // Quaternion is how unity represents rotation, eulerAngles is a Vector3 that represents the rotation in degrees
-        // Lerp is linear interpolation, it interpolates between two values (in this between current rotation and the target rotation)
+        // find the direction to the target and rotate the tower towards it
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
