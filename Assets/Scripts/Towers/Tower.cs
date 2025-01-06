@@ -8,6 +8,8 @@ public class Tower : MonoBehaviour {
 
     // set during the targeting methods to decide where the bullet is fired
     private Transform target;
+    //for animation controller to check if animation should be played or not
+    public Transform CastCheck ; 
 
     [Header("Attributes")]
     public float range;
@@ -87,9 +89,11 @@ public class Tower : MonoBehaviour {
 
         if (nearestEnemy != null && shortestDistance <= range) //found an enemy within range
         {
+            CastCheck = target;
             target = nearestEnemy.transform;
         }
         else {
+            CastCheck = null; 
             target = null;
         }
     }
@@ -118,10 +122,12 @@ public class Tower : MonoBehaviour {
 
         if (CloseToEndEnemy != null) // Finds enemy in range
         {
+            CastCheck = target;
             target = CloseToEndEnemy.transform;
         }
         else
         {
+            CastCheck = null;
             target = null;
         }
     }
@@ -149,9 +155,11 @@ public class Tower : MonoBehaviour {
 
         // Checks that there is a furthest enemy and within range
         if (furthestEnemy != null && Vector3.Distance(transform.position, furthestEnemy.transform.position) <= range) {
+            CastCheck = target; 
             target = furthestEnemy.transform; 
         }
         else {
+            CastCheck = null;
             target = null;
         }
     }
