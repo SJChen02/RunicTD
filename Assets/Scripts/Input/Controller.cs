@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
 
 // this script is solely attached to the UI canvas
 public class Controller : MonoBehaviour {

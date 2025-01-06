@@ -25,7 +25,7 @@ public class WizCastAnimControllerScript : MonoBehaviour
         // If no target, disable animator to return to initial pose
         else
         {
-            animator.Play("WizardCast", 0, 0f);
+            animator.Play("WizCast", 0, 0f);
             animator.SetBool("IsActive", false);
             animator.enabled = false;
         }

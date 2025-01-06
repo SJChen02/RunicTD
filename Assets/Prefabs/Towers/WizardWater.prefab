@@ -166,23 +166,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastCheck: {fileID: 0}
-  range: 20
-  fireRate: 1.6
+  range: 25
+  fireRate: 0.9
   path: 0
   rank: 0
-  cost: 50
+  cost: 75
   sellValue: 0
   targeting: First
   towerName: Water Wizard
   tilePlacedOn: {fileID: 0}
-  damage: 30
+  damage: 28
   bulletSpeed: 0
   stunDuration: 1
   burnDuration: 3
   burnDamage: 5
   critChance: 0.2
   critDamage: 1.2
-  splashRadius: 14
+  splashRadius: 12
   enemyTag: Enemy
   turnSpeed: 10
   firePoint: {fileID: 2609743673268706212}
