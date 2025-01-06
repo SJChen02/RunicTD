@@ -19,3 +19,5 @@ Earth sound: https://youtu.be/npL3NfpOd9A?si=R2pyTDD9a8kmSZin
 Fire sound: https://youtu.be/RZtMFFudEw8?si=mBQCi4lW0b4VrL0V
 
 TowerPlace, WaveStart, TowerSell,Towerupgrade, EnemyDeath, FortressHit: https://sfbgames.itch.io/chiptone
+
+UI art by Parsa Rafiee & MJ Rezaei
