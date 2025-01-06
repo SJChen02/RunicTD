@@ -14,7 +14,9 @@ public class LevelSelectionEvents : MonoBehaviour
     private UIDocument doc;
     private VisualElement DifficultyMenu;
     private VisualElement transition;
+    private VisualElement LoreView;
     private string selectedLevel;
+//private Button closeLoreButton
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class LevelSelectionEvents : MonoBehaviour
         doc = GetComponent<UIDocument>();
         DifficultyMenu = doc.rootVisualElement.Q<VisualElement>("DifficultyMenu");
         transition = doc.rootVisualElement.Q<VisualElement>("Transition");
+        LoreView = doc.rootVisualElement.Q<VisualElement>("LoreView");
 
         if (transition == null)
         {
@@ -40,6 +43,8 @@ public class LevelSelectionEvents : MonoBehaviour
         // Map buttons to actions
         AssignButton("CloseButton", () => ToggleDifficultyMenu(false));
         AssignButton("BackButton", () => StartCoroutine(PerformWithDelay(() => SceneManager.LoadScene("Main Menu"), 2f)));
+        AssignButton("closeLoreButton", () => LoreView.style.display = DisplayStyle.None);
+        AssignButton("LoreButton", () => LoreView.style.display = DisplayStyle.Flex);
 
         // Map level buttons
         AssignLevelButton("Level_1", "Level 1");
