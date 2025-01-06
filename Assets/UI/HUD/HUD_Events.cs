@@ -9,6 +9,7 @@ public class HUD_Events : MonoBehaviour
 {
     private UIDocument doc;
     private VisualElement PauseMenu;
+    private VisualElement HUD_Element;
     private VisualElement transition;
     private VisualElement TutorialBackground;
     private VisualElement TutorialPage1;
@@ -55,6 +56,7 @@ public class HUD_Events : MonoBehaviour
         playerData = saveManager.LoadProgress();
 
         PauseMenu = doc.rootVisualElement.Q<VisualElement>("PauseMenu");
+        HUD_Element = doc.rootVisualElement.Q<VisualElement>("HUD_Element");
         transition = doc.rootVisualElement.Q<VisualElement>("Transition");
         OptionsMenu = doc.rootVisualElement.Q<VisualElement>("OptionsMenu");
         VictoryScreen = doc.rootVisualElement.Q<VisualElement>("VictoryScreen");
@@ -164,6 +166,7 @@ public class HUD_Events : MonoBehaviour
     private void PauseButtonClicked()
     {
         PauseMenu.style.display = DisplayStyle.Flex;
+        HUD_Element.pickingMode = PickingMode.Position;
         Time.timeScale = 0f;
     }
 
@@ -172,6 +175,7 @@ public class HUD_Events : MonoBehaviour
         PauseMenu.style.display = DisplayStyle.None;
         OptionsMenu.style.display = DisplayStyle.None;
         VictoryScreen.style.display = DisplayStyle.None;
+        HUD_Element.pickingMode = PickingMode.Ignore;
         Time.timeScale = 1f;
 
         // Reload preferences to revert any unsaved changes
