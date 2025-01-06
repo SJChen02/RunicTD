@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour {
     public float critChance;
     public float critDamage;
 
+    // Set target functions and variables
     public void SeekEarth(Transform _target, float _damage, float _stunDuration) {
         target = _target;
         damage = _damage;
@@ -48,7 +49,7 @@ public class Bullet : MonoBehaviour {
 
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
-
+        // register bullet hit
         if (dir.magnitude <= distanceThisFrame) { //dir.magnitude is distance to target
             switch (towerName) {
                 case "Earth Wizard":
