@@ -1171,14 +1171,8 @@ MonoBehaviour:
   pathManager: {fileID: 493147367}
   waves:
   - enemySets:
-    - prefab: {fileID: 3151756384985257269, guid: 96b71e7d035aa6a4ab59d09760f3f645, type: 3}
-      count: 3
-    - prefab: {fileID: -8112547145543391192, guid: 1627df068373d5643b0a567b0fae87a5, type: 3}
-      count: 3
-    - prefab: {fileID: 6960203552290677624, guid: b9be92a761b18dc4da18e8e59bbc7646, type: 3}
-      count: 3
     - prefab: {fileID: -8901910235355578986, guid: 7eb1aba9d628d664b8b4469f4e1ff07f, type: 3}
-      count: 3
+      count: 1
     enemiesLeft: 0
   - enemySets:
     - prefab: {fileID: 365614374841004155, guid: 632d647c07c55984fafad23814e47602, type: 3}

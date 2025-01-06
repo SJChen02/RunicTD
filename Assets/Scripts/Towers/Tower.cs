@@ -200,8 +200,9 @@ public class Tower : MonoBehaviour {
 
         // Lock on target
         // find the direction to the target and rotate the tower towards it
+        Quaternion offset = Quaternion.Euler(0, 270, 0);
         Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Quaternion lookRotation = Quaternion.LookRotation(-dir, Vector3.up) * offset;
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
