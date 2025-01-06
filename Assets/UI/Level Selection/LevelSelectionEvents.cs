@@ -7,6 +7,7 @@ public class LevelSelectionEvents : MonoBehaviour
 {
     public static float enemyHealthMulti;
     public static float enemySpeedMulti;
+    public static float sellMulti;
 
     private SaveManager saveManager;
     private PlayerData playerData;
@@ -16,7 +17,6 @@ public class LevelSelectionEvents : MonoBehaviour
     private VisualElement transition;
     private VisualElement LoreView;
     private string selectedLevel;
-//private Button closeLoreButton
 
     private void Awake()
     {
@@ -114,14 +114,17 @@ public class LevelSelectionEvents : MonoBehaviour
             case "Easy":
                 enemyHealthMulti = 1;
                 enemySpeedMulti = 1;
+                sellMulti = 0.8f;
                 break;
             case "Medium":
                 enemyHealthMulti = 1.15f;
                 enemySpeedMulti = 1.15f;
+                sellMulti = 0.7f;
                 break;
             case "Hard":
                 enemyHealthMulti = 1.3f;
                 enemySpeedMulti = 1.3f;
+                sellMulti = 0.6f;
                 break;
         }
         StartCoroutine(PerformWithDelay(() => SceneManager.LoadScene(selectedLevel), 1f));
