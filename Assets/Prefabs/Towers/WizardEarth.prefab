@@ -166,16 +166,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CastCheck: {fileID: 0}
-  range: 20
-  fireRate: 1.1
+  range: 27
+  fireRate: 1.3
   path: 0
   rank: 0
-  cost: 50
+  cost: 55
   sellValue: 0
   targeting: First
   towerName: Earth Wizard
   tilePlacedOn: {fileID: 0}
-  damage: 35
+  damage: 28
   bulletSpeed: 0
   stunDuration: 1
   burnDuration: 3
