@@ -93,32 +93,32 @@ public class Tower : MonoBehaviour {
     }
 
     //targeting for first
-    private void first() {
+    private void first()
+    {
         float shortestDistance = Mathf.Infinity;
         Enemy CloseToEndEnemy = null;
         float ClosestToEnd = Mathf.Infinity;
 
-        foreach (Enemy enemy in WaveTracker.activeEnemies) {
+        foreach (Enemy enemy in WaveTracker.activeEnemies)
+        {
             if (enemy == null) continue;
 
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance) {
-                float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved;
-
-                if (distanceLeft < ClosestToEnd) {
-                    ClosestToEnd = distanceLeft;
-                    CloseToEndEnemy = enemy;
-                }
-
-                shortestDistance = distanceToEnemy;
+            float distanceLeft = enemy.totalDistance - enemy.totalDistanceMoved;
+            if (distanceLeft < ClosestToEnd && distanceToEnemy <= range)
+            {
+                ClosestToEnd = distanceLeft;
+                CloseToEndEnemy = enemy;
             }
+
         }
 
-        if (CloseToEndEnemy != null && shortestDistance <= range) // Finds enemy in range
+        if (CloseToEndEnemy != null) // Finds enemy in range
         {
             target = CloseToEndEnemy.transform;
         }
-        else {
+        else
+        {
             target = null;
         }
     }
