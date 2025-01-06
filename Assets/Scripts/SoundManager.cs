@@ -18,7 +18,11 @@ public enum SoundType
     WaveEnd,
     ButtonClick,
     BackgroundMusic,
-    FortressHit
+    FortressHit,
+    EarthCast,
+    WaterCast,
+    WindCast,
+    FireCast
 }
 
 public class SoundManager : MonoBehaviour
