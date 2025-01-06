@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    // for linking bullets to their appropriate towers
     public string towerName;
 
     [Header("Do Not Edit")]
@@ -17,7 +18,7 @@ public class Bullet : MonoBehaviour {
     public float critChance;
     public float critDamage;
 
-    // Set target functions and variables
+    // functions to set target and variables for specific damage types
     public void SeekEarth(Transform _target, float _damage, float _stunDuration) {
         target = _target;
         damage = _damage;
@@ -42,6 +43,7 @@ public class Bullet : MonoBehaviour {
     }
 
     void Update() {
+        // checking if there is a target to shoot at
         if (target == null) {
             Destroy(gameObject);
             return;
@@ -49,8 +51,10 @@ public class Bullet : MonoBehaviour {
 
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
-        // register bullet hit
+
+        // checking if the bullet is about to hit
         if (dir.magnitude <= distanceThisFrame) { //dir.magnitude is distance to target
+            // call the appropriate elemental damage type and destroy the bullet
             switch (towerName) {
                 case "Earth Wizard":
                     BulletEarth.HitTarget(target, damage, stunDuration);
@@ -70,6 +74,8 @@ public class Bullet : MonoBehaviour {
                     return;
             }
         }
+
+        // move the bullet
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 }

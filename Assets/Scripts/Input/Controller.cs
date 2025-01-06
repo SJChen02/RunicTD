@@ -131,6 +131,7 @@ public class Controller : MonoBehaviour {
             return;
         }
 
+        // scale, move and activate the range indicator
         Tower towerScript = currentTower.GetComponent<Tower>();
         rangeIndicator.transform.localScale = new Vector3(2 * towerScript.range, 2 * towerScript.range, 2 * towerScript.range);
         rangeIndicator.transform.position = currentTower.transform.position + new Vector3(0f, 0.01f, 0f);
@@ -145,7 +146,7 @@ public class Controller : MonoBehaviour {
 
     public static void UpdateSellValue(int value) {
         Tower towerScript = currentTower.GetComponent<Tower>();
-        towerScript.sellValue += (int)(0.75 * value);
+        towerScript.sellValue += (int)(LevelSelectionEvents.sellMulti * value);
         sellText.text = "Sell: " + towerScript.sellValue;
     }
 

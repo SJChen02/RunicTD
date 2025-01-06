@@ -27,7 +27,7 @@ public class Runes : MonoBehaviour {
     private static int firePath2Rune2 = 120;
     private static int firePath2Rune3 = 200;
 
-    private static int earthPath1Rune1 = 10;
+    private static int earthPath1Rune1 = 80;
     private static int earthPath1Rune2 = 120;
     private static int earthPath1Rune3 = 200;
     private static int earthPath2Rune1 = 80;
@@ -114,6 +114,7 @@ public class Runes : MonoBehaviour {
         }
     }
 
+    // returns the tablet based on the tower name inputted
     private static GameObject GetTablet(string towerName) {
         switch (towerName) {
             case "Earth Wizard":
@@ -434,6 +435,7 @@ public class Runes : MonoBehaviour {
         return false;
     }
 
+    // returns true if the purchase of a specified rune was successful
     private static bool PurchaseRune(string towerName, int rank, int path, Tower towerScript) {
         switch (towerName) {
             case "Earth Wizard":

@@ -65,7 +65,7 @@ public class Tower : MonoBehaviour {
         }
 
         // setting the sellValue
-        sellValue = (int)(0.75 * cost);
+        sellValue = (int)(LevelSelectionEvents.sellMulti * cost);
     }
 
     //------------------------------------------------------------------------------------------------------
@@ -222,6 +222,7 @@ public class Tower : MonoBehaviour {
         Bullet bulletScript = bulletGo.GetComponent<Bullet>();
 
         if (bulletScript != null) {
+            // calling the appropriate function to set the variables for the bullet
             switch (towerName) {
                 case "Earth Wizard":
                     SoundManager.PlaySound(SoundType.EarthCast, 0.1f);
@@ -253,6 +254,7 @@ public class Tower : MonoBehaviour {
         }
     }
 
+    // red wire frame to indicate range
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TowerIdentifier : MonoBehaviour {
 
+    // for the buttons in the store
     private static GameObject towerSelected;
 
     public static void TowerSelected(GameObject tower) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletWind : MonoBehaviour {
-
+    // wind elemental damage
     public static void HitTarget(Transform target, float damage, float critChance, float critDamage) {
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null) {

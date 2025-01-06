@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletFire : MonoBehaviour {
+    // fire elemental damage
     public static void HitTarget(Transform target, float damage, float burnDuration, float burnDamage) {
         Enemy enemy = target.GetComponent<Enemy>();
 

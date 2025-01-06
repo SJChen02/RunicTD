@@ -99,6 +99,7 @@ public class FortressRunes : MonoBehaviour {
     }
 
     private void Start() {
+        // obtaining references
         fortressMenuParent = Controller.parentUI.Find("Fortress Menu").transform;
         earthPath = fortressMenuParent.Find("Earth Path").gameObject;
         firePath = fortressMenuParent.Find("Fire Path").gameObject;
@@ -315,5 +316,4 @@ public class FortressRunes : MonoBehaviour {
             Runes.MarkRuneAsPurchased(manaRatePath, "Rune 2");
         }
     }
-
 }
