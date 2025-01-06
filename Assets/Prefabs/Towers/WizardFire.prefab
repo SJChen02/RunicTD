@@ -175,7 +175,7 @@ MonoBehaviour:
   targeting: First
   towerName: Fire Wizard
   tilePlacedOn: {fileID: 0}
-  damage: 35
+  damage: 37
   bulletSpeed: 0
   stunDuration: 1
   burnDuration: 3

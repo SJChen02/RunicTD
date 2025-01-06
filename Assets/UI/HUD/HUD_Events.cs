@@ -28,7 +28,7 @@ public class HUD_Events : MonoBehaviour
     private int currentMouseSensitivity = 10; // Default sensitivity value
     private float manaBarTimer = 0f;
     public static float manaFillDuration = 10f; // Duration for the progress bar to fill
-    public static int manaGain = 50;
+    public static int manaGain = 65;
     private void Start()
     {
         StartSceneFadeIn();

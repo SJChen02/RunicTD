@@ -175,7 +175,7 @@ MonoBehaviour:
   targeting: First
   towerName: Earth Wizard
   tilePlacedOn: {fileID: 0}
-  damage: 32
+  damage: 35
   bulletSpeed: 0
   stunDuration: 1
   burnDuration: 3
