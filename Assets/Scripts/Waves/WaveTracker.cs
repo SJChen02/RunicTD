@@ -60,7 +60,7 @@ public class WaveTracker : MonoBehaviour {
 
         if (countdown <= 0) {
             Debug.Log("Starting next wave");
-            countdown = 2f;
+            countdown = 4f;
             readyToCountdown = false;
 
             foreach (Spawner spawner in spScripts) {
