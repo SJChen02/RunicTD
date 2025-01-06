@@ -485,8 +485,11 @@ public class Runes : MonoBehaviour {
             }
         }
         else {
-            // restore the path to the default state
-            towerScript.path = 0;
+            // if the first ruin failed to be purchased, reset the path to 0
+            if (towerScript.rank == 0) {
+                // restore the path to the default state
+                towerScript.path = 0;
+            }
         }
     }
 }
