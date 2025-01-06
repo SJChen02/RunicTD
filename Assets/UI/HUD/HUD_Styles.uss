@@ -1,0 +1,58 @@
+.PauseMenuButtons {
+    width: 40%;
+    height: 9%;
+    align-self: center;
+    background-color: rgb(0, 75, 130);
+    -unity-font-definition: resource('Aetherius');
+    font-size: 40px;
+    -unity-font-style: bold;
+    color: rgb(209, 238, 253);
+}
+
+.fade-in {
+    transition-duration: 2s;
+}
+
+.fade-out {
+    opacity: 0;
+    transition-duration: 1s;
+    transition-timing-function: ease-in;
+}
+
+.Tutorial-Text {
+    color: rgb(209, 237, 253);
+    -unity-font-definition: resource('Aetherius');
+    font-size: 40px;
+}
+
+.unity-progress-bar__container {
+    max-height: 50px;
+    height: 50px;
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
+
+.unity-progress-bar__progress {
+    background-color: rgb(209, 237, 253);
+    border-radius: 18px;
+    margin: 12px;
+}
+
+.unity-progress-bar__background {
+    border-radius: 18px;
+    background-color: rgb(55, 90, 125);
+}
+
+.lore {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    -unity-font-definition: resource('Aetherius');
+    -unity-font-style: bold;
+    font-size: 55px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    display: none;
+}
