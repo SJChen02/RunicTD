@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankFire
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3acdf34318f4e39408e3c52c44ce1eb3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1584812056006845050, guid: 3acdf34318f4e39408e3c52c44ce1eb3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
