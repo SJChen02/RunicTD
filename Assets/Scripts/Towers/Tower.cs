@@ -215,23 +215,27 @@ public class Tower : MonoBehaviour {
         if (bulletScript != null) {
             switch (towerName) {
                 case "Earth Wizard":
+                    SoundManager.PlaySound(SoundType.EarthCast, 0.1f);
                     bulletScript.SeekEarth(target,
                                            FortressRunes.earthDmgMulti * damage,
                                            FortressRunes.stunDurationMulti * stunDuration);
                     break;
                 case "Fire Wizard":
+                    SoundManager.PlaySound(SoundType.FireCast, 0.1f);
                     bulletScript.SeekFire(target,
                                           FortressRunes.fireDmgMulti * damage,
                                           FortressRunes.burnDurationMulti * burnDuration,
                                           FortressRunes.burnDmgMulti * burnDamage);
                     break;
                 case "Wind Wizard":
+                    SoundManager.PlaySound(SoundType.WindCast, 0.1f);
                     bulletScript.SeekWind(target,
                                           FortressRunes.windDmgMulti * damage,
                                           FortressRunes.critChanceMulti * critChance,
                                           FortressRunes.critDmgMulti * critDamage);
                     break;
                 case "Water Wizard":
+                    SoundManager.PlaySound(SoundType.WaterCast, 0.1f);
                     bulletScript.SeekWater(target,
                                            FortressRunes.waterDmgMulti * damage,
                                            FortressRunes.splashRadiusMulti * splashRadius);

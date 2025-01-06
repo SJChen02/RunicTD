@@ -242,6 +242,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: daa28117c262b4c4da4c4f8a4514bc5c, type: 3}
   - {fileID: 8300000, guid: 401145d2c37868642b91a8103593b089, type: 3}
+  - {fileID: 8300000, guid: ce733f33c0b4e7b42af18fef219b4733, type: 3}
+  - {fileID: 8300000, guid: 18eae1f6e1d95f541aebb9d494e70b20, type: 3}
+  - {fileID: 8300000, guid: aa8e6379d468f314baa437542b4f90b8, type: 3}
+  - {fileID: 8300000, guid: 9b8d6aae283eb2549aeb96d71cbaba0b, type: 3}
   audioSourcePoolSize: 20
   audioMixer: {fileID: 24100000, guid: 64c5b5a38b0901140afed669ac317afb, type: 2}
 --- !u!4 &1055807801
