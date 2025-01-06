@@ -18,6 +18,9 @@ public class Sell : MonoBehaviour {
         // close menu and clear runes
         Controller.ToggleRunicTablet();
 
+        // sound effect
+        SoundManager.PlaySound(SoundType.TowerSell);
+
         // deleting the tower
         Destroy(Controller.currentTower);
 

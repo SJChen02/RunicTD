@@ -24,6 +24,9 @@ public class Store : MonoBehaviour {
             // unhighlighting the tile
             Controller.currentTile.GetComponent<Renderer>().material = Controller.tileMaterial;
 
+            // sound effect
+            SoundManager.PlaySound(SoundType.TowerPlace);
+
             // placing the tower
             Instantiate(
                 towerSelected,
