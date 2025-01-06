@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338742, g: 0.21673962, b: 0.29880893, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338729, g: 0.21673925, b: 0.2988084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -813,6 +813,7 @@ MonoBehaviour:
   - {fileID: 1155649331}
   - {fileID: 907052016}
   - {fileID: 1069227076}
+  - {fileID: 349841144}
 --- !u!1 &512878353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,6 +3121,10 @@ PrefabInstance:
     - target: {fileID: 4005116771720785895, guid: 6b79b09c7b03c3a4db9546f7807c0632, type: 3}
       propertyPath: m_Name
       value: Wave Tracker
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005060069049503883, guid: 6b79b09c7b03c3a4db9546f7807c0632, type: 3}
+      propertyPath: countdown
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8178327654456319337, guid: 6b79b09c7b03c3a4db9546f7807c0632, type: 3}
       propertyPath: m_LocalPosition.x

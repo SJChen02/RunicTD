@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastCheck: {fileID: 0}
   range: 20
-  fireRate: 1.4
+  fireRate: 2.2
   path: 0
   rank: 0
   cost: 50
@@ -175,7 +175,7 @@ MonoBehaviour:
   targeting: First
   towerName: Wind Wizard
   tilePlacedOn: {fileID: 0}
-  damage: 40
+  damage: 24
   bulletSpeed: 0
   stunDuration: 1
   burnDuration: 3
