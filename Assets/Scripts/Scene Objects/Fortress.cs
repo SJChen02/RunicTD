@@ -5,8 +5,8 @@ using UnityEngine;
 public class Fortress : MonoBehaviour
 {
     [Header("Health")]
-    public static int health = 100;
-    public static int mana = 100;
+    public static int health = 120;
+    public static int mana = 150;
     public TextMeshProUGUI manaAmount;
     public TextMeshProUGUI healthAmount;
     public TextMeshProUGUI waveCount;

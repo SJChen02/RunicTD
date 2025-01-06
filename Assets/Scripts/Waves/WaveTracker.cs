@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveTracker : MonoBehaviour {
 
-    [SerializeField] private float countdown = 1f;
+    [SerializeField] private float countdown = 5f;
     public static List<Enemy> activeEnemies = new List<Enemy>();
     public static int totalEnemiesLeft;
     public static int currentWave = 0;

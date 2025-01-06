@@ -7557,6 +7557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave Tracker
       objectReference: {fileID: 0}
+    - target: {fileID: 6005060069049503883, guid: 6b79b09c7b03c3a4db9546f7807c0632, type: 3}
+      propertyPath: countdown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8178327654456319337, guid: 6b79b09c7b03c3a4db9546f7807c0632, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
