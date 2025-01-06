@@ -42,3 +42,17 @@
     border-radius: 18px;
     background-color: rgb(55, 90, 125);
 }
+
+.lore {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    -unity-font-definition: resource('Aetherius');
+    -unity-font-style: bold;
+    font-size: 55px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    display: none;
+}
